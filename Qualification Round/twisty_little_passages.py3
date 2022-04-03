@@ -10,7 +10,6 @@
 #
 
 from sys import stdout
-from random import seed, shuffle
 
 def walk():
     print("W")
@@ -29,28 +28,24 @@ def estimate(i):
 def twisty_little_passages():
     N, K = list(map(int, input().split()))
     R, P = list(map(int, input().split()))
-    candidates = [i for i in range(1, N+1) if i != R]
-    shuffle(candidates)
-    lookup = {R}
+    candidates = set(i for i in range(1, N+1) if i != R)
     turn = K%2
     total = total_T = P
     cnt_T = 1
-    while K and len(lookup) < N:
+    while K and candidates:
         if K%2 == turn:
             R, P = walk()
+            if R in candidates:
+                candidates.remove(R)
+                total += P
         else:
-            while candidates[-1] in lookup:
-                candidates.pop()
             R, P = teleport(candidates.pop())
             total_T += P
             cnt_T += 1
-        if R not in lookup:
-            lookup.add(R)
             total += P
         K -= 1
     avg = total_T/cnt_T
-    estimate(int((total+avg*(N-len(lookup)))/2))
+    estimate(int((total+avg*len(candidates))/2))
 
-seed(0)
 for case in range(int(input())):
     twisty_little_passages()
