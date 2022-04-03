@@ -33,30 +33,25 @@ def twisty_little_passages():
     shuffle(candidates)
     lookup = {R}
     turn = K%2
-    total_W = 0
-    cnt_W = 0
     degree = P
     weight = 1
     while K and len(lookup) < N:
         if K%2 == turn:
             prev = P
             R, P = walk()
-            if R not in lookup:
-                lookup.add(R)
-                total_W += P
-                cnt_W += 1
-                degree += P*(prev/P)
-                weight += prev/P
+            degree += P*(prev/P)
+            weight += prev/P
         else:
             while candidates[-1] in lookup:
                 candidates.pop()
             R, P = teleport(candidates.pop())
-            lookup.add(R)
             degree += P*1
             weight += 1
+        if R not in lookup:
+            lookup.add(R)
         K -= 1
     avg = degree/weight
-    estimate(int((total_W+avg*(N-cnt_W))/2))
+    estimate(int((avg*N)/2))
 
 seed(0)
 for case in range(int(input())):
