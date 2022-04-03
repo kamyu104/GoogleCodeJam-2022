@@ -9,21 +9,16 @@
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 twisty_little_passages2.py3
 #
 
-from sys import stdout
-
 def walk():
-    print("W")
-    stdout.flush()
+    print("W", flush=True)
     return list(map(int, input().split()))
 
 def teleport(i):
-    print("T %s" % i)
-    stdout.flush()
+    print("T %s" % i, flush=True)
     return list(map(int, input().split()))
 
 def estimate(i):
-    print("E %s" % i)
-    stdout.flush()
+    print("E %s" % i, flush=True)
 
 def twisty_little_passages():
     N, K = list(map(int, input().split()))

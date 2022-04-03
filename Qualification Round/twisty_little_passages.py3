@@ -9,43 +9,38 @@
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 twisty_little_passages.py3
 #
 
-from sys import stdout
-
 def walk():
-    print("W")
-    stdout.flush()
+    print("W", flush=True)
     return list(map(int, input().split()))
 
 def teleport(i):
-    print("T %s" % i)
-    stdout.flush()
+    print("T %s" % i, flush=True)
     return list(map(int, input().split()))
 
 def estimate(i):
-    print("E %s" % i)
-    stdout.flush()
+    print("E %s" % i, flush=True)
 
 def twisty_little_passages():
     N, K = list(map(int, input().split()))
     R, P = list(map(int, input().split()))
     candidates = set(i for i in range(1, N+1) if i != R)
     turn = K%2
-    total = total_T = P
+    degree = degree_T = P
     cnt_T = 1
     while K and candidates:
         if K%2 == turn:
             R, P = walk()
             if R in candidates:
                 candidates.remove(R)
-                total += P
+                degree += P
         else:
             R, P = teleport(candidates.pop())
-            total_T += P
+            degree_T += P
             cnt_T += 1
-            total += P
+            degree += P
         K -= 1
-    avg = total_T/cnt_T
-    estimate(int((total+avg*len(candidates))/2))
+    avg = degree_T/cnt_T
+    estimate(int((degree+avg*len(candidates))/2))
 
 for case in range(int(input())):
     twisty_little_passages()
