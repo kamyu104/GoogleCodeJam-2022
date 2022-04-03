@@ -24,11 +24,12 @@ def twisty_little_passages():
     N, K = list(map(int, input().split()))
     R, P = list(map(int, input().split()))
     candidates = set(i for i in range(1, N+1) if i != R)
-    turn = K%2
     degree = degree_T = P
     cnt_T = 1
-    while K and candidates:
-        if K%2 == turn:
+    for i in range(K):
+        if not candidates:
+            break
+        if i%2 == 0:
             R, P = walk()
             if R in candidates:
                 candidates.remove(R)
@@ -38,7 +39,6 @@ def twisty_little_passages():
             degree_T += P
             cnt_T += 1
             degree += P
-        K -= 1
     avg = degree_T/cnt_T
     estimate(int((degree+avg*len(candidates))/2))
 
