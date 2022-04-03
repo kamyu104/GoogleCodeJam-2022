@@ -6,6 +6,8 @@
 # Time:  O(min(K, N))
 # Space: O(min(K, N))
 #
+# python interactive_runner.py python3 testing_tool.py 0 -- python3 twisty_little_passages2.py3
+#
 
 from sys import stdout
 from random import seed, shuffle
