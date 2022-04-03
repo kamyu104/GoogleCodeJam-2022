@@ -23,7 +23,7 @@ def estimate(i):
 def twisty_little_passages():
     N, K = list(map(int, input().split()))
     R, P = list(map(int, input().split()))
-    candidates = set(i for i in range(1, N+1) if i != R)
+    candidates = {i for i in range(1, N+1) if i != R}
     degree = P
     weight = 1
     for i in range(K):
