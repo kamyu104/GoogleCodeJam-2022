@@ -31,13 +31,12 @@ def twisty_little_passages():
             break
         if i%2 == 0:
             R, P = walk()
-            if R in candidates:
-                candidates.remove(R)
-                degree += P
         else:
-            R, P = teleport(candidates.pop())
+            R, P = teleport(next(iter(candidates)))
             degree_T += P
             cnt_T += 1
+        if R in candidates:
+            candidates.remove(R)
             degree += P
     avg = degree_T/cnt_T
     estimate(int((degree+avg*len(candidates))/2))

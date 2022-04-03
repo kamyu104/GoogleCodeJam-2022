@@ -34,12 +34,12 @@ def twisty_little_passages():
             R, P = walk()
             degree += P*(prev/P)
             weight += prev/P
-            if R in candidates:
-                candidates.remove(R)
         else:
-            R, P = teleport(candidates.pop())
+            R, P = teleport(next(iter(candidates)))
             degree += P*1
             weight += 1
+        if R in candidates:
+            candidates.remove(R)
     avg = degree/weight
     estimate(int((avg*N)/2))
 
