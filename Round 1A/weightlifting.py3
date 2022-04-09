@@ -18,9 +18,8 @@ def weightlifting():
                 mn[k] = min(mn[k], X[j][k])
             dp[i][j] = sum(mn)
     dp2 = [[INF]*E for _ in range(E)]  # dp2[i][j]: min number of ops in [i, j]
-    for i in range(E):
-        dp2[i][i] = 2*dp[i][i]
-    for j in range(1, E):
+    for j in range(E):
+        dp2[j][j] = 2*dp[j][j]
         for i in reversed(range(j)):
             for k in range(i, j):
                 dp2[i][j] = min(dp2[i][j], dp2[i][k]+dp2[k+1][j]-2*dp[i][j])
