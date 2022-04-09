@@ -6,7 +6,7 @@
 # Time:  O(N)
 # Space: O(N)
 #
-# python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum.py3
+# python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum2.py3
 #
 
 def write(a):
