@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-4%20%2F%204-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-7%20%2F%207-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -8,6 +8,7 @@
 
 * [Code Jam 2021](https://github.com/kamyu104/GoogleCodeJam-2021)
 * [Qualification Round](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round)
+* [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1a)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -17,3 +18,10 @@
 |C| [d1000000](https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a46471)| [PyPy3](./Qualification%20Round/d1000000.py3) [Python3](./Qualification%20Round/d1000000-2.py3)| _O(NlogN)_ | _O(1)_ | Easy | | Sort |
 |D| [Chain Reactions](https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a45ef7)| [Python3](./Qualification%20Round/chain_reactions.py3) [Python3](./Qualification%20Round/chain_reactions2.py3) |  _O(N)_ | _O(N)_ | Medium | | Topological Sort, Greedy |
 |E| [Twisty Little Passages](https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a45fc0)| [Python3](./Qualification%20Round/twisty_little_passages.py3) [Python3](./Qualification%20Round/twisty_little_passages2.py3) |  _O(min(K, N))_ | _O(min(K, N))_ | Hard | | Probability, Importance Sampling |
+
+## Round 1A
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Double or One Thing](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8e9c)| [Python3](./Round%201A/double_or_one_thing.py3)| _O(S)_ | _O(1)_ | Easy | | String |
+|B| [Equal Sum](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8fc1)| [Python3](./Round%201A/equal_sum.py3)| _O(N)_ | _O(N)_ | Medium | | Math |
+|C| [Weightlifting](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa9280)| [Python3](./Round%201A/Weightlifting.py3)| _O(E^2 * W + E^3)_ | _O(E^2)_ | Hard | | DP |
