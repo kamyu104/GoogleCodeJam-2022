@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8fc1
 #
 # Time:  O(N)
-# Space: O(N)
+# Space: O(1)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum.py3
 #
@@ -22,11 +22,10 @@ def equal_sum():
         if A_pow2[-1]*2 > MAX_VAL:
             break
         A_pow2.append(A_pow2[-1]*2)
-    lookup = set(A_pow2)
     A_others = []
     i = MAX_VAL
-    while len(A_others) < N-len(lookup):
-        if i not in lookup:  # choose any unused numbers
+    while len(A_others) < N-len(A_pow2):
+        if i&(i-1):  # choose any unused numbers
             A_others.append(i)
         i -= 1
     write(A_pow2+A_others)

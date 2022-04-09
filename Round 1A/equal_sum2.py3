@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8fc1
 #
 # Time:  O(N)
-# Space: O(N)
+# Space: O(1)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum2.py3
 #
@@ -22,11 +22,10 @@ def equal_sum():
         if A[-1]*2 > MAX_VAL:
             break
         A.append(A[-1]*2)
-    A = set(A)
     i = 1
     while len(A) < N:
-        if i not in A:  # choose smallest unused numbers
-            A.add(i)
+        if i&(i-1):  # choose smallest unused numbers
+            A.append(i)
         i += 1
     write(A)
     B = read()
@@ -37,11 +36,9 @@ def equal_sum():
             total -= x
             result.append(x)
     assert(total <= MAX_VAL)
-    base = 1
-    while base <= total:
-        if total&base:
-            result.append(base)
-        base <<= 1
+    for x in A:
+        if x&(x-1) == 0 and total&x:
+            result.append(x)
     write(result)
 
 MAX_VAL = 10**9
