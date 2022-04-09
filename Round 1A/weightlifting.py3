@@ -10,7 +10,7 @@
 def weightlifting():
     E, W = list(map(int, input().split()))
     X = [list(map(int, input().split())) for _ in range(E)]
-    dp = [[0]*E for _ in range(E)]  # dp[i][j]: number of common exercises from (i+1)-th to (j+1)-th of X
+    dp = [[0]*E for _ in range(E)]  # dp[i][j]: total number of common exercises from (i+1)-th to (j+1)-th of X
     for i in range(E):
         curr = [INF]*W
         for j in range(i, E):
