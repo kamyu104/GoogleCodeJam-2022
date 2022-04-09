@@ -10,20 +10,20 @@
 def weightlifting():
     E, W = list(map(int, input().split()))
     X = [list(map(int, input().split())) for _ in range(E)]
-    dp = [[0]*E for _ in range(E)]  # dp[l][r]: number of common exercises in [l, r]
+    dp = [[0]*E for _ in range(E)]  # dp[i][j]: number of common exercises in [i, j]
     for i in range(E):
         mn = [INF]*W
         for j in range(i, E):
             for k in range(W):
                 mn[k] = min(mn[k], X[j][k])
             dp[i][j] = sum(mn)
-    dp2 = [[INF]*E for _ in range(E)]  # dp2[l][r]: min number of ops in [l, r]
+    dp2 = [[INF]*E for _ in range(E)]  # dp2[i][j]: min number of ops in [i, j]
     for i in range(E):
         dp2[i][i] = 2*dp[i][i]
-    for r in range(1, E):
-        for l in reversed(range(r)):
-            for i in range(l, r):
-                dp2[l][r] = min(dp2[l][r], dp2[l][i]+dp2[i+1][r]-2*dp[l][r])
+    for j in range(1, E):
+        for i in reversed(range(j)):
+            for k in range(i, j):
+                dp2[i][j] = min(dp2[i][j], dp2[i][k]+dp2[k+1][j]-2*dp[i][j])
     return dp2[0][E-1]
 
 INF = float("inf")
