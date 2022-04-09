@@ -1,7 +1,7 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
 # Google Code Jam 2022 Round 1A - Problem C. Weightlifting
-# https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8e9c
+# https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa9280
 #
 # Time:  O(E^2 * W + E^3)
 # Space: O(E^2)
