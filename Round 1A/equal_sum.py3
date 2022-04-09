@@ -19,7 +19,7 @@ def equal_sum():
     N = int(input())
     A = [1]
     while len(A) < N:
-        if A[-1]*2 > MAX_A:
+        if A[-1]*2 > MAX_VAL:
             break
         A.append(A[-1]*2)
     A = set(A)
@@ -36,6 +36,7 @@ def equal_sum():
         if x <= total:
             total -= x
             result.append(x)
+    assert(total <= MAX_VAL)
     base = 1
     while base <= total:
         if total&base:
@@ -43,6 +44,6 @@ def equal_sum():
         base <<= 1
     write(result)
 
-MAX_A = 10**9
+MAX_VAL = 10**9
 for case in range(int(input())):
     equal_sum()
