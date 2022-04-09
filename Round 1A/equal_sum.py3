@@ -3,8 +3,10 @@
 # Google Code Jam 2022 Round 1A - Problem B. Equal Sum
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8fc1
 #
-# Time:  O(NlogN)
+# Time:  O(N)
 # Space: O(N)
+#
+# python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum.py3
 #
 
 def write(a):
@@ -28,12 +30,12 @@ def equal_sum():
         i += 1
     write(A)
     B = read()
-    B.sort()
     total = (sum(A)+sum(B))//2
     result = []
-    while B and B[-1] <= total:
-        result.append(B[-1])
-        total -= B.pop()
+    for x in B:
+        if x <= total:
+            total -= x
+            result.append(x)
     base = 1
     while base <= total:
         if total&base:
