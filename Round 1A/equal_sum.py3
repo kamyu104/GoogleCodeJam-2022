@@ -19,11 +19,12 @@ def read():
 
 def equal_sum():
     N = int(input())
-    A = [1]
-    while len(A) < N:
-        if A[-1]*2 > MAX_VAL:
-            break
-        A.append(A[-1]*2)
+    A = []
+    base = 1
+    while base <= MAX_VAL:
+        A.append(base)
+        base <<= 1
+    assert(len(A) <= N)
     i = 1
     while len(A) < N:
         if i&(i-1):  # choose any unused numbers
