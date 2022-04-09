@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa9280
 #
 # Time:  O(E^2 * W + E^3)
-# Space: O(E^2)
+# Space: O(E^2 + W)
 #
 
 def weightlifting():
