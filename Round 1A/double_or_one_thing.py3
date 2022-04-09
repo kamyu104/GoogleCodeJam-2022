@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 1A - Problem A. Double or One Thing
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8e9c
 #
-# Time:  O(S)
+# Time:  O(|S|)
 # Space: O(1)
 #
 

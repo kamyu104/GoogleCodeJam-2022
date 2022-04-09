@@ -22,6 +22,6 @@
 ## Round 1A
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Double or One Thing](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8e9c)| [Python3](./Round%201A/double_or_one_thing.py3)| _O(S)_ | _O(1)_ | Easy | | String |
+|A| [Double or One Thing](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8e9c)| [Python3](./Round%201A/double_or_one_thing.py3)| _O(\|S\|)_ | _O(1)_ | Easy | | String |
 |B| [Equal Sum](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa8fc1)| [Python3](./Round%201A/equal_sum.py3)| _O(N)_ | _O(N)_ | Medium | | Math, Constructive Algorithms |
 |C| [Weightlifting](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa9280)| [Python3](./Round%201A/weightlifting.py3)| _O(E^2 * W + E^3)_ | _O(E^2 + W)_ | Hard | | DP |
