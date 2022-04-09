@@ -17,30 +17,31 @@ def read():
 
 def equal_sum():
     N = int(input())
-    A_pow2 = [1]
-    while len(A_pow2) < N:
-        if A_pow2[-1]*2 > MAX_VAL:
+    A = [1]
+    while len(A) < N:
+        if A[-1]*2 > MAX_VAL:
             break
-        A_pow2.append(A_pow2[-1]*2)
-    lookup = set(A_pow2)
-    A_others = []
-    i = MAX_VAL
-    while len(A_others) < N-len(lookup):
-        if i not in lookup:
-            A_others.append(i)
-        i -= 1
-    write(A_pow2+A_others)
+        A.append(A[-1]*2)
+    A = set(A)
+    i = 1
+    while len(A) < N:
+        if i not in A:
+            A.add(i)
+        i += 1
+    write(A)
     B = read()
-    total = (sum(A_pow2)+sum(A_others)+sum(B))//2
+    total = (sum(A)+sum(B))//2
     result = []
-    for x in A_others+B:
+    for x in B:
         if x <= total:
             total -= x
             result.append(x)
     assert(total <= MAX_VAL)
-    for x in A_pow2:
-        if total&x:
-            result.append(x)
+    base = 1
+    while base <= total:
+        if total&base:
+            result.append(base)
+        base <<= 1
     write(result)
 
 MAX_VAL = 10**9
