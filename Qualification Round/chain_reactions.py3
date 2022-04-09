@@ -1,6 +1,6 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
-# Google Code Jam 2022 - Problem D. Chain Reactions
+# Google Code Jam 2022 Qualification Round - Problem D. Chain Reactions
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a45ef7
 #
 # Time:  O(N)

@@ -1,6 +1,6 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
-# Google Code Jam 2022 - Problem E. Twisty Little Passages
+# Google Code Jam 2022 Qualification Round - Problem E. Twisty Little Passages
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a45fc0
 #
 # Time:  O(min(K, N))

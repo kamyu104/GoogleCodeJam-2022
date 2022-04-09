@@ -1,6 +1,6 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
-# Google Code Jam 2022 - Problem B. 3D Printing
+# Google Code Jam 2022 Qualification Round - Problem B. 3D Printing
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a4672b
 #
 # Time:  O(1)

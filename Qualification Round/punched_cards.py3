@@ -1,6 +1,6 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
-# Google Code Jam 2022 - Problem A. Punched Cards
+# Google Code Jam 2022 Qualification Round - Problem A. Punched Cards
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000876ff1/0000000000a4621b
 #
 # Time:  O(R * C)
