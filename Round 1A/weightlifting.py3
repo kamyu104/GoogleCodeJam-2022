@@ -10,14 +10,14 @@
 def weightlifting():
     E, W = list(map(int, input().split()))
     X = [list(map(int, input().split())) for _ in range(E)]
-    dp = [[0]*E for _ in range(E)]  # dp[i][j]: number of common exercises in [i, j]
+    dp = [[0]*E for _ in range(E)]  # dp[i][j]: number of common exercises in [i, j] of X
     for i in range(E):
         curr = [INF]*W
         for j in range(i, E):
             for k in range(W):
                 curr[k] = min(curr[k], X[j][k])
             dp[i][j] = sum(curr)
-    dp2 = [[INF]*E for _ in range(E)]  # dp2[i][j]: min number of ops in [i, j]
+    dp2 = [[INF]*E for _ in range(E)]  # dp2[i][j]: min number of ops in [i, j] of X
     for j in range(E):
         dp2[j][j] = 2*dp[j][j]
         for i in reversed(range(j)):
