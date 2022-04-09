@@ -21,8 +21,7 @@ def weightlifting():
     for j in range(E):
         dp2[j][j] = 2*dp[j][j]
         for i in reversed(range(j)):
-            for k in range(i, j):
-                dp2[i][j] = min(dp2[i][j], dp2[i][k]+dp2[k+1][j]-2*dp[i][j])
+            dp2[i][j] = min(dp2[i][k]+dp2[k+1][j]-2*dp[i][j] for k in range(i, j))
     return dp2[0][E-1]
 
 INF = float("inf")
