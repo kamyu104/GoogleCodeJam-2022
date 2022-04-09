@@ -10,7 +10,7 @@
 #
 
 def write(a):
-    print("%s"%" ".join(map(str, a)), flush=True)
+    print("%s" % " ".join(map(str, a)), flush=True)
 
 def read():
     return list(map(int, input().split()))
