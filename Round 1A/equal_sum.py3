@@ -9,6 +9,8 @@
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 equal_sum.py3
 #
 
+from itertools import chain
+
 def write(a):
     print("%s" % " ".join(map(str, a)), flush=True)
 
@@ -17,28 +19,27 @@ def read():
 
 def equal_sum():
     N = int(input())
-    A_pow2 = [1]
-    while len(A_pow2) < N:
-        if A_pow2[-1]*2 > MAX_VAL:
+    A = [1]
+    while len(A) < N:
+        if A[-1]*2 > MAX_VAL:
             break
-        A_pow2.append(A_pow2[-1]*2)
-    A_others = []
-    i = MAX_VAL
-    while len(A_others) < N-len(A_pow2):
+        A.append(A[-1]*2)
+    i = 1
+    while len(A) < N:
         if i&(i-1):  # choose any unused numbers
-            A_others.append(i)
-        i -= 1
-    write(A_pow2+A_others)
+            A.append(i)
+        i += 1
+    write(A)
     B = read()
-    total = (sum(A_pow2)+sum(A_others)+sum(B))//2
+    total = (sum(A)+sum(B))//2
     result = []
-    for x in A_others+B:
-        if x <= total:
+    for x in chain(A, B):
+        if x&(x-1) and x <= total:
             total -= x
             result.append(x)
     assert(total <= MAX_VAL)
-    for x in A_pow2:
-        if total&x:
+    for x in A:
+        if x&(x-1) == 0 and total&x:
             result.append(x)
     write(result)
 
