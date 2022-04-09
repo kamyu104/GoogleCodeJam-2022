@@ -16,7 +16,7 @@ def weightlifting():
         for j in range(i, E):
             for k in range(W):
                 mn[k] = min(mn[k], X[j][k])
-            dp[i][j] += sum(mn)
+            dp[i][j] = sum(mn)
     dp2 = [[INF]*E for _ in range(E)]
     for i in range(E):
         dp2[i][i] = dp[i][i]
