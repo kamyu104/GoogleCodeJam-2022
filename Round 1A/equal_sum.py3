@@ -26,7 +26,7 @@ def equal_sum():
     A_others = []
     i = MAX_VAL
     while len(A_others) < N-len(lookup):
-        if i not in lookup:
+        if i not in lookup:  # choose any unused numbers
             A_others.append(i)
         i -= 1
     write(A_pow2+A_others)

@@ -25,7 +25,7 @@ def equal_sum():
     A = set(A)
     i = 1
     while len(A) < N:
-        if i not in A:
+        if i not in A:  # choose smallest unused numbers
             A.add(i)
         i += 1
     write(A)
