@@ -24,10 +24,11 @@ def sequence(l):
     while len(result[0]) != l:
         zero = [s+'0'*len(s) for s in result]
         copy = [s+s for s in result]
-        result = copy[:]
+        result = []
         for x in zero:
-            result.append(x)
             result.extend(copy)
+            result.append(x)
+        result.extend(copy)
     return result
 
 SEQ = sequence(8)
