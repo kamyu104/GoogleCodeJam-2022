@@ -23,7 +23,7 @@ def sequence(L):
     result = [1]
     l = 1
     while l != L:
-        zero = [x<<l for x in result]
+        zero = result
         copy = [(x<<l)|x for x in result]
         result = []
         for x in zero:
