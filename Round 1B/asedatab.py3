@@ -16,19 +16,21 @@ def ask(N):
 
 def asedatab():
     for x in SEQ:
-        if not ask(x):
+        if not ask("{0:08b}".format(x)):
             break
 
-def sequence(l):
-    result = ['1']
-    while len(result[0]) != l:
-        zero = [x+'0'*len(x) for x in result]
-        copy = [x*2 for x in result]
+def sequence(L):
+    result = [1]
+    l = 1
+    while l != L:
+        zero = [x<<l for x in result]
+        copy = [(x<<l)|x for x in result]
         result = []
         for x in zero:
             result.extend(copy)
             result.append(x)
         result.extend(copy)
+        l <<= 1
     return result
 
 L = 8  # should be a power of 2
