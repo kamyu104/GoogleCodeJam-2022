@@ -30,6 +30,6 @@
 ## Round 1B
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Pancake Deque](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd59d)| [Python3](./Round%201B/pancake_deque.py3)| _O(N)_ | _O(1)_ | Easy | | String |
+|A| [Pancake Deque](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd59d)| [Python3](./Round%201B/pancake_deque.py3)| _O(N)_ | _O(1)_ | Easy | | Greedy |
 |B| [Controlled Inflation](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000accfdb)| [Python3](./Round%201B/controlled_inflation.py3) | _O(N * P)_ | _O(1)_ | Medium | | DP |
 |C| [ASeDatAb](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b)| [Python3](./Round%201B/asedatab.py3)| precompute: _O(8 * 2^8)_<br>runtime: _O(8 * 2^8)_ | _O(8 * 2^8)_ | Hard | | Constructive Algorithms |
