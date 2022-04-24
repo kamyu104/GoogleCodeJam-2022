@@ -22,8 +22,8 @@ def asedatab():
 def sequence(l):
     result = ['1']
     while len(result[0]) != l:
-        zero = [s+'0'*len(s) for s in result]
-        copy = [s+s for s in result]
+        zero = [x+'0'*len(x) for x in result]
+        copy = [x*2 for x in result]
         result = []
         for x in zero:
             result.extend(copy)
