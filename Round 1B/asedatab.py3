@@ -14,7 +14,7 @@ def ask(N):
     print(N, flush=True)
     return int(input())
 
-def solution():
+def asedatab():
     for x in SEQ:
         if not ask(x):
             break
@@ -33,4 +33,4 @@ def sequence(l):
 
 SEQ = sequence(8)
 for case in range(int(input())):
-    solution()
+    asedatab()
