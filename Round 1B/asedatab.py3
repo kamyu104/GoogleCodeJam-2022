@@ -10,13 +10,13 @@
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab.py3
 #
 
-def ask(N):
+def save(N):
     print(N, flush=True)
     return int(input())
 
 def asedatab():
     for x in SEQ:
-        if not ask("{0:08b}".format(x)):
+        if not save("{0:08b}".format(x)):
             break
 
 def sequence(L):
