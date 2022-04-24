@@ -3,8 +3,9 @@
 # Google Code Jam 2022 Round 1B - Problem C. ASeDatAb
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b
 #
-# Time:  O(N)
-# Space: O(1)
+# Time:  precompute: O(8 * 2^8)
+#        runtime:    O(8 * 2^8)
+# Space: O(8 * 2^8)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab.py3
 #
@@ -18,9 +19,9 @@ def solution():
         if not ask(x):
             break
 
-def P(k):
+def sequence(l):
     result = ['1']
-    for _ in range(k):
+    while len(result[0]) != l:
         zero = [s+'0'*len(s) for s in result]
         copy = [s+s for s in result]
         result = copy[:]
@@ -29,6 +30,6 @@ def P(k):
             result.extend(copy)
     return result
 
-SEQ = P(3)
+SEQ = sequence(8)
 for case in range(int(input())):
     solution()
