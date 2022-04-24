@@ -31,7 +31,7 @@ def sequence(l):
         result.extend(copy)
     return result
 
-L = 8  # should be power of 2
+L = 8  # should be a power of 2
 SEQ = sequence(L)
 for case in range(int(input())):
     asedatab()
