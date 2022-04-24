@@ -23,13 +23,11 @@ def sequence(L):
     result = [1]
     l = 1
     while l != L:
-        zero = result
-        copy = [(x<<l)|x for x in result]
-        result = []
-        for x in zero:
-            result.extend(copy)
-            result.append(x)
-        result.extend(copy)
+        new_result = [(x<<l)|x for x in result]
+        for x in result:
+            new_result.append(x)
+            new_result.extend((x<<l)|x for x in result)
+        result = new_result
         l <<= 1
     return result
 
