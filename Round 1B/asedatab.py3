@@ -60,7 +60,7 @@ def bfs(bcnt_to_state):
 
 def topological_sort(adj, prevs):
     in_degree = defaultdict(int)  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
-    nxts = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
+    choices = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
     q = [(0,)]
     lookup = set(q)
     while q:
@@ -72,16 +72,16 @@ def topological_sort(adj, prevs):
                     continue
                 lookup.add(prev_state)
                 new_q.append(prev_state)
-                nxts[prev_state] = v
+                choices[prev_state] = v
         q = new_q
-    return nxts
+    return choices
 
 def precompute():
     bcnt_to_state = group_by_bitcount(range(1, 1<<L))
     adj, prevs = bfs(bcnt_to_state)
-    nxts = topological_sort(adj, prevs)
-    assert(all(x in nxts for x in bcnt_to_state.values()))
-    return bcnt_to_state, adj, nxts
+    choices = topological_sort(adj, prevs)
+    assert(all(x in choices for x in bcnt_to_state.values()))
+    return bcnt_to_state, adj, choices
 
 L = 8  # should be a power of 2
 INIT_STATES, ADJ, CHOICES = precompute()
