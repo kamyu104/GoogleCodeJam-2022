@@ -24,11 +24,11 @@ def asedatab():
         state = ADJ[state, CHOICES[state]][cnt] if state else INIT_STATES[cnt]  # Time: O(max_state_len) = O(10)
         cnt = save("{0:08b}".format(CHOICES[state]))  # Time: O(L)
 
-def all_rotation(x):
+def enumerate_rotation(x):
     return ((x>>r) | (x&((1<<r)-1))<<(L-r) for r in range(L))
 
 def norm(x):
-    return min(all_rotation(x))
+    return min(enumerate_rotation(x))
 
 def group_by_bitcount(a):
     bcnt_to_state = defaultdict(set)
@@ -48,7 +48,7 @@ def bfs(bcnt_to_state):  # enumerate all possible states
         new_q = []
         for state in q:
             for v in candidates:
-                adj[state, v] = group_by_bitcount((x^w for w in all_rotation(v) for x in state))  # Time / Space in total: O(states) * O(candidates) * O(L) * O(max_state_len) = O(574) * O(35) * O(8) * O(10) = O(1607200)
+                adj[state, v] = group_by_bitcount((x^w for w in enumerate_rotation(v) for x in state))  # Time / Space in total: O(states) * O(candidates) * O(L) * O(max_state_len) = O(574) * O(35) * O(8) * O(10) = O(1607200)
                 for new_state in adj[state, v].values():
                     prevs[new_state].append((state, v))  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
                     if new_state in lookup:
