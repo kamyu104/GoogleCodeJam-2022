@@ -43,18 +43,17 @@ def bfs(bcnt_to_state):  # enumerate all possible states
     prevs = defaultdict(list)
     candidates = list(chain.from_iterable(bcnt_to_state.values()))  # Space: O(35)
     q = bcnt_to_state.values()
-    lookup = set(q)
+    for x in q:
+        prevs[x]
     while q:
         new_q = []
         for state in q:
             for v in candidates:
                 adj[state, v] = group_by_bitcount((x^w for w in enumerate_rotation(v) for x in state))  # Time / Space in total: O(states) * O(candidates) * O(L) * O(max_state_len) = O(574) * O(35) * O(8) * O(10) = O(1607200)
                 for new_state in adj[state, v].values():
+                    if new_state not in prevs:
+                        new_q.append(new_state)
                     prevs[new_state].append((state, v))  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
-                    if new_state in lookup:
-                        continue
-                    lookup.add(new_state)  # Space: O(states) * O(max_state_len) = O(574) * O(10) = O(5740)
-                    new_q.append(new_state)
         q = new_q
     return adj, prevs
 
@@ -62,17 +61,15 @@ def topological_sort(adj, prevs):  # find choices to reach zero state
     in_degree = defaultdict(int)  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
     choices = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
     q = [(0,)]
-    lookup = set(q)
     while q:
         new_q = []
         for state in q:
             for prev_state, v in prevs[state]:
                 in_degree[prev_state, v] += 1
-                if in_degree[prev_state, v] != len(adj[prev_state, v]) or prev_state in lookup:
+                if in_degree[prev_state, v] != len(adj[prev_state, v]) or prev_state in choices:
                     continue
-                lookup.add(prev_state)
-                new_q.append(prev_state)
                 choices[prev_state] = v
+                new_q.append(prev_state)
         q = new_q
     return choices
 
