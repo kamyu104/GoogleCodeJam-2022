@@ -7,7 +7,7 @@
 # Space: O(1)
 #
 
-def solution():
+def pancake_deque():
     N = int(input())
     D = list(map(int, input().split()))
     result = curr = 0
@@ -25,4 +25,4 @@ def solution():
     return result
 
 for case in range(int(input())):
-    print('Case #%d: %s' % (case+1, solution()))
+    print('Case #%d: %s' % (case+1, pancake_deque()))

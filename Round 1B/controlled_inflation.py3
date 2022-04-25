@@ -9,7 +9,7 @@
 
 from collections import defaultdict
 
-def solution():
+def controlled_inflation():
     N, P = list(map(int, input().split()))
     X = [list(map(int, input().split())) for _ in range(N)]
     dp = {0:0}
@@ -23,4 +23,4 @@ def solution():
     return min(dp.values())
 
 for case in range(int(input())):
-    print('Case #%d: %s' % (case+1, solution()))
+    print('Case #%d: %s' % (case+1, controlled_inflation()))
