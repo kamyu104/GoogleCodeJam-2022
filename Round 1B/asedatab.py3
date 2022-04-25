@@ -3,9 +3,9 @@
 # Google Code Jam 2022 Round 1B - Problem C. ASeDatAb
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b
 #
-# Time:  precompute: O(L * 2^L)
-#        runtime:    O(L * 2^L)
-# Space: O(L * 2^L)
+# Time:  precompute: O(states) * O(candidates) * O(L) * O(max_state_len) = O(1607200)
+#        runtime:    O((max_state_len + L) * 2^L)
+# Space: O(states) * O(candidates) * O(L) * O(max_state_len) = O(1607200)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab.py3
 #
@@ -19,53 +19,48 @@ def save(N):
 
 def asedatab():
     cnt = save("{0:08b}".format((1<<L)-1))
-    if not cnt:
-        return
-    states = BCNTS
-    while True:
-        state = states[cnt]
-        v = NXTS[state]
-        cnt = save("{0:08b}".format(v))
-        if not cnt:
-            break
-        states = ADJ[state, v]
+    state = None
+    while cnt:  # repeat at most O(2^L) times
+        state = ADJ[state, CHOICES[state]][cnt] if state else INIT_STATES[cnt]  # Time: O(max_state_len) = O(10)
+        cnt = save("{0:08b}".format(CHOICES[state]))  # Time: O(L)
 
-def rotates(x):
+def all_rotation(x):
     return ((x>>r) | (x&((1<<r)-1))<<(L-r) for r in range(L))
 
 def norm(x):
-    return min(rotates(x))
+    return min(all_rotation(x))
 
-def bitcount(a):
-    bcnts = defaultdict(set)
+def group_by_bitcount(a):
+    bcnt_to_state = defaultdict(set)
     for x in a:
-        bcnts[bin(x).count('1')].add(norm(x))
-    for cnt, state in bcnts.items():
-        bcnts[cnt] = tuple(sorted(state))
-    return bcnts
+        bcnt_to_state[bin(x).count('1')].add(norm(x))
+    for cnt, state in bcnt_to_state.items():
+        bcnt_to_state[cnt] = tuple(sorted(state))
+    return bcnt_to_state
 
-def bfs(bcnts):
+def bfs(bcnt_to_state):
     adj = {}
     prevs = defaultdict(list)
-    q = bcnts.values()
+    candidates = list(chain.from_iterable(bcnt_to_state.values()))  # Space: O(35)
+    q = bcnt_to_state.values()
     lookup = set(q)
     while q:
         new_q = []
         for state in q:
-            for v in chain.from_iterable(bcnts.values()):
-                adj[state, v] = bitcount((x^w for w in rotates(v) for x in state))
+            for v in candidates:
+                adj[state, v] = group_by_bitcount((x^w for w in all_rotation(v) for x in state))  # Time / Space: O(states) * O(candidates) * O(L) * O(max_state_len) = O(574) * O(35) * O(8) * O(10) = O(1607200)
                 for new_state in adj[state, v].values():
-                    prevs[new_state].append((state, v))
+                    prevs[new_state].append((state, v))  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
                     if new_state in lookup:
                         continue
-                    lookup.add(new_state)
+                    lookup.add(new_state)  # Space: O(states) * O(max_state_len) = O(574) * O(10) = O(5740)
                     new_q.append(new_state)
         q = new_q
     return adj, prevs
 
 def topological_sort(adj, prevs):
-    in_degree = defaultdict(int)
-    nxts = {}
+    in_degree = defaultdict(int)  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
+    nxts = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
     q = [(0,)]
     lookup = set(q)
     while q:
@@ -82,12 +77,12 @@ def topological_sort(adj, prevs):
     return nxts
 
 def precompute():
-    bcnts = bitcount(range(1, 1<<L))
-    adj, prevs = bfs(bcnts)
+    bcnt_to_state = group_by_bitcount(range(1, 1<<L))
+    adj, prevs = bfs(bcnt_to_state)
     nxts = topological_sort(adj, prevs)
-    return bcnts, adj, nxts
+    return bcnt_to_state, adj, nxts
 
 L = 8  # should be a power of 2
-BCNTS, ADJ, NXTS = precompute()
+INIT_STATES, ADJ, CHOICES = precompute()
 for case in range(int(input())):
     asedatab()
