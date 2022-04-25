@@ -80,6 +80,7 @@ def precompute():
     bcnt_to_state = group_by_bitcount(range(1, 1<<L))
     adj, prevs = bfs(bcnt_to_state)
     nxts = topological_sort(adj, prevs)
+    assert(all(x in nxts for x in bcnt_to_state.values()))
     return bcnt_to_state, adj, nxts
 
 L = 8  # should be a power of 2
