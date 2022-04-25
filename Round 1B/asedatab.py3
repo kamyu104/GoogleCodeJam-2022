@@ -38,7 +38,7 @@ def group_by_bitcount(a):
         bcnt_to_state[cnt] = tuple(sorted(state))
     return bcnt_to_state
 
-def bfs(bcnt_to_state):
+def bfs(bcnt_to_state):  # enumerate all possible states
     adj = {}
     prevs = defaultdict(list)
     candidates = list(chain.from_iterable(bcnt_to_state.values()))  # Space: O(35)
@@ -58,7 +58,7 @@ def bfs(bcnt_to_state):
         q = new_q
     return adj, prevs
 
-def topological_sort(adj, prevs):
+def topological_sort(adj, prevs):  # find choices to reach zero state
     in_degree = defaultdict(int)  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
     choices = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
     q = [(0,)]
