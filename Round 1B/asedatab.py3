@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b
 #
 # Time:  precompute: O(states) * O(candidates) * O(L) * O(max_state_len) = O(1607200)
-#        runtime:    O((max_state_len + L) * 2^L)
+#        runtime:    O((max_state_len + L) * max_depth) = O((10 + 8) * 12) = O(216)
 # Space: O(states) * O(candidates) * O(L) * O(max_state_len) = O(1607200)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab.py3
@@ -20,7 +20,7 @@ def save(N):
 def asedatab():
     cnt = save("{0:08b}".format((1<<L)-1))
     state = None
-    while cnt:  # repeat at most O(2^L) times
+    while cnt:  # repeat at most O(max_detph) = O(12) times
         state = ADJ[state, CHOICES[state]][cnt] if state else INIT_STATES[cnt]  # Time: O(max_state_len) = O(10)
         cnt = save("{0:08b}".format(CHOICES[state]))  # Time: O(L)
 
