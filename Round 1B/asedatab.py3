@@ -35,7 +35,7 @@ def group_by_bitcount(a):
     for x in a:
         bcnt_to_state[bin(x).count('1')].add(norm(x))
     for cnt, state in bcnt_to_state.items():
-        bcnt_to_state[cnt] = tuple(sorted(state))
+        bcnt_to_state[cnt] = frozenset(state)
     return bcnt_to_state
 
 def bfs(bcnt_to_state):  # enumerate all possible states
@@ -59,8 +59,8 @@ def bfs(bcnt_to_state):  # enumerate all possible states
 
 def topological_sort(adj, prevs):  # find choices to reach zero state
     in_degree = defaultdict(int)  # Space: O(states) * O(candidates) * O(max_state_len) = O(574) * O(35) * O(10) = O(200900)
-    choices = {(0,):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
-    q = [(0,)]
+    choices = {frozenset({0}):-1}  # Space: O(states) * O(max_state_len) = O(574)* O(10) = O(5740)
+    q = [frozenset({0})]
     while q:
         new_q = []
         for state in q:
