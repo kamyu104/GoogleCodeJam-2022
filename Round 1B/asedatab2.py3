@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 1B - Problem C. ASeDatAb
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b
 #
-# Time:  precompute: O(L * 2^L)
+# Time:  precompute: O(2^L)
 #        runtime:    O(L * 2^L)
 # Space: O(2^L)
 #
