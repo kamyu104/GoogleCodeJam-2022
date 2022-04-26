@@ -13,13 +13,12 @@ def sequence(L):
     if L == 1:
         yield 1
         return
-    L //= 2
-    for x in sequence(L):
-        yield (x<<L)|x
-    for x in sequence(L):
+    for x in sequence(L//2):
+        yield (x<<(L//2))|x
+    for x in sequence(L//2):
         yield x
-        for x in sequence(L):
-            yield (x<<L)|x
+        for x in sequence(L//2):
+            yield (x<<(L//2))|x
 
 def save(N):
     print(N, flush=True)
