@@ -27,7 +27,7 @@ def save(N):
 
 def asedatab():
     for x in sequence(L):
-        if not save("{0:08b}".format(x)):
+        if not save("{:08b}".format(x)):
             break
 
 L = 8  # should be a power of 2

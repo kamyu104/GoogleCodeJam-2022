@@ -18,11 +18,11 @@ def save(N):
     return int(input())
 
 def asedatab():
-    cnt = save("{0:08b}".format((1<<L)-1))
+    cnt = save("{:08b}".format((1<<L)-1))
     state = None
     while cnt:  # repeat at most O(max_detph) = O(12) times
         state = ADJ[state, CHOICES[state]][cnt] if state else INIT_STATES[cnt]  # Time: O(max_state_len) = O(10)
-        cnt = save("{0:08b}".format(CHOICES[state]))  # Time: O(L)
+        cnt = save("{:08b}".format(CHOICES[state]))  # Time: O(L)
 
 def enumerate_rotation(x):
     return ((x>>r) | (x&((1<<r)-1))<<(L-r) for r in range(L))
