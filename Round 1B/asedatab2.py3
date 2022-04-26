@@ -5,7 +5,7 @@
 #
 # Time:  precompute: O(L * 2^L)
 #        runtime:    O(L * 2^L)
-# Space: O(L * 2^L)
+# Space: O(2^L)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab2.py3
 #
@@ -16,7 +16,7 @@ def save(N):
 
 def asedatab():
     for x in SEQ:
-        if not save("{0:08b}".format(x)):
+        if not save("{:08b}".format(x)):
             break
 
 def sequence(L):
