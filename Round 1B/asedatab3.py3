@@ -9,7 +9,7 @@
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab3.py3
 #
 
-def sequence(L):
+def sequence(L):  # Space: O(logL)
     if L == 1:
         yield 1
         return
