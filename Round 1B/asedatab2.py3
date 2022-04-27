@@ -19,7 +19,7 @@ def asedatab():
         if not save("{:08b}".format(x)):
             break
 
-def sequence(L):
+def sequence(L):  # Space: O(2^L)
     result = [1]
     l = 1
     while l != L:
