@@ -32,4 +32,4 @@
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Pancake Deque](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd59d)| [Python3](./Round%201B/pancake_deque.py3)| _O(N)_ | _O(1)_ | Easy | | Greedy |
 |B| [Controlled Inflation](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000accfdb)| [Python3](./Round%201B/controlled_inflation.py3) | _O(N * P)_ | _O(1)_ | Medium | | DP |
-|C| [ASeDatAb](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b)| [Python3](./Round%201B/asedatab.py3) [Python3](./Round%201B/asedatab2.py3) [Python3](./Round%201B/asedatab3.py3) | _O(L * 2^L)_ | _O(L)_ | Hard | | Precompute, BFS, Topological Sort, Constructive Algorithms |
+|C| [ASeDatAb](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b)| [Python3](./Round%201B/asedatab.py3) [Python3](./Round%201B/asedatab2.py3) [Python3](./Round%201B/asedatab3.py3) | _O(L * 2^L)_ | _O(logL)_ | Hard | | Precompute, BFS, Topological Sort, Constructive Algorithms |

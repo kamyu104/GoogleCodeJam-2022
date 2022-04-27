@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b
 #
 # Time:  O(L * 2^L)
-# Space: O(L)
+# Space: O(logL)
 #
 # python interactive_runner.py python3 testing_tool.py 0 -- python3 asedatab3.py3
 #
