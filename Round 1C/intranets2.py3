@@ -1,6 +1,6 @@
 # Copyright (c) 2022 kamyu. All rights reserved.
 #
-# Google Code Jam 2022 Round 1C - Problem C. Intranet
+# Google Code Jam 2022 Round 1C - Problem C. Intranets
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38
 #
 # Time:  O(M + log(MOD))
