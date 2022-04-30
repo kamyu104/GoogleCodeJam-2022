@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-11%20%2F%2011-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-14%20%2F%2014-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -10,6 +10,7 @@
 * [Qualification Round](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round)
 * [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1a)
 * [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1b)
+* [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1c)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -32,4 +33,11 @@
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Pancake Deque](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd59d)| [Python3](./Round%201B/pancake_deque.py3)| _O(N)_ | _O(1)_ | Easy | | Greedy |
 |B| [Controlled Inflation](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000accfdb)| [Python3](./Round%201B/controlled_inflation.py3) | _O(N * P)_ | _O(1)_ | Medium | | DP |
-|C| [ASeDatAb](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b)| [Python3](./Round%201B/asedatab.py3) [Python3](./Round%201B/asedatab2.py3) [Python3](./Round%201B/asedatab3.py3) | _O(L * 2^L)_ | _O(L)_ | Hard | | Precompute, BFS, Topological Sort, Constructive Algorithms |
+|C| [ASeDatAb](https://codingcompetitions.withgoogle.com/codejam/round/000000000087711b/0000000000acd29b)| [Python3](./Round%201B/asedatab.py3) [Python3](./Round%201B/asedatab2.py3) [Python3](./Round%201B/asedatab3.py3) | _O(L * 2^L)_ | _O(L)_ | Hard | | Precompute, BFS, Topological Sort, Constructive Algorithms 
+
+## Round 1C
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Letter Blocks](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afe6a1)| [Python3](./Round%201C/letter_blocks.py3)| _O(N * L)_ | _O(N)_ | Easy | | String |
+|B| [Squary](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afdf76)| [Python3](./Round%201C/squary.py3) | _O(N)_ | _O(1)_ | Medium | | Math, Constructive Algorithms |
+|C| [Intranets](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38)| [Python3](./Round%201C/intranets.py3) [Python3](./Round%201C/intranets2.py3) | _O(M + log(MOD))_ | _O(M)_ | Hard | |  Inclusion‐Exclusion Principle, Combinatorics, Catalan Number |
