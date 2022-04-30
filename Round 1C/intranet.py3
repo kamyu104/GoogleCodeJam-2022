@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 1C - Problem C. Intranet
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38
 #
-# Time:  O(MlogMOD)
+# Time:  O(M * logMOD)
 # Space: O(M)
 #
 
