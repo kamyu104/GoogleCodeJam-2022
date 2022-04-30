@@ -19,7 +19,7 @@ def nCr(n, k):
 def inverse(x):
     return pow(x, MOD-2, MOD)
 
-def intranet():
+def intranets():
     M, K = list(map(int, input().split()))
     total = inv_pow_2 = sign = 1
     result = 0
@@ -36,4 +36,4 @@ MOD = 10**9+7
 INV_2 = inverse(2)
 fact, inv, inv_fact = [[1]*2 for _ in range(3)]
 for case in range(int(input())):
-    print('Case #%d: %s' % (case+1, intranet()))
+    print('Case #%d: %s' % (case+1, intranets()))

@@ -20,7 +20,7 @@ def inverse(x):
 def catalan(n):
     return (nCr(2*n, n)*inverse(n+1)) % MOD
 
-def intranet():
+def intranets():
     M, K = list(map(int, input().split()))
     M -= 1
     K -= 1
@@ -31,4 +31,4 @@ def intranet():
 MOD = 10**9+7
 fact, inv, inv_fact = [[1]*2 for _ in range(3)]
 for case in range(int(input())):
-    print('Case #%d: %s' % (case+1, intranet()))
+    print('Case #%d: %s' % (case+1, intranets()))
