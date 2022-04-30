@@ -24,7 +24,7 @@ def intranet():
     M, K = list(map(int, input().split()))
     M -= 1
     K -= 1
-    p = nCr(M-1, 2*K)*catalan(K) * pow(2, (M-1)-2*K, MOD) % MOD
+    p = nCr(M-1, 2*K)*catalan(K)*pow(2, (M-1)-2*K, MOD) % MOD
     q = catalan(M)
     return p*inverse(q) % MOD
 
