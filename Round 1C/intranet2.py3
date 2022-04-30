@@ -3,13 +3,11 @@
 # Google Code Jam 2022 Round 1C - Problem C. Intranet
 # https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38
 #
-# Time:  O(MlogMOD)
+# Time:  O(M + logMOD)
 # Space: O(M)
 #
 
 def nCr(n, k):
-    if not (0 <= k <= n):
-        return 0
     while len(inv) <= n:
         fact.append(fact[-1]*len(inv) % MOD)
         inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)
@@ -19,23 +17,18 @@ def nCr(n, k):
 def inverse(x):
     return pow(x, MOD-2, MOD)
 
+def catalan(n):
+    return (nCr(2*n, n)*inverse(n+1)) % MOD
+
 def intranet():
     M, K = list(map(int, input().split()))
-    total = inv_pow_2 = sign = 1
-    result = 0
-    for i in range(1, M+1):
-        if M-2*i < 0:
-            break
-        total = total*(nCr(M, 2)-nCr(M-2*i, 2))%MOD
-        inv_pow_2 = (inv_pow_2*INV_2)%MOD
-        if i < K:
-            continue
-        result = (result + sign * nCr(i, K) * (fact[M]*inv_fact[M-2*i]*inv_pow_2*inverse(total)))%MOD
-        sign = -sign
-    return result
+    M -= 1
+    K -= 1
+    p = nCr(M-1, 2*K)*catalan(K)*pow(2, (M-1)-2*K, MOD) % MOD
+    q = catalan(M)
+    return p*inverse(q) % MOD
 
 MOD = 10**9+7
-INV_2 = inverse(2)
 fact, inv, inv_fact = [[1]*2 for _ in range(3)]
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, intranet()))
