@@ -25,13 +25,13 @@ def check(S, result):
 def letter_blocks():
     N = int(input())
     S = list(input().split())
-    left, right, both = defaultdict(set), defaultdict(set), defaultdict(set)
+    left, right, both = defaultdict(list), defaultdict(list), defaultdict(list)
     for i, s in enumerate(S):
         if s[0] != s[-1]:
-            left[s[0]].add(i)
-            right[s[-1]].add(i)
+            left[s[0]].append(i)
+            right[s[-1]].append(i)
         else:
-            both[s[0]].add(i)
+            both[s[0]].append(i)
     result = []
     lookup = set()
     for i, s in enumerate(S):
