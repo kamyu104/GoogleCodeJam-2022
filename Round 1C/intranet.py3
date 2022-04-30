@@ -24,11 +24,11 @@ def intranet():
     total = inv_pow_2 = sign = 1
     result = 0
     for i in range(1, M//2+1):
-        total = total*(nCr(M, 2)-nCr(M-2*i, 2))%MOD
-        inv_pow_2 = (inv_pow_2*INV_2)%MOD
+        total = (total*(nCr(M, 2)-nCr(M-2*i, 2))) % MOD
+        inv_pow_2 = (inv_pow_2*INV_2) % MOD
         if i < K:
             continue
-        result = (result + sign * nCr(i, K) * (fact[M]*inv_fact[M-2*i]*inv_pow_2*inverse(total)))%MOD
+        result = (result + sign*nCr(i, K)*(fact[M]*inv_fact[M-2*i]*inv_pow_2*inverse(total))) % MOD
         sign *= -1
     return result
 
