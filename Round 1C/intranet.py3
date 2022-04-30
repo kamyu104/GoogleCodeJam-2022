@@ -29,7 +29,7 @@ def intranet():
         if i < K:
             continue
         result = (result + sign * nCr(i, K) * (fact[M]*inv_fact[M-2*i]*inv_pow_2*inverse(total)))%MOD
-        sign = -sign
+        sign *= -1
     return result
 
 MOD = 10**9+7
