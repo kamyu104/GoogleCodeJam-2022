@@ -20,7 +20,7 @@ def squary():
     total_pair = pair_sum(total, total_square)
     if total and -total_pair%total == 0:
         return -total_pair//total
-    return "%s %s"%(1-total, -pair_sum(1, (total_square+(1-total)**2))) if K >= 2 else "IMPOSSIBLE"
+    return "%s %s" % (1-total, -pair_sum(1, (total_square+(1-total)**2))) if K >= 2 else "IMPOSSIBLE"
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, squary()))

@@ -9,6 +9,19 @@
 
 from collections import defaultdict, deque
 
+def check(S, result):
+    lookup = set()
+    prev = None
+    for i in result:
+        for c in S[i]:
+            if c == prev:
+                continue
+            if prev in lookup:
+                return False
+            lookup.add(prev)
+            prev = c
+    return prev not in lookup
+
 def letter_blocks():
     N = int(input())
     S = list(input().split())
@@ -20,37 +33,21 @@ def letter_blocks():
         else:
             both[s[0]].add(i)
     result = []
-    lookup, lookup2 = set(), set()
-    prev = None
+    lookup = set()
     for i, s in enumerate(S):
         if i in lookup:
             continue
         lookup.add(i)
-        if s[0] != s[-1]:
-            left[s[0]].remove(i)
-            right[s[-1]].remove(i)
-        else:
-            both[s[0]].remove(i)
         dq = deque([i])
         for i, adj, add in ((0, right, dq.appendleft), (-1, left, dq.append)):
             while both[S[dq[i]][i]] or adj[S[dq[i]][i]]:
-                if both[S[dq[i]][i]]:
-                    add(both[S[dq[i]][i]].pop())
-                else:
-                    add(adj[S[dq[i]][i]].pop())
-        for i in dq:
-            result.append(i)
-            lookup.add(i)
-            for c in S[i]:
-                if c == prev:
+                j = (both[S[dq[i]][i]] if both[S[dq[i]][i]] else adj[S[dq[i]][i]]).pop()
+                if j in lookup:
                     continue
-                if prev in lookup2:
-                    return "IMPOSSIBLE"
-                lookup2.add(prev)
-                prev = c
-    if prev in lookup2:
-        return "IMPOSSIBLE"
-    return "".join(map(lambda x:S[x], result))
+                lookup.add(j)
+                add(j)
+        result.extend(dq)
+    return "".join(map(lambda x:S[x], result)) if check(S, result) else "IMPOSSIBLE"
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, letter_blocks()))
