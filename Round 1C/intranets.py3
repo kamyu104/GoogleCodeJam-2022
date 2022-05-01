@@ -28,7 +28,7 @@ def intranets():
         inv2_pow = (inv2_pow*INV2) % MOD
         if i < K:
             continue
-        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv2_pow*inverse(total))) % MOD
+        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv2_pow*inverse(total))) % MOD  # inclusion-exclusion principle
         sign *= -1
     return result
 
