@@ -10,11 +10,11 @@
 def nCr(n, k):
     if not (0 <= k <= n):
         return 0
-    while len(inv) <= n:
-        fact.append(fact[-1]*len(inv) % MOD)
-        inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)
-        inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
-    return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
+    while len(INV) <= n:
+        FACT.append(FACT[-1]*len(INV) % MOD)
+        INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)
+        INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
+    return (FACT[n]*INV_FACT[n-k] % MOD) * INV_FACT[k] % MOD
 
 def inverse(x):
     return pow(x, MOD-2, MOD)
@@ -28,12 +28,12 @@ def intranets():
         inv_pow_2 = (inv_pow_2*INV_2) % MOD
         if i < K:
             continue
-        result = (result + sign*nCr(i, K)*(fact[M]*inv_fact[M-2*i]*inv_pow_2*inverse(total))) % MOD
+        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv_pow_2*inverse(total))) % MOD
         sign *= -1
     return result
 
 MOD = 10**9+7
 INV_2 = inverse(2)
-fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, intranets()))
