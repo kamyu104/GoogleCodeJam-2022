@@ -21,19 +21,19 @@ def inverse(x):
 
 def intranets():
     M, K = list(map(int, input().split()))
-    total = inv_pow_2 = sign = 1
+    total = inv2_pow = sign = 1
     result = 0
     for i in range(1, M//2+1):
         total = (total * (nCr(M, 2)-nCr(M-2*i, 2))) % MOD
-        inv_pow_2 = (inv_pow_2*INV_2) % MOD
+        inv2_pow = (inv2_pow*INV2) % MOD
         if i < K:
             continue
-        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv_pow_2*inverse(total))) % MOD
+        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv2_pow*inverse(total))) % MOD
         sign *= -1
     return result
 
 MOD = 10**9+7
-INV_2 = inverse(2)
+INV2 = inverse(2)
 FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, intranets()))
