@@ -18,8 +18,6 @@ def inv_catalan(n):
     return (INV_FACT[2*n]*FACT[n] % MOD) * FACT[n+1] % MOD
 
 def pow2_mod(x):
-    while x >= len(POW2):
-        POW2.append(POW2[-1]*2 % MOD)
     return POW2[x]
 
 def intranets():
@@ -30,16 +28,18 @@ def intranets():
     q = inv_catalan(M)
     return p*q % MOD
 
-def precompute(n):
-    while len(INV) <= n:
+def precompute():
+    while len(INV) <= 2*MAX_M:
         FACT.append(FACT[-1]*len(INV) % MOD)
         INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)
         INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
+    while len(POW2) <= MAX_M-2:
+       POW2.append(POW2[-1]*2 % MOD)
 
 MOD = 10**9+7
 FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 POW2 = [1]
 MAX_M = 5*10**5
-precompute(2*MAX_M)
+precompute()
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, intranets()))
