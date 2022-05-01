@@ -40,4 +40,4 @@
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Letter Blocks](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afe6a1)| [Python3](./Round%201C/letter_blocks.py3)| _O(N * L)_ | _O(N)_ | Easy | | String |
 |B| [Squary](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afdf76)| [Python3](./Round%201C/squary.py3) | _O(N)_ | _O(1)_ | Medium | | Math, Constructive Algorithms |
-|C| [Intranets](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38)| [Python3](./Round%201C/intranets.py3) [Python3](./Round%201C/intranets2.py3) | _O(M + log(MOD))_ | _O(M)_ | Hard | |  Inclusion‐Exclusion Principle, Combinatorics, Catalan Number |
+|C| [Intranets](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38)| [Python3](./Round%201C/intranets.py3) [Python3](./Round%201C/intranets2.py3) | precompute: _O(M)_<br>runtime: _O(1)_ | _O(M)_ | Hard | |  Inclusion‐Exclusion Principle, Combinatorics, Catalan Number |
