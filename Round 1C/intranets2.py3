@@ -40,6 +40,6 @@ MOD = 10**9+7
 FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 POW2 = [1]
 MAX_M = 5*10**5
-precompute(MAX_M)
+precompute(2*MAX_M)
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, intranets()))
