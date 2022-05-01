@@ -18,7 +18,7 @@ def inverse(x):
     return pow(x, MOD-2, MOD)
 
 def catalan(n):
-    return (nCr(2*n, n)*inverse(n+1)) % MOD
+    return (nCr(2*n, n)*inv[n+1]) % MOD
 
 def intranets():
     M, K = list(map(int, input().split()))
