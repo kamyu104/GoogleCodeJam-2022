@@ -22,10 +22,8 @@ def pow2_mod(x):
 
 def intranets():
     M, K = list(map(int, input().split()))
-    M -= 1
-    K -= 1
-    p = nCr(M-1, 2*K)*catalan(K)*pow2_mod((M-1)-2*K) % MOD
-    q = inv_catalan(M)
+    p = nCr(M-2, 2*(K-1))*catalan(K-1)*pow2_mod(M-2*K) % MOD
+    q = inv_catalan(M-1)
     return p*q % MOD
 
 def precompute():
