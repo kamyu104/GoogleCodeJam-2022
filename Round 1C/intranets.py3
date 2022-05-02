@@ -21,14 +21,14 @@ def inverse(x):
 
 def intranets():
     M, K = list(map(int, input().split()))
-    inv2_pow = total = sign = 1
+    inv2_pow = prob = sign = 1
     result = 0
     for i in range(1, M//2+1):
         inv2_pow = (inv2_pow*INV2) % MOD
-        total = (total * (nCr(M, 2)-nCr(M-2*i, 2))) % MOD
+        prob = (prob * inverse((nCr(M, 2)-nCr(M-2*i, 2)))) % MOD
         if i < K:
             continue
-        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv2_pow*inverse(total))) % MOD  # inclusion-exclusion principle
+        result = (result + sign*nCr(i, K)*(FACT[M]*INV_FACT[M-2*i]*inv2_pow*prob)) % MOD  # inclusion-exclusion principle
         sign *= -1
     return result
 
