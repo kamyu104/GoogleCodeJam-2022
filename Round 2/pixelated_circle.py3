@@ -17,7 +17,7 @@ def draw_circle_perimeter(r):
     y1, y2 = round((r**2-x1**2)**0.5), round((r**2-x2**2)**0.5)
     candidates = [(x1, y1), (x2, y2)]
     x, y = min(((x, y) for x, y in candidates if x <= y), key=lambda x:x[1]-x[0])
-    return 2*x+1-int(x == y)
+    return (2*x+1)-int(x == y)
 
 def draw_circle_filled_wrong(R):
     return sum(draw_circle_perimeter(r) for r in range(1, R+1))*4+1
