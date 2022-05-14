@@ -10,7 +10,7 @@
 from math import cos, pi
 
 def draw_circle_filled(R):
-    return sum(2*int(((R+0.5)**2-x**2)**0.5)+1 for x in range(1, R+1))*2+(2*R+1)
+    return sum(int(((R+0.5)**2-x**2)**0.5) for x in range(1, R+1))*4+(R*4+1)
 
 def draw_circle_perimeter(r):
     x1, x2 = int(r*cos(pi/4)), int(r*cos(pi/4))+1
