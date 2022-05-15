@@ -7,13 +7,11 @@
 # Space: O(1)
 #
 
-from math import cos, pi
-
 def draw_circle_filled(R):
     return sum(int(((R+0.5)**2-x**2)**0.5) for x in range(1, R+1))*4+(R*4+1)
 
 def draw_circle_perimeter(r):
-    x1, x2 = int(r*cos(pi/4)), int(r*cos(pi/4))+1
+    x1, x2 = int(r/(2**0.5)), int(r/(2**0.5))+1
     y1, y2 = round((r**2-x1**2)**0.5), round((r**2-x2**2)**0.5)
     candidates = [(x1, y1), (x2, y2)]
     x, y = min(((x, y) for x, y in candidates if x <= y), key=lambda x:x[1]-x[0])
