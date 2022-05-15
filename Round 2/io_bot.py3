@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-def DP(a, C):
+def cost(a, C):  # Time: O(N)
     if not a:
         return 0
     cnt = [0]*2
@@ -41,7 +41,7 @@ def io_bot():
             b.append((-X, S))
     a.sort()
     b.sort()
-    return DP(a, C)+DP(b, C)
+    return cost(a, C)+cost(b, C)
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, io_bot()))
