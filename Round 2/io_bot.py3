@@ -25,8 +25,8 @@ def DP(a, C):
         if a[i-1][1] != a[i-2][1]:
             dp[i] = dp[i-2]+2*a[i-1][0]
         else:
-            k = lookup[cnt[0]-cnt[1]] if cnt[0]-cnt[1] in lookup else 0
-            dp[i] = min(dp[i-2]+2*a[i-1][0]+C, dp[k]+2*(prefix[a[i-1][1]][i]-prefix[a[i-1][1]][k]))
+            j = lookup[cnt[0]-cnt[1]] if cnt[0]-cnt[1] in lookup else 0
+            dp[i] = min(dp[i-2]+2*a[i-1][0]+C, dp[j]+2*(prefix[a[i-1][1]][i]-prefix[a[i-1][1]][j]))
         lookup[cnt[0]-cnt[1]] = i
     return dp[-1]
 
