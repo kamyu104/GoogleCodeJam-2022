@@ -12,8 +12,6 @@ def spiraling_into_control():
     remain = (N**2-1)-K
     result = []
     for r in reversed(range(1, N//2+1)):
-        if not remain:
-            break
         x = N**2-(2*r+1)**2+1
         for i in range(4):
             diff = (8*r-1)-2*i
@@ -25,7 +23,7 @@ def spiraling_into_control():
             break
         else:
             continue
-        if i:
+        if not remain or i:
             break
     return "%s\n%s"% (len(result), "\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result))) if not remain else "IMPOSSIBLE"
 
