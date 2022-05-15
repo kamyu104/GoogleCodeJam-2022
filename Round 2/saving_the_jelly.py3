@@ -168,7 +168,7 @@ def saving_the_jelly():
     if len(M) < N:
         return "IMPOSSIBLE"
     result = []
-    while len(result) < N:
+    for _ in range(N):
         alternate_path(adj, M)
         add_result(adj, M, result)
     return "POSSIBLE\n%s" % ("\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result)))
