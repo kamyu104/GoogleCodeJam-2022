@@ -17,11 +17,11 @@ def spiraling_into_control():
             break
         x = N**2-(2*r+1)**2+1
         for i in range(4):
-            diff = 8*r-2*(i+1)+1
+            diff = (8*r-1)-2*i
             if diff-1 > remain:
                 continue
             remain -= diff-1
-            result.append((x+(2*i+1)*r, (x+(2*i+1)*r)+diff))
+            result.append(((x+r)+(2*r)*i, ((x+r)+(2*r)*i)+diff))
             break
     return "%s\n%s"% (len(result), "\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result))) if not remain else "IMPOSSIBLE"
 
