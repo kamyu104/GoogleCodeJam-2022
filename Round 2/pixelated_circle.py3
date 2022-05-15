@@ -8,7 +8,7 @@
 #
 
 def draw_circle_filled(R):
-    return sum(int(((R+0.5)**2-x**2)**0.5) for x in range(1, R+1))*4+(R*4+1)
+    return sum(int(((R+0.5)**2-x**2)**0.5) for x in range(1, R+1))*4 + (R*4+1)
 
 def draw_circle_perimeter(r):
     x1, x2 = int(r/(2**0.5)), int(r/(2**0.5))+1
@@ -18,7 +18,7 @@ def draw_circle_perimeter(r):
     return (2*x+1)-int(x == y)
 
 def draw_circle_filled_wrong(R):
-    return sum(draw_circle_perimeter(r) for r in range(1, R+1))*4+1
+    return sum(draw_circle_perimeter(r) for r in range(1, R+1))*4 + 1
 
 def pixelated_circle():
     R = int(input())
