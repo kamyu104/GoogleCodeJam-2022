@@ -126,7 +126,7 @@ def bipartiteMatch(graph):
 def dist(x, y):
     return (x[0]-y[0])**2 + (x[1]-y[1])**2
 
-def alternate_path(adj, M):
+def alternate_path(adj, M):  # Time: O(N)
     u = next(iter(M.values()))
     path = [u]
     lookup = set(path)
@@ -144,7 +144,7 @@ def alternate_path(adj, M):
         if nu == u:
             break
 
-def add_result(adj, M, result):
+def add_result(adj, M, result):  # Time: O(N)
     for v, u in M.items():
         while adj[u][-1] not in M:
             adj[u].pop()
