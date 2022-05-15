@@ -171,9 +171,8 @@ def saving_the_jelly():
         return "IMPOSSIBLE"
     result = []
     while len(result) < N:
-        if not add_result(adj, M, result):
-            alternate_path(adj, M)
-            add_result(adj, M, result)
+        alternate_path(adj, M)
+        add_result(adj, M, result)
     return "POSSIBLE\n%s" % ("\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result)))
 
 for case in range(int(input())):
