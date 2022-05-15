@@ -14,9 +14,9 @@ def cost(a, C):  # Time: O(N)
     dp = [0]*(len(a)+1)
     lookup = {}
     prefix = [[0] for _ in range(2)]
-    for i in range(len(a)):
-        for j in range(2):
-            prefix[j].append(prefix[j][-1]+(a[i][0] if a[i][1] == j else 0))
+    for i, p in enumerate(prefix):
+        for x, s in a:
+            p.append(p[-1]+(x if s == i else 0))
     cnt[a[0][1]] += 1
     dp[1] = 2*a[0][0]
     lookup[cnt[0]-cnt[1]] = 1
