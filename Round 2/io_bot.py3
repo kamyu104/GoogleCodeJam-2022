@@ -7,12 +7,12 @@
 # Space: O(N)
 #
 
+from collections import defaultdict
+
 def cost(a, C):  # Time: O(N)
-    if not a:
-        return 0
     cnt = [0]*2
     dp = [0]*(len(a)+1)
-    lookup = {}
+    lookup = defaultdict(int)
     prefix = [[0] for _ in range(2)]
     for i, p in enumerate(prefix):
         for x, s in a:
@@ -22,8 +22,7 @@ def cost(a, C):  # Time: O(N)
         if i == 1 or a[i-1][1] != a[i-2][1]:
             dp[i] = dp[i-2]+2*a[i-1][0]  # given dp[-1] = 0
         else:
-            j = lookup[cnt[0]-cnt[1]] if cnt[0]-cnt[1] in lookup else 0
-            dp[i] = min(dp[i-2]+2*a[i-1][0]+C, dp[j]+2*(prefix[a[i-1][1]][i]-prefix[a[i-1][1]][j]))
+            dp[i] = min(dp[i-2]+2*a[i-1][0]+C, dp[lookup[cnt[0]-cnt[1]]]+2*(prefix[a[i-1][1]][i]-prefix[a[i-1][1]][lookup[cnt[0]-cnt[1]]]))
         lookup[cnt[0]-cnt[1]] = i
     return dp[-1]
 
