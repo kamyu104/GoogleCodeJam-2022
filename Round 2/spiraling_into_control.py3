@@ -11,7 +11,6 @@ def spiraling_into_control():
     N, K = list(map(int, input().split()))
     remain = (N**2-1)-K
     result = []
-    r = N//2
     for r in reversed(range(1, N//2+1)):
         if not remain:
             break
