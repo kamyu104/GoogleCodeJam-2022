@@ -151,7 +151,8 @@ def add_result(adj, M, result):  # Time: O(N)
         if adj[u][-1] == v:
             result.append((u+1, v+1))
             del M[v]
-            break
+            return
+    assert(False)
 
 def saving_the_jelly():
     N = int(input())
