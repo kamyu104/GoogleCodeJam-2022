@@ -126,24 +126,24 @@ def bipartiteMatch(graph):
 def dist(x, y):
     return (x[0]-y[0])**2 + (x[1]-y[1])**2
 
-def add_result(u_v, M, result):
+def add_result(adj, M, result):
     for v, u in M.items():
-        while u_v[u][-1] not in M:
-            u_v[u].pop()
-        if u_v[u][-1] == v:
+        while adj[u][-1] not in M:
+            adj[u].pop()
+        if adj[u][-1] == v:
             result.append((u+1, v+1))
             del M[v]
             return True
     return False
 
-def alternate_path(u_v, M):
+def alternate_path(adj, M):
     u = next((u for u in M.values()))
     path = [u]
     lookup = set(path)
     while True:
-        while u_v[u][-1] not in M:
-            u_v[u].pop()
-        v = u_v[u][-1]
+        while adj[u][-1] not in M:
+            adj[u].pop()
+        v = adj[u][-1]
         u = M[v]
         if u in lookup:
             break
@@ -151,7 +151,7 @@ def alternate_path(u_v, M):
         lookup.add(u)
     while True:
         nu = path.pop()
-        M[u_v[nu][-1]] = nu
+        M[adj[nu][-1]] = nu
         if nu == u:
             break
 
@@ -159,21 +159,21 @@ def saving_the_jelly():
     N = int(input())
     children = [list(map(int, input().split())) for _ in range(N)]
     candies = [list(map(int, input().split())) for _ in range(N+1)]
-    u_v = defaultdict(list)
+    adj = defaultdict(list)
     for u, child in enumerate(children):
         d = dist(child, candies[0])
         for v in range(1, N+1):
             if dist(child, candies[v]) <= d:
-                u_v[u].append(v)
-        u_v[u].sort(key=lambda x: dist(child, candies[x]), reverse=True)
-    M = bipartiteMatch(u_v)[0]
+                adj[u].append(v)
+        adj[u].sort(key=lambda x: dist(child, candies[x]), reverse=True)
+    M = bipartiteMatch(adj)[0]
     if len(M) < N:
         return "IMPOSSIBLE"
     result = []
     while len(result) < N:
-        if not add_result(u_v, M, result):
-            alternate_path(u_v, M)
-            add_result(u_v, M, result)
+        if not add_result(adj, M, result):
+            alternate_path(adj, M)
+            add_result(adj, M, result)
     return "POSSIBLE\n%s" % ("\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result)))
 
 for case in range(int(input())):
