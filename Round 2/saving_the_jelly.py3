@@ -133,8 +133,7 @@ def add_result(adj, M, result):
         if adj[u][-1] == v:
             result.append((u+1, v+1))
             del M[v]
-            return True
-    return False
+            break
 
 def alternate_path(adj, M):
     u = next((u for u in M.values()))
@@ -143,8 +142,7 @@ def alternate_path(adj, M):
     while True:
         while adj[u][-1] not in M:
             adj[u].pop()
-        v = adj[u][-1]
-        u = M[v]
+        u = M[adj[u][-1]]
         if u in lookup:
             break
         path.append(u)
