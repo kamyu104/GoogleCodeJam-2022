@@ -15,7 +15,7 @@ def spiraling_into_control():
     for r in reversed(range(1, N//2+1)):
         if not remain:
             break
-        x = N**2-4*r*(r+1)
+        x = N**2-(2*r+1)**2+1
         for i in range(4):
             diff = 8*r-2*(i+1)+1
             if diff-1 > remain:
