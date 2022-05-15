@@ -11,17 +11,18 @@ def spiraling_into_control():
     N, K = list(map(int, input().split()))
     remain = (N**2-1)-K
     result = []
-    i, l = 1+1, N-1
-    while remain and l > 1:
-        for j in range(4):
-            diff = ((l*4-1)-2*j)
+    r = N//2
+    for r in reversed(range(1, N//2+1)):
+        if not remain:
+            break
+        x = N**2-(2*r+1)**2+1
+        for i in range(4):
+            diff = 8*r-2*(i+1)+1
             if diff-1 > remain:
                 continue
             remain -= diff-1
-            result.append((i+l*j, (i+l*j)+diff))
+            result.append((x+(2*i+1)*r, (x+(2*i+1)*r)+diff))
             break
-        i += l*4
-        l -= 2
     return "%s\n%s"% (len(result), "\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result))) if not remain else "IMPOSSIBLE"
 
 for case in range(int(input())):
