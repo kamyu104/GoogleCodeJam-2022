@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-14%20%2F%2014-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-18%20%2F%2018-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -8,9 +8,10 @@
 
 * [Code Jam 2021](https://github.com/kamyu104/GoogleCodeJam-2021)
 * [Qualification Round](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round)
-* [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1a)
-* [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1b)
-* [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2022#qualification-round-1c)
+* [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2022#round-1a)
+* [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2022#round-1b)
+* [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2022#round-1c)
+* [Round 2](https://github.com/kamyu104/GoogleCodeJam-2022#round-2)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -41,3 +42,11 @@
 |A| [Letter Blocks](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afe6a1)| [Python3](./Round%201C/letter_blocks.py3)| _O(N * L)_ | _O(N)_ | Easy | | String |
 |B| [Squary](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afdf76)| [Python3](./Round%201C/squary.py3) | _O(N)_ | _O(1)_ | Medium | | Math, Constructive Algorithms |
 |C| [Intranets](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877b42/0000000000afeb38)| [Python3](./Round%201C/intranets.py3) [Python3](./Round%201C/intranets2.py3) | precompute: _O(MAX_M)_<br>runtime: _O(1)_ | _O(MAX_M)_ | Hard | |  Inclusion‐Exclusion Principle, Combinatorics, Catalan Number |
+
+## Round 2
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Spiraling Into Control](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15a74)| [Python3](./Round%202/spiraling_into_control.py3)| _O(N)_ | _O(1)_ | Easy | | Constructive Algorithms |
+|B| [Pixelated Circle](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f7)| [Python3](./Round%202/pixelated_circle.py3) | _O(R)_ | _O(1)_ | Medium | | Math |
+|C| [Saving the Jelly](https://codingcompetitions.withgoogle.com/codejam/round/0000000000877ba5/0000000000aa9280)| [PyPy3](./Round%202/saving_the_jelly.py3)| _O(N^2 * sqrt(N))_ | _O(N^2)_ | Medium | | Bipartite Matching, Hopcroft-Karp Algorithm |
+|D| [I, O Bot](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15167)| [Python3](./Round%202/io_bot.py3)| _O(N^2 * sqrt(N))_ | _O(N^2)_ | Hard | | Bipartite Matching, Hopcroft-Karp Algorithm |
