@@ -127,7 +127,7 @@ def dist(x, y):
     return (x[0]-y[0])**2 + (x[1]-y[1])**2
 
 def alternate_path(adj, M):
-    u = next((u for u in M.values()))
+    u = next(iter(M.values()))
     path = [u]
     lookup = set(path)
     while True:
