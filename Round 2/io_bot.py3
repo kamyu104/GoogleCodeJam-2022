@@ -10,22 +10,19 @@
 from collections import defaultdict
 
 def cost(a, C):  # Time: O(N)
-    cnt = [0]*2
+    cnt, prefix = [[0]*2 for _ in range(2)]
     dp = [0]*(len(a)+1)
-    lookup = defaultdict(int)
-    prefix = [[0] for _ in range(2)]
-    for i, p in enumerate(prefix):
-        for x, s in a:
-            p.append(p[-1]+(x if s == i else 0))
+    lookup = defaultdict(lambda:(0, [0]*2))
     prev = -1
     for i, (x, s) in enumerate(a, 1):
         cnt[s] += 1
+        prefix[s] += x
         if s != prev:
             dp[i] = dp[i-2]+2*x  # given dp[-1] = 0
         else:
-            j = lookup[cnt[0]-cnt[1]]
-            dp[i] = min(dp[i-2]+2*x+C, dp[j]+2*(prefix[s][i]-prefix[s][j]))
-        lookup[cnt[0]-cnt[1]] = i
+            j, p = lookup[cnt[0]-cnt[1]]
+            dp[i] = min(dp[i-2]+2*x+C, dp[j]+2*(prefix[s]-p[s]))
+        lookup[cnt[0]-cnt[1]] = (i, prefix[:])
         prev = s
     return dp[-1]
 
