@@ -21,9 +21,7 @@ def spiraling_into_control():
             y = (x+r)+(2*r)*i
             result.append((y, y+diff))
             break
-        else:
-            continue
-        if not remain or i:
+        if remain <= 1:
             break
     return "%s\n%s"% (len(result), "\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result))) if not remain else "IMPOSSIBLE"
 
