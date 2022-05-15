@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f8
 #
 # Time:  O(N^2 * sqrt(N)), pass in PyPy3 but Python3
-# Space: O(N)
+# Space: O(N^2)
 #
 
 from functools import partial
