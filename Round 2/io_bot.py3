@@ -10,8 +10,8 @@
 def DP(a, C):
     if not a:
         return 0
-    dp = [0]*(len(a)+1)
     cnt = [0]*2
+    dp = [0]*(len(a)+1)
     lookup = {}
     prefix = [[0] for _ in range(2)]
     for i in range(len(a)):
