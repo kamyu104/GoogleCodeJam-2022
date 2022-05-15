@@ -126,7 +126,7 @@ def bipartiteMatch(graph):
 def dist(x, y):
     return (x[0]-y[0])**2 + (x[1]-y[1])**2
 
-def alternate_path(adj, M):  # Time: O(N)
+def find_alternating_matching(adj, M):  # Time: O(N)
     u = next(iter(M.values()))
     path = [u]
     lookup = set(path)
@@ -170,7 +170,7 @@ def saving_the_jelly():
         return "IMPOSSIBLE"
     result = []
     for _ in range(N):
-        alternate_path(adj, M)
+        find_alternating_matching(adj, M)
         add_result(adj, M, result)
     return "POSSIBLE\n%s" % ("\n".join(map(lambda x: "%s %s"%(x[0], x[1]), result)))
 
