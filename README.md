@@ -46,7 +46,7 @@
 ## Round 2
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Spiraling Into Control](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15a74)| [Python3](./Round%202/spiraling_into_control.py3)| _O(N)_ | _O(1)_ | Easy | | Constructive Algorithms |
+|A| [Spiraling Into Control](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15a74)| [Python3](./Round%202/spiraling_into_control.py3)| _O(N)_ | _O(1)_ | Easy | | Constructive Algorithms, Greedy, Math |
 |B| [Pixelated Circle](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f7)| [Python3](./Round%202/pixelated_circle.py3) | _O(R)_ | _O(1)_ | Medium | | Math |
 |C| [Saving the Jelly](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f8)| [PyPy3](./Round%202/saving_the_jelly.py3)| _O(N^2 * sqrt(N))_ | _O(N^2)_ | Medium | | Bipartite Matching, Hopcroft-Karp Algorithm |
 |D| [I, O Bot](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15167)| [Python3](./Round%202/io_bot.py3)| _O(NlogN)_ | _O(N)_ | Hard | | DP, Prefix Sum, Hash Table |
