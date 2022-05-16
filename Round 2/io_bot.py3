@@ -17,11 +17,8 @@ def cost(a, C):  # Time: O(N)
     for i, (x, s) in enumerate(a, 1):
         cnt[s] += 1
         prefix[s] += x
-        if s != prev:
-            dp[i%2] = dp[(i-2)%2]+2*x  # given dp[-1] = 0
-        else:
-            dp_j, prefix_j = lookup[cnt[0]-cnt[1]]
-            dp[i%2] = min(dp[(i-2)%2]+2*x+C, dp_j+2*(prefix[s]-prefix_j[s]))
+        c, (dp_j, prefix_j) = (C if s == prev else 0), lookup[cnt[0]-cnt[1]]
+        dp[i%2] = min(dp[(i-2)%2]+2*x+c, dp_j+2*(prefix[s]-prefix_j[s]))  # given dp[-1] = 0
         lookup[cnt[0]-cnt[1]] = (dp[i%2], prefix[:])
         prev = s
     return dp[len(a)%2]
