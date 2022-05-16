@@ -11,20 +11,20 @@ from collections import defaultdict
 
 def cost(a, C):  # Time: O(N)
     cnt, prefix = [[0]*2 for _ in range(2)]
-    dp = [0]*(len(a)+1)
+    dp = [0]*2
     lookup = defaultdict(lambda:(0, [0]*2))
     prev = -1
     for i, (x, s) in enumerate(a, 1):
         cnt[s] += 1
         prefix[s] += x
         if s != prev:
-            dp[i] = dp[i-2]+2*x  # given dp[-1] = 0
+            dp[i%2] = dp[(i-2)%2]+2*x  # given dp[-1] = 0
         else:
-            j, p = lookup[cnt[0]-cnt[1]]
-            dp[i] = min(dp[i-2]+2*x+C, dp[j]+2*(prefix[s]-p[s]))
-        lookup[cnt[0]-cnt[1]] = (i, prefix[:])
+            dp_j, p = lookup[cnt[0]-cnt[1]]
+            dp[i%2] = min(dp[(i-2)%2]+2*x+C, dp_j+2*(prefix[s]-p[s]))
+        lookup[cnt[0]-cnt[1]] = (dp[i%2], prefix[:])
         prev = s
-    return dp[-1]
+    return dp[len(a)%2]
 
 def io_bot():
     N, C = list(map(int, input().split()))
