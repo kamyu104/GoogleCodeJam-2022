@@ -20,8 +20,8 @@ def cost(a, C):  # Time: O(N)
         if s != prev:
             dp[i%2] = dp[(i-2)%2]+2*x  # given dp[-1] = 0
         else:
-            dp_j, p = lookup[cnt[0]-cnt[1]]
-            dp[i%2] = min(dp[(i-2)%2]+2*x+C, dp_j+2*(prefix[s]-p[s]))
+            dp_j, prefix_j = lookup[cnt[0]-cnt[1]]
+            dp[i%2] = min(dp[(i-2)%2]+2*x+C, dp_j+2*(prefix[s]-prefix_j[s]))
         lookup[cnt[0]-cnt[1]] = (dp[i%2], prefix[:])
         prev = s
     return dp[len(a)%2]
