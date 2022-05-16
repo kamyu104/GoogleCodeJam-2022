@@ -32,8 +32,7 @@ def io_bot():
             a.append((X, S))
         else:
             b.append((-X, S))
-    a.sort()
-    b.sort()
+    a.sort(), b.sort()
     return cost(a, C)+cost(b, C)
 
 for case in range(int(input())):
