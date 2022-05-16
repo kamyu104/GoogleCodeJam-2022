@@ -18,7 +18,7 @@ def cost(a, C):  # Time: O(N)
         cnt[s] += 1
         prefix[s] += x
         c, (dp_j, prefix_j) = (C if s == prev else 0), lookup[cnt[0]-cnt[1]]
-        dp[i%2] = min(dp[(i-2)%2]+2*x+c, dp_j+2*(prefix[s]-prefix_j[s]))  # given dp[-1] = 0
+        dp[i%2] = min(dp[(i-2)%2]+2*x+c, dp_j+2*(prefix[s]-prefix_j[s]))  # given dp[(-1)%2] = 0
         lookup[cnt[0]-cnt[1]] = (dp[i%2], prefix[:])
         prev = s
     return dp[len(a)%2]
