@@ -10,7 +10,7 @@
 from collections import defaultdict
 
 def cost(a, C):  # Time: O(N)
-    cnt, prefix = [[0]*2 for _ in range(2)]
+    cnt, prefix = [0]*2, [0]*2
     dp = [0]*2
     lookup = defaultdict(lambda:(0, [0]*2))
     prev = -1
