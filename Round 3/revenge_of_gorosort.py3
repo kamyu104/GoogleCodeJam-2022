@@ -6,7 +6,7 @@
 # Time:  O(K * N)
 # Space: O(N)
 #
-# python interactive_runner.py python3 testing_tool.py3 0 -- python3 revenge_of_gorosort.py3
+# python interactive_runner.py python3 testing_tool.py3 2 -- python3 revenge_of_gorosort.py3
 #
 
 def colors(C):
