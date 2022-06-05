@@ -32,7 +32,7 @@ def revenge_of_gorosort():
         if colors(C):
             break
         a = list(map(lambda x: int(x)-1, input().split()))
-    
+
 T, N, K = map(int, input().split())
 for case in range(T):
     revenge_of_gorosort()
