@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem B. Duck, Duck, Geese
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45244
 #
-# Time:  O(NlogN), TLE in both Python3 / PyPy3 for test case 2
+# Time:  O(NlogN), pass in PyPy3 but Python3
 # Space: O(N)
 #
 
@@ -91,7 +91,7 @@ def duck_duck_geese():
         if x is None:
             return y
         if x[0] != y[0]:
-            return max(x, y)
+            return x if x[0] > y[0] else y
         return [x[0], x[1]+y[1]]
 
     def update(x, y):
