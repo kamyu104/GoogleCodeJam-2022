@@ -33,7 +33,7 @@ def revenge_of_gorosort():
             break
         a = list(map(lambda x: int(x)-1, input().split()))
 
-L = 5
+L = 5  # tuned by experiments
 T, N, K = map(int, input().split())
 for case in range(T):
     revenge_of_gorosort()
