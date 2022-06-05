@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem A. Revenge of GoroSort
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45189
 #
-# Time:  O(K * N), K is around 10.6 when N is 100
+# Time:  O(K * N), K is around 10.6 when (N, L) is (100, 5), and around 10.9 when (N, L) is (100, 3)
 # Space: O(N)
 #
 # python interactive_runner.py python3 testing_tool.py3 2 -- python3 revenge_of_gorosort.py3
@@ -33,7 +33,7 @@ def revenge_of_gorosort():
             break
         a = list(map(lambda x: int(x)-1, input().split()))
 
-L = 5  # tuned by experiments
+L = 3  # tuned by experiments
 T, N, K = map(int, input().split())
 for case in range(T):
     revenge_of_gorosort()
