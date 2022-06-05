@@ -65,6 +65,9 @@ class SegmentTree(object):  # 0-based index
                 n //= 2
 
         result = None
+        if L > R:
+            return result
+
         L += self.base
         R += self.base
         push(L)
