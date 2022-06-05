@@ -83,11 +83,6 @@ class SegmentTree(object):  # 0-based index
             R //= 2
         return result
 
-def add(N, idx, i, a, b, diff, st):
-    st.update((idx[i-1]+1 if i-1 >= 0 else 0), (idx[i]-1 if i < len(idx) else 2*N-1), diff)
-    if i+a-1 < len(idx):
-        st.update(idx[i+a-1], (idx[i+b]-1 if i+b < len(idx) else 2*N-1), diff)
-
 def duck_duck_geese():
     def build(N):
         return [0, 1]
@@ -104,6 +99,11 @@ def duck_duck_geese():
             return y
         return [x[0]+y[0], x[1]]
 
+    def add(idx, i, a, b, diff):
+        st.update((idx[i-1]+1 if i-1 >= 0 else 0), (idx[i]-1 if i < len(idx) else 2*N-1), diff)
+        if i+a-1 < len(idx):
+            st.update(idx[i+a-1], (idx[i+b]-1 if i+b < len(idx) else 2*N-1), diff)
+
     N, C = map(int, input().split())
     A, B = [0]*N, [0]*N
     for i in range(C):
@@ -116,15 +116,15 @@ def duck_duck_geese():
     st = SegmentTree(2*N, build_fn=build, query_fn=query, update_fn=update)
     curr = [0]*C
     for c in range(C):
-        add(N, idx[c], curr[c], A[c], B[c], [+1, None], st)
+        add(idx[c], curr[c], A[c], B[c], [+1, None])
     result = 0
     for i, c in enumerate(P):
         mx, cnt = st.query(i+1, i+N-2)
         if mx == C:
             result += cnt
-        add(N, idx[c], curr[c], A[c], B[c], [-1, None], st)
+        add(idx[c], curr[c], A[c], B[c], [-1, None])
         curr[c] += 1
-        add(N, idx[c], curr[c], A[c], B[c], [+1, None], st)
+        add(idx[c], curr[c], A[c], B[c], [+1, None])
     return result
 
 for case in range(int(input())):
