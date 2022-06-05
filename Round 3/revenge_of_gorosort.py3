@@ -9,14 +9,14 @@
 # python interactive_runner.py python3 testing_tool.py3 2 -- python3 revenge_of_gorosort.py3
 #
 
-def colors(C):
-    print(" ".join(map(str, C)), flush=True)
+def print_colors(colors):
+    print(" ".join(map(str, colors)), flush=True)
     return int(input())
 
 def revenge_of_gorosort():
     a = list(map(lambda x: int(x)-1, input().split()))
     while True:
-        C = [0]*N
+        colors = [0]*N
         color = 1
         for i in range(N):
             cycle = []
@@ -27,9 +27,9 @@ def revenge_of_gorosort():
                 cycle.append(j)
             while cycle:
                 for _ in range(L if len(cycle) >= 2*L else len(cycle)):
-                    C[cycle.pop()] = color
+                    colors[cycle.pop()] = color
                 color += 1
-        if colors(C):
+        if print_colors(colors):
             break
         a = list(map(lambda x: int(x)-1, input().split()))
 
