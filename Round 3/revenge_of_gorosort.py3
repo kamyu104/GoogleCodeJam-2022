@@ -26,13 +26,14 @@ def revenge_of_gorosort():
                 a[i], a[j] = a[j], ~a[i]
                 cycle.append(j)
             while cycle:
-                for _ in range(3 if len(cycle) >= 6 else len(cycle)):
+                for _ in range(L if len(cycle) >= 2*L else len(cycle)):
                     C[cycle.pop()] = color
                 color += 1
         if colors(C):
             break
         a = list(map(lambda x: int(x)-1, input().split()))
 
+L = 5
 T, N, K = map(int, input().split())
 for case in range(T):
     revenge_of_gorosort()
