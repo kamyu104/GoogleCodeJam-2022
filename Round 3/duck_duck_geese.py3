@@ -90,7 +90,7 @@ def duck_duck_geese():
         return [0, 1]
 
     def query(x, y):
-        if not x:
+        if x is None:
             return y
         if x[0] != y[0]:
             return max(x, y)
