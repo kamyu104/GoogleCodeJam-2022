@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem A. Revenge of GoroSort
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45189
 #
-# Time:  O(K * N)
+# Time:  O(N^2)
 # Space: O(N)
 #
 # python interactive_runner.py python3 testing_tool.py3 2 -- python3 revenge_of_gorosort.py3
