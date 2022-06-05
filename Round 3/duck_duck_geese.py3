@@ -109,13 +109,12 @@ def duck_duck_geese():
     P = list(map(lambda x: int(x)-1, input().split()))
     idx = [[] for _ in range(C)]
     for i in range(2*N):
-        c = P[i%N]
-        idx[c].append(i)
+        idx[P[i%N]].append(i)
     st = SegmentTree(2*N, build_fn=build, query_fn=query, update_fn=update)
-    result = 0
     curr = [0]*C
     for c in range(C):
         add(N, idx[c], curr[c], A[c], B[c], [+1, None], st)
+    result = 0
     for i, c in enumerate(P):
         mx, cnt = st.query(i+1, i+N-2)
         if mx == C:
