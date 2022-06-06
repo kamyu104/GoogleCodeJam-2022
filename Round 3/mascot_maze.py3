@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem C. Mascot Maze
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b44a4f
 #
-# Time:  O(N), pass in PyPy3 but Python3
+# Time:  O(N)
 # Space: O(N)
 #
 
@@ -34,7 +34,7 @@ def mascot_maze():
                 lookup[v] = True
                 new_q.append(v)
         q = new_q
-    result = [None]*N
+    result = [0]*N
     for u in reversed(order):
         used = set(result[v] for v in adj[u] if result[v])
         result[u] = next(x for x in MOSCOTS if x not in used)
