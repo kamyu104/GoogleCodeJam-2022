@@ -22,10 +22,10 @@ def mascot_maze():
         adj[u] = list(neis)
         for v in adj[u]:
             adj2[v].append(u)
+    order = []
     degree = [len(adj[u])+len(adj2[u]) for u in range(N)]
     q = [u for u in range(N) if degree[u] < len(MOSCOTS)]
     lookup = [degree[u] < len(MOSCOTS) for u in range(N)]
-    order = []
     while q:
         new_q = []
         for u in q:
