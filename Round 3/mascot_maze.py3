@@ -22,21 +22,19 @@ def mascot_maze():
     order = []
     degree = [len(adj[u]) for u in range(N)]
     q = [u for u in range(N) if degree[u] < len(MOSCOTS)]
-    lookup = [degree[u] < len(MOSCOTS) for u in range(N)]
     while q:
         new_q = []
         for u in q:
             order.append(u)
             for v in adj[u]:
                 degree[v] -= 1
-                if degree[v] >= len(MOSCOTS) or lookup[v]:
+                if degree[v] != len(MOSCOTS)-1:
                     continue
-                lookup[v] = True
                 new_q.append(v)
         q = new_q
     result = [0]*N
     for u in reversed(order):
-        used = set(result[v] for v in adj[u] if result[v])
+        used = {result[v] for v in adj[u] if result[v]}
         result[u] = next(x for x in MOSCOTS if x not in used)
     return "".join(result)
 
