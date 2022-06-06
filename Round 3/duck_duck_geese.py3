@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-class SegmentTree(object):  # 0-based index
+class SegmentTree:  # 0-based index
     def __init__(self, N,
                  build_fn=lambda _: 0,
                  query_fn=lambda x, y: y if x is None else max(x, y),
