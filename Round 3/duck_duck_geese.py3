@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-class SegmentTree:  # 0-based index
+class SegmentTree(object):  # 0-based index
     def __init__(self, N,
                  build_fn=lambda _: 0,
                  query_fn=lambda x, y: y if x is None else max(x, y),
@@ -31,8 +31,8 @@ class SegmentTree:  # 0-based index
     def update(self, L, R, h):  # Time: O(logN), Space: O(N)
         def pull(x):
             while x > 1:
-                x //= 2
-                self.tree[x] = self.query_fn(self.tree[x*2], self.tree[x*2+1])
+                x >>= 1
+                self.tree[x] = self.query_fn(self.tree[x<<1], self.tree[(x<<1)+1])
                 if self.lazy[x] is not None:
                     self.tree[x] = self.update_fn(self.tree[x], self.lazy[x])
 
@@ -48,21 +48,21 @@ class SegmentTree:  # 0-based index
             if R & 1 == 0:  # is left child
                 self.__apply(R, h)
                 R -= 1
-            L //= 2
-            R //= 2
+            L >>= 1
+            R >>= 1
         pull(L0)
         pull(R0)
 
     def query(self, L, R):  # Time: O(logN), Space: O(N)
         def push(x):
-            n = 2**self.H
-            while n != 1:
-                y = x // n
+            n = self.H
+            while n:
+                y = x >> n
                 if self.lazy[y] is not None:
-                    self.__apply(y*2, self.lazy[y])
-                    self.__apply(y*2 + 1, self.lazy[y])
+                    self.__apply(y<<1, self.lazy[y])
+                    self.__apply((y<<1)+1, self.lazy[y])
                     self.lazy[y] = None
-                n //= 2
+                n -= 1
 
         result = None
         if L > R:
@@ -79,8 +79,8 @@ class SegmentTree:  # 0-based index
             if R & 1 == 0:  # is left child
                 result = self.query_fn(result, self.tree[R])
                 R -= 1
-            L //= 2
-            R //= 2
+            L >>= 1
+            R >>= 1
         return result
 
 def duck_duck_geese():
@@ -113,7 +113,7 @@ def duck_duck_geese():
     P = list(map(lambda x: int(x)-1, input().split()))
     idx = [[] for _ in range(C)]
     for i in range(2*N):
-        idx[P[i%N]].append(i)
+        idx[P[i if i < N else i-N]].append(i)
     st = SegmentTree(2*N, build_fn=build, query_fn=query, update_fn=update)
     curr = [0]*C
     for c in range(C):
