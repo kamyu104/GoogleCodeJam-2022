@@ -39,8 +39,8 @@ def mascot_maze():
         q = new_q
     result = [None]*N
     for u in reversed(order):
-        lookup = set(result[v] for v in chain(adj[u], adj2[u]) if result[v])
-        result[u] = next(x for x in MOSCOTS if x not in lookup)
+        used = set(result[v] for v in chain(adj[u], adj2[u]) if result[v])
+        result[u] = next(x for x in MOSCOTS if x not in used)
     return "".join(result)
 
 MOSCOTS = "ACDEHIJKMORST"
