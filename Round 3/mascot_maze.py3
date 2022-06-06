@@ -16,7 +16,7 @@ def mascot_maze():
     adj = [[] for _ in range(N)]
     adj2 = [[] for _ in range(N)]
     for u, (l, r) in enumerate(zip(L, R)):
-        neis = {l, L[l], R[l],r, L[r], R[r]}
+        neis = {l, L[l], R[l], r, L[r], R[r]}
         if u in neis:
             return "IMPOSSIBLE"
         adj[u] = list(neis)
