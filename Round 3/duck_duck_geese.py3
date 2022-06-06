@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem B. Duck, Duck, Geese
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45244
 #
-# Time:  O(NlogN), pass in PyPy3 but Python3
+# Time:  O(NlogN), pass in PyPy3 (sometimes TLE) but Python3
 # Space: O(N)
 #
 
