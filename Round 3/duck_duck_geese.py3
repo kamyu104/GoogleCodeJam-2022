@@ -108,7 +108,8 @@ def duck_duck_geese():
     A, B = [0]*N, [0]*N
     for i in range(C):
         A[i], B[i] = map(int, input().split())
-        A[i] = max(A[i], 1)
+        if not A[i]:
+            A[i] = 1
     P = list(map(lambda x: int(x)-1, input().split()))
     idx = [[] for _ in range(C)]
     for i in range(2*N):
