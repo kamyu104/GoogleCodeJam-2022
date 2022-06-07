@@ -21,23 +21,23 @@ def mascot_maze():
             adj[v].append(u)
     order = []
     degree = [len(adj[u]) for u in range(N)]
-    q = [u for u in range(N) if degree[u] < len(MOSCOTS)]
+    q = [u for u in range(N) if degree[u] < len(MASCOTS)]
     while q:
         new_q = []
         for u in q:
             order.append(u)
             for v in adj[u]:
                 degree[v] -= 1
-                if degree[v] != len(MOSCOTS)-1:
+                if degree[v] != len(MASCOTS)-1:
                     continue
                 new_q.append(v)
         q = new_q
     result = [0]*N
     for u in reversed(order):
         used = {result[v] for v in adj[u] if result[v]}
-        result[u] = next(x for x in MOSCOTS if x not in used)
+        result[u] = next(x for x in MASCOTS if x not in used)
     return "".join(result)
 
-MOSCOTS = "ACDEHIJKMORST"
+MASCOTS = "ACDEHIJKMORST"
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, mascot_maze()))
