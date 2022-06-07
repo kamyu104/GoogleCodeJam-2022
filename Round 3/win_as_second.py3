@@ -20,25 +20,28 @@ def print_choices(N, i, chosen_mask):
 def mex(lookup):
     return next(i for i in range(len(lookup)+1) if i not in lookup)
 
+def bfs(adj, i, mask):
+    q = [i]
+    new_mask = mask^(1<<i)
+    while q:
+        new_q = []
+        for i in q:
+            for j in adj[i]:
+                if not (new_mask&(1<<j)):
+                    continue
+                new_mask ^= 1<<j
+                new_q.append(j)
+        q = new_q
+    return new_mask
+
 def find_submasks(adj, mask):
     submasks = []
-    total_submasks = 0
     for i in range(len(adj)):
-        if not (mask&(1<<i)) or total_submasks&(1<<i):
+        if not (mask&(1<<i)):
             continue
-        q = [i]
-        submask = 1<<i
-        while q:
-            new_q = []
-            for i in q:
-                for j in adj[i]:
-                    if not (mask&(1<<j)) or (submask&(1<<j)):
-                        continue
-                    submask |= 1<<j
-                    new_q.append(j)
-            q = new_q
-        total_submasks |= submask
-        submasks.append(submask)
+        new_mask = bfs(adj, i, mask)
+        submasks.append(mask^new_mask)
+        mask = new_mask
     return submasks
 
 def enumerate_next_states(adj, lookup, mask):
