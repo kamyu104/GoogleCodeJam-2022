@@ -3,8 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem D. Win As Second
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a
 #
-# Time:  precompute: O(N * S), S is around 250,000
-# #      runtime:    O(N^2)
+# Time:  O(N * S + M * N^2), S is around 250,000
 # Space: O(S)
 #
 # python interactive_runner.py python3 testing_tool.py3 1 -- python3 win_as_second.py3
@@ -79,7 +78,8 @@ def win_as_second():
     lookup = {}
     assert(grundy(adj, (1<<N)-1, lookup) == 0)
     print_tree(EDGES[N])
-    for _ in range(int(input())):
+    M = int(input())
+    for _ in range(M):
         mask = (1<<N)-1
         while mask:
             K = int(input())
