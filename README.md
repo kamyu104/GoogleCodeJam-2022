@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-18%20%2F%2018-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-22%20%2F%2022-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -12,6 +12,7 @@
 * [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2022#round-1b)
 * [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2022#round-1c)
 * [Round 2](https://github.com/kamyu104/GoogleCodeJam-2022#round-2)
+* [Round 3](https://github.com/kamyu104/GoogleCodeJam-2022#round-3)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -50,3 +51,11 @@
 |B| [Pixelated Circle](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f7)| [Python3](./Round%202/pixelated_circle.py3) | _O(R)_ | _O(1)_ | Medium | | Math |
 |C| [Saving the Jelly](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b158f8)| [PyPy3](./Round%202/saving_the_jelly.py3)| _O(N^2 * sqrt(N))_ | _O(N^2)_ | Medium | | Bipartite Matching, Hopcroft-Karp Algorithm |
 |D| [I, O Bot](https://codingcompetitions.withgoogle.com/codejam/round/00000000008778ec/0000000000b15167)| [Python3](./Round%202/io_bot.py3)| _O(NlogN)_ | _O(N)_ | Hard | | DP, Prefix Sum, Hash Table |
+
+## Round 3
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Revenge of GoroSort](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45189)| [Python3](./Round%203/revenge_of_gorosort.py3)| _O(K * N)_ | _O(N)_ | Easy | | Math, Expected Value, Trial and Error |
+|B| [Duck, Duck, Geese](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45244)| [PyPy3](./Round%203/duck_duck_geese.py3) [C++](./Round%203/duck_duck_geese.cpp) | _O(NlogN)_ | _O(N)_ | Medium | | Segment Tree |
+|C| [Mascot Maze](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b44a4f)| [Python3](./Round%203/mascot_maze.py3)| _O(N)_ | _O(N)_ | Medium | | Topological Sort, Greedy |
+|D| [Win As Second](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a)| [Python3](./Round%203/win_as_second.py3)| _O(NlogN)_ | _O(N)_ | Hard | | Sprague-Grundy Theorem, Trial and Error, Precompute |
