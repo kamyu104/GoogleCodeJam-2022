@@ -90,7 +90,7 @@ def win_as_second():
 '''
 from random import seed, randint
 
-def edges(N):
+def generate_edges(N):
     return [[i-1 if i < N-L else randint(0, i-1), i] for i in range(1, N)]
 
 seed(0)
@@ -100,7 +100,7 @@ MAX_N = 40
 EDGES = {}
 for N in range(MIN_N, MAX_N+1):
     while True:
-        EDGES[N] = edges(N)
+        EDGES[N] = generate_edges(N)
         adj = [[] for _ in range(N)]
         for i, j in EDGES[N]:
             adj[i].append(j)
