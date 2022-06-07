@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem A. Revenge of GoroSort
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45189
 #
-# Time:  O(K * N), K is around 10.6 when (N, L) is (100, 5), and around 10.9 when (N, L) is (100, 3)
+# Time:  O(C * N), C is the average number of rounds to finish sorting, which is around 10.6 when (N, L) is (100, 5), and around 10.9 when (N, L) is (100, 3)
 # Space: O(N)
 #
 # python interactive_runner.py python3 testing_tool.py3 2 -- python3 revenge_of_gorosort.py3
