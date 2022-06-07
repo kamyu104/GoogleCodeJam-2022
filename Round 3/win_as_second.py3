@@ -72,7 +72,7 @@ def win_as_second():
         adj[i].append(j)
         adj[j].append(i)
     lookup = {}
-    assert(grundy(adj, (1<<N)-1, lookup) == 0)
+    assert(grundy(adj, (1<<N)-1, lookup) == 0 and len(lookup) < 10**5)
     print_tree(EDGES[N])
     M = int(input())
     for _ in range(M):
