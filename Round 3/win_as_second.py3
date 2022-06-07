@@ -100,8 +100,8 @@ MAX_N = 40
 EDGES = {}
 for N in range(MIN_N, MAX_N+1):
     while True:
-        adj = [[] for _ in range(N)]
         EDGES[N] = edges(N)
+        adj = [[] for _ in range(N)]
         for i, j in EDGES[N]:
             adj[i].append(j)
             adj[j].append(i)
