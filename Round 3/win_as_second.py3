@@ -75,7 +75,7 @@ def win_as_second():
         adj[i].append(j)
         adj[j].append(i)
     lookup = {}
-    assert(grundy(adj, (1<<N)-1, lookup) == 0 and len(lookup) <= 10**5)
+    assert(grundy(adj, (1<<N)-1, lookup) == 0)
     print_tree(EDGES[N])
     M = int(input())
     for _ in range(M):
@@ -89,6 +89,7 @@ def win_as_second():
             i, new_mask = next((i, new_mask) for g, i, new_mask in enumerate_next_states(adj, lookup, mask) if not g)
             print_choices(N, i, mask^new_mask)
             mask = new_mask
+    assert(len(lookup) <= 10**5)
 
 '''
 from random import seed, randint
