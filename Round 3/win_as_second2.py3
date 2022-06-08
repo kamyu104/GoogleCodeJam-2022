@@ -3,7 +3,8 @@
 # Google Code Jam 2022 Round 3 - Problem D. Win As Second
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a
 #
-# Time:  O(N^2 * S + M * N^3) = O(N^4 + M * N^3), S is the number of all grundy states, which is around 2500
+# Time:  precompute: O(10 * N^3 * (N^2 * S)) = O(10 * N^7) at worst
+#        runtime:    O(N^2 * S + M * N^3) = O(N^4 + M * N^3), S is the number of all grundy states, which is around 2500
 # Space: O(S) = O(N^2)
 #
 # python interactive_runner.py python3 testing_tool.py3 1 -- python3 win_as_second2.py3
