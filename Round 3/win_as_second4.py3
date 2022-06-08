@@ -47,13 +47,11 @@ def find_submasks(adj, mask):  # Time: O(N)
     return submasks
 
 def find_submasks_splitted_by_i(adj, i, new_mask):  # Time: O(1)
-    j = adj[i][0] if i >= len(adj)-3 else i
-    if i >= len(adj)-3 and new_mask&(1<<j):
-        return [new_mask]
-    submasks = []
+    j = i if i < len(adj)-3 else adj[i][0] if not (new_mask&(1<<adj[i][0])) else len(adj)-3
+    submasks = [0]*2
     main_chains_mask = new_mask&((1<<(len(adj)-3))-1)
-    submasks.append(main_chains_mask&((1<<j)-1))
-    submasks.append(main_chains_mask^submasks[-1])
+    submasks[0] = main_chains_mask&((1<<j)-1)
+    submasks[1] = main_chains_mask^submasks[0]
     length_1_chains_mask = new_mask^main_chains_mask
     while length_1_chains_mask:
         j = LOG2[length_1_chains_mask&-length_1_chains_mask]
