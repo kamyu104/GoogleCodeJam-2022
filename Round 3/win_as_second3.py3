@@ -65,6 +65,8 @@ def find_submasks_splitted_by_i(adj, i, new_mask):  # Time: O(1)
         else:
             submasks.append(1<<j)
         length_1_chains_mask ^= 1<<j
+    # since the degree of each node is at most 3, it is divided into at most 5 submasks
+    assert(len(submasks) <= 5)
     return submasks
 
 def enumerate_next_states(adj, lookup, mask):  # Time: O(N)
@@ -79,11 +81,8 @@ def enumerate_next_states(adj, lookup, mask):  # Time: O(N)
         neighbors_submask = neighbors_mask
         while neighbors_submask >= 0:  # submask enumeration
             new_mask = mask^(1<<i)^neighbors_submask
-            # each node at most 3 degrees, it would be divided into at most 5 submasks
-            submasks = find_submasks_splitted_by_i(adj, i, new_mask)
-            assert(len(submasks) <= 5)
             ng = 0
-            for submask in submasks:
+            for submask in find_submasks_splitted_by_i(adj, i, new_mask):
                 ng ^= grundy(adj, submask, lookup)
             yield ng, i, new_mask
             if not neighbors_submask:
