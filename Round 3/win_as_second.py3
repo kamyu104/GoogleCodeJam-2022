@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem D. Win As Second
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a
 #
-# Time:  precompute: O(N^L * (N * S)) = O(M * N^6) at worst, L = 3 by experiments for N in [30, 40]
+# Time:  precompute: O(N^L * (N * S)) = O(M * N^6) at worst, O(M * N^5) on average, L = 3 by experiments for N in [30, 40]
 #        runtime:    O(N * S + M * N^2) = O(M * N^3), S is the number of cached combined grundy states, which is around 10^5
 # Space: O(S) = O(N^2 + M * N^2)
 #
