@@ -35,7 +35,7 @@ def bfs(adj, i, mask):
         q = new_q
     return new_mask
 
-def find_submasks(adj, mask):
+def find_submasks(adj, mask):  # Time: O(N)
     submasks = []
     for i in range(len(adj)):
         if not (mask&(1<<i)):
@@ -45,7 +45,7 @@ def find_submasks(adj, mask):
         mask = new_mask
     return submasks
 
-def enumerate_next_states(adj, lookup, mask):
+def enumerate_next_states(adj, lookup, mask):  # Time: O(N)
     for i in range(len(adj)):
         if not (mask&(1<<i)):
             continue
@@ -58,7 +58,7 @@ def enumerate_next_states(adj, lookup, mask):
                 new_mask ^= 1<<adj_i[j]
             yield grundy(adj, new_mask, lookup), i, new_mask
 
-def grundy(adj, mask, lookup):
+def grundy(adj, mask, lookup):  # Time: O(N)
     if mask not in lookup:
         submasks = find_submasks(adj, mask)
         if len(submasks) == 1:
