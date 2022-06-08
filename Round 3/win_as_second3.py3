@@ -66,7 +66,7 @@ def find_submasks_splitted_by_i(adj, i, new_mask):  # Time: O(1)
             submasks.append(1<<j)
         length_1_chains_mask ^= 1<<j
     # since the degree of each node is at most 3, it is divided into at most 5 submasks
-    assert(len(submasks) <= 5)
+    assert(len(adj[i]) <= 3 and len(submasks) <= 5)
     return submasks
 
 def enumerate_next_states(adj, lookup, mask):  # Time: O(N)
