@@ -129,11 +129,13 @@ def gen_edges(N):
     #   o   o  o     3 chains of length 1
     # ooooooooooooo  1 main chain
     #
+    edges = [[i-1, i] for i in range(1, N)]
     for a in range(1, N-4):
+        edges[-3][0] = a
         for b in range(a+1, N-4):
+            edges[-2][0] = b
             for c in range(b+1, N-4):
-                edges = [[i-1, i] for i in range(1, N)]
-                edges[-3][0], edges[-2][0], edges[-1][0] = a, b, c
+                edges[-1][0] = c
                 yield edges
 
 MIN_N = 30
