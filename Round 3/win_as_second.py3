@@ -95,8 +95,9 @@ def win_as_second():
 '''
 from random import seed, randint
 
-def generate_edges(N):
-    return [[i-1 if i < N-L else randint(0, i-1), i] for i in range(1, N)]
+def gen_edges(N):
+    while True:
+        yield [[i-1 if i < N-L else randint(0, i-1), i] for i in range(1, N)]
 
 seed(0)
 L = 3  # tuned by experiments
@@ -105,18 +106,20 @@ MAX_N = 40
 EDGES = {}
 for N in range(MIN_N, MAX_N+1):
     cnt = 0
-    while True:
+    for edges in gen_edges(N):
         cnt += 1
-        EDGES[N] = generate_edges(N)
         adj = [[] for _ in range(N)]
-        for i, j in EDGES[N]:
+        for i, j in edges:
             adj[i].append(j)
             adj[j].append(i)
         lookup = {}
         if not grundy(adj, (1<<N)-1, lookup):
+            EDGES[N] = edges
             break
+    else:
+        assert(False)
     print(f"N : {N}, tried : {cnt}, states : {len(lookup)}")
-print(EDGES)
+print(f"EDGES = {EDGES}")
 exit(0)
 '''
 
