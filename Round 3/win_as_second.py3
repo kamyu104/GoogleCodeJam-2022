@@ -89,7 +89,7 @@ def win_as_second():
             i, new_mask = next((i, new_mask) for g, i, new_mask in enumerate_next_states(adj, lookup, mask) if not g)
             print_choices(N, i, mask^new_mask)
             mask = new_mask
-    assert(len(lookup) <= 10**5)
+    assert(len(lookup) <= 10**5)  # each game may increase the number of cached states
 
 '''
 from random import seed, randint
@@ -103,7 +103,9 @@ MIN_N = 30
 MAX_N = 40
 EDGES = {}
 for N in range(MIN_N, MAX_N+1):
+    cnt = 0
     while True:
+        cnt += 1
         EDGES[N] = generate_edges(N)
         adj = [[] for _ in range(N)]
         for i, j in EDGES[N]:
@@ -112,6 +114,7 @@ for N in range(MIN_N, MAX_N+1):
         lookup = {}
         if not grundy(adj, (1<<N)-1, lookup):
             break
+    print(f"N : {N}, tried : {cnt}, states : {len(lookup)}")
 print(EDGES)
 exit(0)
 '''
