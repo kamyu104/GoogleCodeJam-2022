@@ -94,10 +94,16 @@ def grundy(adj, mask, lookup):  # Time: O(N)
     return lookup[mask]
 
 def gen_edges(N):
+    # tree class:
+    #   o   o  o     3 chains of length 1
+    # ooooooooooooo  1 main chain
+    #
     for a in range(1, N-4):
         for b in range(a+1, N-4):
             for c in range(b+1, N-4):
-                yield [[i-1, i] for i in range(1, N-3)]+[[a, N-3]]+[[b, N-2]]+[[c, N-1]]
+                edges = [[i-1, i] for i in range(1, N)]
+                edges[-3][0], edges[-2][0], edges[-1][0] = a, b, c
+                yield edges
 
 def find_edges(N):
     cnt = 0
