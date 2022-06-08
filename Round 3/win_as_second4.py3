@@ -8,7 +8,7 @@
 #
 # python interactive_runner.py python3 testing_tool.py3 1 -- python3 win_as_second2.py3
 #
-# optimized from win_as_second3.py3, no need for precomputation
+# optimized from win_as_second3.py3, no need to precompute
 # pass in PyPy3 but Python3
 #
 
