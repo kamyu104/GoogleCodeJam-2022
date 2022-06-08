@@ -38,9 +38,8 @@ def bfs(adj, i, mask):
 
 def find_submasks(adj, mask):
     submasks = []
-    for i in range(len(adj)):
-        if not (mask&(1<<i)):
-            continue
+    while mask:
+        i = LOG2[mask&-mask]
         new_mask = bfs(adj, i, mask)
         submasks.append(mask^new_mask)
         mask = new_mask
@@ -50,18 +49,21 @@ def enumerate_next_states(adj, lookup, mask):
     curr = mask
     while curr:
         i = LOG2[curr&-curr]
-        adj_i = [j for j in adj[i] if mask&(1<<j)]
-        for submask in range(1<<len(adj_i)):
-            new_mask = mask^(1<<i)
-            for j in range(len(adj_i)):
-                if not (submask&(1<<j)):
-                    continue
-                new_mask ^= 1<<adj_i[j]
-            submasks = find_submasks(adj, new_mask)
+        neighbors_mask = 0
+        for j in adj[i]:
+            if not (mask&(1<<j)):
+                continue
+            neighbors_mask |= 1<<j
+        neighbors_submask = neighbors_mask
+        while neighbors_submask >= 0:  # submask enumeration
+            new_mask = mask^(1<<i)^neighbors_submask
             ng = 0
-            for submask in submasks:
+            for submask in find_submasks(adj, new_mask):
                 ng ^= grundy(adj, submask, lookup)
             yield ng, i, new_mask
+            if not neighbors_submask:
+                break
+            neighbors_submask = (neighbors_submask-1)&neighbors_mask
         curr ^= 1<<i
 
 def grundy(adj, mask, lookup):
