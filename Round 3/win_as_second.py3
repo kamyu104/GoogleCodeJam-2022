@@ -61,7 +61,7 @@ def grundy(adj, mask, lookup):
     if mask not in lookup:
         submasks = find_submasks(adj, mask)
         if len(submasks) == 1:
-            lookup[mask] = mex({g for g, _, _ in enumerate_next_states(adj, lookup, mask)})
+            lookup[mask] = mex({ng for ng, _, _ in enumerate_next_states(adj, lookup, mask)})
         else:
             lookup[mask] = 0
             for submask in submasks:
@@ -86,7 +86,7 @@ def win_as_second():
             for i in A:
                 mask ^= 1<<i
             assert(grundy(adj, mask, lookup) != 0)
-            i, new_mask = next((i, new_mask) for g, i, new_mask in enumerate_next_states(adj, lookup, mask) if not g)
+            i, new_mask = next((i, new_mask) for ng, i, new_mask in enumerate_next_states(adj, lookup, mask) if not ng)
             print_choices(N, i, mask^new_mask)
             mask = new_mask
     assert(len(lookup) <= 10**5)  # each game may increase the number of cached states

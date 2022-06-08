@@ -3,8 +3,8 @@
 # Google Code Jam 2022 Round 3 - Problem D. Win As Second
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a
 #
-# Time:  O(N * S + M * N^2), S is the number of all grundy states, which is O(N^3) and around 5000
-# Space: O(S)
+# Time:  O(N * S + M * N^3) = O(N^4 + M * N^3), S is the number of all grundy states, which is O(N^3) and around 5000
+# Space: O(N^3)
 #
 # python interactive_runner.py python3 testing_tool.py3 1 -- python3 win_as_second2.py3
 #
@@ -57,14 +57,16 @@ def enumerate_next_states(adj, lookup, mask):
                 if not (submask&(1<<j)):
                     continue
                 new_mask ^= 1<<adj_i[j]
-            pow2_j = new_mask&-new_mask
-            new_mask2 = bfs(adj, LOG2[pow2_j], new_mask) if pow2_j else 0
-            yield grundy(adj, new_mask2, lookup)^grundy(adj, new_mask^new_mask2, lookup), i, new_mask
+            submasks = find_submasks(adj, new_mask)
+            ng = 0
+            for submask in submasks:
+                ng ^= grundy(adj, submask, lookup)
+            yield ng, i, new_mask
         curr ^= 1<<i
 
 def grundy(adj, mask, lookup):
     if mask not in lookup:
-        lookup[mask] = mex({g for g, _, _ in enumerate_next_states(adj, lookup, mask)})
+        lookup[mask] = mex({ng for ng, _, _ in enumerate_next_states(adj, lookup, mask)})
     return lookup[mask]
 
 def win_as_second():
