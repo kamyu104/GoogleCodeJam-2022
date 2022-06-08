@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Round 3 - Problem D. Win As Second
 # https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a
 #
-# Time:  O(N^2 * S + M * N^3), S is the number of cached grundy states, which is around 5000
+# Time:  O(N^2 * S + M * N^3), S is the number of cached grundy states, which is around 2500
 # Space: O(S)
 #
 # python interactive_runner.py python3 testing_tool.py3 1 -- python3 win_as_second2.py3
@@ -78,7 +78,7 @@ def win_as_second():
         adj[i].append(j)
         adj[j].append(i)
     lookup = {}
-    assert(grundy(adj, (1<<N)-1, lookup) == 0 and len(lookup) <= 5000)
+    assert(grundy(adj, (1<<N)-1, lookup) == 0)
     print_tree(EDGES[N])
     M = int(input())
     for _ in range(M):
@@ -97,6 +97,7 @@ def win_as_second():
             new_mask = mask^submask^new_submask
             print_choices(N, i, mask^new_mask)
             mask = new_mask
+    assert(len(lookup) <= 2500)  # each game may increase the number of cached states
 
 MAX_N = 40
 LOG2 = {1<<i:i for i in range(MAX_N)}
