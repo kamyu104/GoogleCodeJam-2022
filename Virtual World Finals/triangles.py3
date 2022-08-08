@@ -13,9 +13,6 @@ def vector(a, b):
 def inner_product(a, b):
     return a[0] * b[0] + a[1] * b[1]
 
-def outer_product(a, b):
-    return a[0] * b[1] - a[1] * b[0]
-
 def ccw(a, b, c):
     return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
 

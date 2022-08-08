@@ -20,10 +20,6 @@ int64_t inner_product(const vector<int64_t>& a, const vector<int64_t>& b) {
     return a[0] * b[0] + a[1] * b[1];
 }
 
-int64_t outer_product(const vector<int64_t>& a, const vector<int64_t>& b) {
-    return a[0] * b[1] - a[1] * b[0];
-}
-
 int ccw(const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
     int64_t v = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
     return v == 0 ? 0 : (v > 0 ? 1 : -1);
