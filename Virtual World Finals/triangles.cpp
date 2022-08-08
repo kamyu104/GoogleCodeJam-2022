@@ -198,7 +198,7 @@ bool check(const vector<int64_t>& x, const vector<int64_t>& y, const vector<int6
     return true;
 }
 
-void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
+void make_triangles_by_brute_force(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
     vector<vector<int>> *result) {
 
     int i = 0;
@@ -264,7 +264,7 @@ void triangles() {
             }
         }
         if (size(C) == 3 && size(sorted_remain) == 6) {
-            make_triangles_by_brute_forces(P, &sorted_remain, &result);
+            make_triangles_by_brute_force(P, &sorted_remain, &result);
             continue;
         }
         make_triangles_from_max_colinear(P, &sorted_remain, C, &result);
