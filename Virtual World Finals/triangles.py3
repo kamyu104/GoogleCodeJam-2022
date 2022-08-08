@@ -53,10 +53,8 @@ def remove_unused(P, sorted_remain, C, l, result):
             x, y = P[i]
             if a*x+b*y == c:
                 C.add(i)
-    removed = set()
     for _ in range(remove_cnt):
-        removed.add(C.pop())
-    sorted_remain[:] = [x for x in sorted_remain if x not in removed]
+        sorted_remain.remove(C.pop())
 
 def find_nearest_point(P, sorted_remain, x, y):
     a1 = [float("inf"), float("inf"), -1]
