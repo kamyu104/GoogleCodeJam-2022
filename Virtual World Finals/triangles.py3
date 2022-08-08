@@ -54,16 +54,13 @@ def line(p1, p2):
     a, b, c = a//g, b//g, c//g
     return a, b, c
 
-def insort(P, sorted_remain, x):
-    sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
-
 def remove_unused(P, sorted_remain, C, l, result):
     a, b, c = l
     cnt = sum(a*x+b*y == c for x, y in P)
     remove_cnt = max(cnt-2*(len(P)-cnt), 0)
     while len(C) < remove_cnt:
         for i in result.pop():
-            insort(P, sorted_remain, i)
+            sorted_remain.insert(next((idx for idx, j in enumerate(sorted_remain) if P[j] > P[i]), len(sorted_remain)), i)
             x, y = P[i]
             if a*x+b*y == c:
                 C.add(i)
@@ -170,7 +167,7 @@ def triangles():
             remove_unused(P, sorted_remain, C, (a, b, c), result)
         while not len(C) <= 2*(len(sorted_remain)-len(C)):
             for i in result.pop():
-                insort(P, sorted_remain, i)
+                sorted_remain.insert(next((idx for idx, j in enumerate(sorted_remain) if P[j] > P[i]), len(sorted_remain)), i)
                 x, y = P[i]
                 if a*x+b*y == c:
                     C.add(i)
