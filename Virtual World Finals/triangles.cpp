@@ -95,10 +95,8 @@ void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
             }
         }
     }
-    while (remove_cnt--) {
-        const auto it = begin(*C);
+    for (auto it = begin(*C); remove_cnt; --remove_cnt, it = C->erase(it)) {
         sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), *it));
-        C->erase(it);
     }
 }
 
