@@ -54,14 +54,6 @@ bool cross(const vector<int64_t>& a, const vector<int64_t>& b,
     return ccw(a, c, d) * ccw(b, c, d) < 0 && ccw(a, b, c) * ccw(a, b, d) < 0;
 }
 
-double angle(const vector<int64_t>& a, const vector<int64_t>& b) {
-    double result = atan2(outer_product(a, b), inner_product(a, b));
-    if (result < 0) {
-        result += 2 * M_PI;
-    }
-    return result;
-}
-
 void insort(const vector<vector<int64_t>>& P, vector<int> *sorted_remain, int x) {
     auto it = begin(*sorted_remain);
     for (; it != end(*sorted_remain); ++it) {
@@ -96,27 +88,24 @@ void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
 int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sorted_remain,
     int x, int y) {
 
-    double a1 = numeric_limits<double>::infinity();
     int64_t d1 = numeric_limits<int64_t>::max();
     int z1 = -1;
-    double a2 = -numeric_limits<double>::infinity();
     int64_t d2 = numeric_limits<int64_t>::max();
     int z2 = -1;
     for (const auto& c : sorted_remain) {
-        if (ccw(P[x], P[y], P[c]) == 0) {
+        const int64_t side = ccw(P[y], P[x], P[c]);
+        if (side == 0) {
             continue;
         }
-        const auto& a = angle(vec(P[y], P[x]), vec(P[y], P[c]));
         const auto& v = vec(P[y], P[c]);
         const auto& d = inner_product(v, v);
-        if (a < M_PI) {
+        if (side > 0) {
             if (z1 != -1 && ccw(P[y], P[z1], P[c]) == 0) {
                 if (d < d1) {
                     d1 = d;
                     z1 = c;
                 }
-            } else if (a < a1) {
-                a1 = a;
+            } else if (z1 == -1 || ccw(P[y], P[z1], P[c]) < 0) {
                 d1 = d;
                 z1 = c;
             }
@@ -126,8 +115,7 @@ int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sort
                     d2 = d;
                     z2 = c;
                 }
-            } else if (a > a2) {
-                a2 = a;
+            } else if (z2 == -1 || ccw(P[y], P[z2], P[c]) > 0) {
                 d2 = d;
                 z2 = c;
             }

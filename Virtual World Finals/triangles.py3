@@ -7,8 +7,6 @@
 # Space: O(N)
 #
 
-from math import atan2, pi
-
 def vector(a, b):
     return [a[0]-b[0], a[1]-b[1]]
 
@@ -38,12 +36,6 @@ def is_inside_triangle(t, a, b, c):
 def cross(A, B, C, D):
     return ccw(A,C,D) * ccw(B,C,D) < 0 and ccw(A,B,C) * ccw(A,B,D) < 0
 
-def angle(a, b):
-    result = atan2(outer_product(a, b), inner_product(a, b))
-    if result < 0:
-        result += 2*pi
-    return result
-
 def insort(P, sorted_remain, x):
     sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
 
@@ -59,26 +51,26 @@ def remove_unused(P, sorted_remain, C, a, b, result):
         sorted_remain.remove(C.pop())
 
 def find_nearest_point(P, sorted_remain, x, y):
-    a1, d1, z1 = float("inf"), float("inf"), -1
-    a2, d2, z2 = float("-inf"), float("inf"), -1
+    d1, z1 = float("inf"), -1
+    d2, z2 = float("inf"), -1
     for c in sorted_remain:
-        if ccw(P[x], P[y], P[c]) == 0:
+        side = ccw(P[y], P[x], P[c])
+        if side == 0:
             continue
-        a = angle(vector(P[y], P[x]), vector(P[y], P[c]))
         v = vector(P[y], P[c])
         d = inner_product(v, v)
-        if a < pi:
+        if side > 0:
             if z1 != -1 and ccw(P[y], P[z1], P[c]) == 0:
                 if d < d1:
                     d1, z1 = d, c
-            elif a < a1:
-                a1, d1, z1 = a, d, c
+            elif z1 == -1 or ccw(P[y], P[z1], P[c]) < 0:
+                d1, z1 = d, c
         else:
             if z2 != -1 and ccw(P[y], P[z2], P[c]) == 0:
                 if d < d2:
                     d2, z2 = d, c
-            elif a > a2:
-                a2, d2, z2 = a, d, c
+            elif z2 == -1 or ccw(P[y], P[z2], P[c]) > 0:
+                d2, z2 = d, c
     return z1 if z1 != -1 else z2
 
 def make_triangle_from_maximal_points(P, sorted_remain, result):
