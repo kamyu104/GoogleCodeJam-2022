@@ -108,10 +108,10 @@ def make_triangles_from_max_colinear(P, sorted_remain, C, result):
             sorted_remain.remove(i)
 
 def check(x, y, z, a, b, c):
-    if (sum(is_stricly_inside_triangle(t, a, b, c) for t in (x, y, z)) == 1 and
-        sum(not is_inside_triangle(t, a, b, c) for t in (x, y, z)) == 2) or \
-       (sum(is_stricly_inside_triangle(t, x, y, z) for t in (a, b, c)) == 1 and
-        sum(not is_inside_triangle(t, x, y, z) for t in (a, b, c)) == 2):
+    if ((sum(is_stricly_inside_triangle(t, a, b, c) for t in (x, y, z)) == 1 and
+         sum(not is_inside_triangle(t, a, b, c) for t in (x, y, z)) == 2) or
+        (sum(is_stricly_inside_triangle(t, x, y, z) for t in (a, b, c)) == 1 and
+         sum(not is_inside_triangle(t, x, y, z) for t in (a, b, c)) == 2)):
         return False
     for A, B in ((x, y), (y, z), (z, x)):
         for C, D in ((a, b), (b, c), (c, a)):
@@ -123,22 +123,22 @@ def check(x, y, z, a, b, c):
 
 def make_triangles_by_brute_forces(P, sorted_remain, result):
     assert(len(sorted_remain) == 6)
-    for i in range(len(sorted_remain)):
-        for j in range(i+1, len(sorted_remain)):
-            for k in range(j+1, len(sorted_remain)):
-                x, y, z = sorted_remain[i], sorted_remain[j], sorted_remain[k]
-                if not ccw(P[x], P[y], P[z]):
-                    continue
-                a, b, c = [o for o in sorted_remain if o not in [x, y, z]]
-                if not ccw(P[a], P[b], P[c]) or not check(P[x], P[y], P[z], P[a], P[b], P[c]):
-                    continue
-                result.append((x, y, z))
-                for i in result[-1]:
-                    sorted_remain.remove(i)
-                result.append((a, b, c))
-                for i in result[-1]:
-                    sorted_remain.remove(i)
-                return
+    i = 0
+    for j in range(i+1, len(sorted_remain)):
+        for k in range(j+1, len(sorted_remain)):
+            x, y, z = sorted_remain[i], sorted_remain[j], sorted_remain[k]
+            if not ccw(P[x], P[y], P[z]):
+                continue
+            a, b, c = [o for o in sorted_remain if o not in [x, y, z]]
+            if not ccw(P[a], P[b], P[c]) or not check(P[x], P[y], P[z], P[a], P[b], P[c]):
+                continue
+            result.append((x, y, z))
+            for i in result[-1]:
+                sorted_remain.remove(i)
+            result.append((a, b, c))
+            for i in result[-1]:
+                sorted_remain.remove(i)
+            return
     assert(False)
 
 def triangles():

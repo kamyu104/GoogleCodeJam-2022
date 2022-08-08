@@ -220,33 +220,32 @@ void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int
     vector<vector<int>> *result) {
 
     assert(size(*sorted_remain) == 6);
-    for (int i = 0; i < size(*sorted_remain); ++i) {
-        for (int j = i + 1; j < size(*sorted_remain); ++j) {
-            for (int k = j + 1; k < size(*sorted_remain); ++k) {
-                const int x = (*sorted_remain)[i], y = (*sorted_remain)[j], z = (*sorted_remain)[k];
-                if (!ccw(P[x], P[y], P[z])) {
-                    continue;
-                }
-                vector<int> remain;
-                for (const auto& o : *sorted_remain) {
-                    if (o != x && o != y && o != z) {
-                        remain.emplace_back(o);
-                    }
-                }
-                const int a = remain[0], b = remain[1], c = remain[2];
-                if (!ccw(P[a], P[b], P[c]) || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
-                    continue;
-                }
-                result->push_back({x, y, z});
-                for (const auto& i : result->back()) {
-                    sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
-                }
-                result->push_back({a, b, c});
-                for (const auto& i : result->back()) {
-                    sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
-                }
-                return;
+    int i = 0;
+    for (int j = i + 1; j < size(*sorted_remain); ++j) {
+        for (int k = j + 1; k < size(*sorted_remain); ++k) {
+            const int x = (*sorted_remain)[i], y = (*sorted_remain)[j], z = (*sorted_remain)[k];
+            if (!ccw(P[x], P[y], P[z])) {
+                continue;
             }
+            vector<int> remain;
+            for (const auto& o : *sorted_remain) {
+                if (o != x && o != y && o != z) {
+                    remain.emplace_back(o);
+                }
+            }
+            const int a = remain[0], b = remain[1], c = remain[2];
+            if (!ccw(P[a], P[b], P[c]) || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
+                continue;
+            }
+            result->push_back({x, y, z});
+            for (const auto& i : result->back()) {
+                sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
+            }
+            result->push_back({a, b, c});
+            for (const auto& i : result->back()) {
+                sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
+            }
+            return;
         }
     }
     assert(false);
