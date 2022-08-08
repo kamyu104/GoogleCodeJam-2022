@@ -62,23 +62,23 @@ def find_nearest_point(P, sorted_remain, x, y):
     a1, d1, z1 = float("inf"), float("inf"), -1
     a2, d2, z2 = float("-inf"), float("inf"), -1
     for c in sorted_remain:
-        a = angle(vector(P[y], P[x]), vector(P[y], P[c]))
-        if a == 0.0 or a == pi:
+        if ccw(P[x], P[y], P[c]) == 0:
             continue
+        a = angle(vector(P[y], P[x]), vector(P[y], P[c]))
         v = vector(P[y], P[c])
         d = inner_product(v, v)
         if a < pi:
-            if a+EPS < a1:
-                a1, d1, z1 = a, d, c
-            elif a-EPS <= a1:
+            if z1 != -1 and ccw(P[y], P[z1], P[c]) == 0:
                 if d < d1:
                     d1, z1 = d, c
+            elif a < a1:
+                a1, d1, z1 = a, d, c
         else:
-            if a-EPS > a2:
-                a2, d2, z2 = a, d, c
-            elif a+EPS >= a2:
+            if z2 != -1 and ccw(P[y], P[z2], P[c]) == 0:
                 if d < d2:
                     d2, z2 = d, c
+            elif a > a2:
+                a2, d2, z2 = a, d, c
     return z1 if z1 != -1 else z2
 
 def make_triangle_from_maximal_points(P, sorted_remain, result):
@@ -166,6 +166,5 @@ def triangles():
         make_triangles_from_max_colinear(P, sorted_remain, C, result)
     return "%s\n%s" % (len(result), "\n".join(map(lambda x: " ".join(map(lambda y: str(y+1), x)), result))) if result else 0
 
-EPS = 1e-15
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, triangles()))

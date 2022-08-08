@@ -96,7 +96,6 @@ void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
 int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sorted_remain,
     int x, int y) {
 
-    static const double EPS = 1e-15;
     double a1 = numeric_limits<double>::infinity();
     int64_t d1 = numeric_limits<int64_t>::max();
     int z1 = -1;
@@ -104,34 +103,33 @@ int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sort
     int64_t d2 = numeric_limits<int64_t>::max();
     int z2 = -1;
     for (const auto& c : sorted_remain) {
-        const auto& a = angle(vec(P[y], P[x]), vec(P[y], P[c]));
-        if (a == 0.0 || a == M_PI) {
+        if (ccw(P[x], P[y], P[c]) == 0) {
             continue;
         }
-        assert(ccw(P[x], P[y], P[c]) != 0);
+        const auto& a = angle(vec(P[y], P[x]), vec(P[y], P[c]));
         const auto& v = vec(P[y], P[c]);
         const auto& d = inner_product(v, v);
         if (a < M_PI) {
-            if (a + EPS < a1) {
-                a1 = a;
-                d1 = d;
-                z1 = c;
-            } else if (a - EPS <= a1) {
+            if (z1 != -1 && ccw(P[y], P[z1], P[c]) == 0) {
                 if (d < d1) {
                     d1 = d;
                     z1 = c;
                 }
+            } else if (a < a1) {
+                a1 = a;
+                d1 = d;
+                z1 = c;
             }
         } else {
-            if (a - EPS > a2) {
-                a2 = a;
-                d2 = d;
-                z2 = c;
-            } else if (a + EPS >= a2) {
+            if (z2 != -1 && ccw(P[y], P[z2], P[c]) == 0) {
                 if (d < d2) {
                     d2 = d;
                     z2 = c;
                 }
+            } else if (a > a2) {
+                a2 = a;
+                d2 = d;
+                z2 = c;
             }
         }
     }
