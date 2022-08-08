@@ -224,7 +224,7 @@ void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int
     for (int j = i + 1; j < size(*sorted_remain); ++j) {
         for (int k = j + 1; k < size(*sorted_remain); ++k) {
             const int x = (*sorted_remain)[i], y = (*sorted_remain)[j], z = (*sorted_remain)[k];
-            if (!ccw(P[x], P[y], P[z])) {
+            if (ccw(P[x], P[y], P[z]) == 0) {
                 continue;
             }
             vector<int> remain;
@@ -234,7 +234,7 @@ void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int
                 }
             }
             const int a = remain[0], b = remain[1], c = remain[2];
-            if (!ccw(P[a], P[b], P[c]) || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
+            if (ccw(P[a], P[b], P[c]) == 0 || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
                 continue;
             }
             result->push_back({x, y, z});
