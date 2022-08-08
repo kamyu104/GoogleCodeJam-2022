@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Virtual World Finals - Problem E. Triangles
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555
 #
-# Time:  O(N^2), only pass in small set, both PyPy3 (~25s) and Python3 TLE in large set
+# Time:  O(N^2), only pass in small set, both PyPy3 and Python3 TLE in large set (PyPy3 is around 18s)
 # Space: O(N)
 #
 
