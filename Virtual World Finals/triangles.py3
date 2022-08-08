@@ -25,12 +25,12 @@ def is_strictly_inside_segment(t, a, b):
 
 # Return true if t is strictly inside a, b, c triangle
 def is_stricly_inside_triangle(t, a, b, c):
-    d1, d2, d3 = ccw(t, a, b),  ccw(t, b, c),  ccw(t, c, a)
+    d1, d2, d3 = ccw(t, a, b), ccw(t, b, c), ccw(t, c, a)
     return (d1 > 0 and d2 > 0 and d3 > 0) or (d1 < 0 and d2 < 0 and d3 < 0)
 
 # Return true if t is inside a, b, c triangle
 def is_inside_triangle(t, a, b, c):
-    d1, d2, d3 = ccw(t, a, b),  ccw(t, b, c),  ccw(t, c, a)
+    d1, d2, d3 = ccw(t, a, b), ccw(t, b, c), ccw(t, c, a)
     return (d1 >= 0 and d2 >= 0 and d3 >= 0) or (d1 <= 0 and d2 <= 0 and d3 <= 0)
 
 def cross(A, B, C, D):

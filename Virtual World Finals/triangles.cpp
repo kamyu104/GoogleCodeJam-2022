@@ -38,14 +38,14 @@ bool is_strictly_inside_segment(const vector<int64_t>&t,
 // Return true if t is strictly inside a, b, c triangle
 bool is_stricly_inside_triangle(const vector<int64_t>&t,
     const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c),  d3 = ccw(t, c, a);
+    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c), d3 = ccw(t, c, a);
     return (d1 > 0 && d2 > 0 && d3 > 0) || (d1 < 0 && d2 < 0 && d3 < 0);
 }
 
 // Return true if t is inside a, b, c triangle
 bool is_inside_triangle(const vector<int64_t>&t,
     const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c),  d3 = ccw(t, c, a);
+    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c), d3 = ccw(t, c, a);
     return (d1 >= 0 && d2 >= 0 && d3 >= 0) || (d1 <= 0 && d2 <= 0 && d3 <= 0);
 }
 
