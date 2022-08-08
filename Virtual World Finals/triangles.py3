@@ -77,7 +77,7 @@ def make_triangle_from_maximal_points(P, sorted_remain, result):
     if z == -1:
         return False
     result.append((x, y, z))
-    for i in (x, y, z):
+    for i in result[-1]:
        sorted_remain.remove(i)
     return True
 
@@ -90,7 +90,7 @@ def make_triangles_from_max_colinear(P, sorted_remain, C, result):
         z = find_nearest_point(P, other, x, y)
         other.remove(z)
         result.append((x, y, z))
-        for i in (x, y, z):
+        for i in result[-1]:
             sorted_remain.remove(i)
 
 def make_triangles_by_brute_forces(P, sorted_remain, result):
@@ -107,8 +107,11 @@ def make_triangles_by_brute_forces(P, sorted_remain, result):
                 if any(cross(A, B, C, D) for A, B in ((P[x], P[y]), (P[y], P[z]), (P[z], P[x])) for C, D in ((P[a], P[b]), (P[b], P[c]), (P[c], P[a]))):
                     continue
                 result.append((x, y, z))
+                for i in result[-1]:
+                    sorted_remain.remove(i)
                 result.append((a, b, c))
-                sorted_remain.clear()
+                for i in result[-1]:
+                    sorted_remain.remove(i)
                 return
     assert(False)
 
