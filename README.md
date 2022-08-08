@@ -70,4 +70,4 @@ You can relive the magic of the 2022 Code Jam Virtual World Finals by watching t
 |B| [Goose, Goose, Ducks?](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14)| | | | Hard | |
 |C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| | | | Medium | |
 |D| [Schrödinger and Pavlov](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a)| | | | Hard | |
-|E| [Triangles](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555)| [*PyPy3](./Virtual%20World%20Finals/triangles.py3) [C++](./Virtual%20World%20Finals/triangles.cpp)  | _O(N^2)_ | _O(N)_ | Very Hard | ❤️ | Constructive Algorithms, Geometry
+|E| [Triangles](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555)| [PyPy3](./Virtual%20World%20Finals/triangles.py3) [C++](./Virtual%20World%20Finals/triangles.cpp)  | _O(N^2)_ | _O(N)_ | Very Hard | ❤️ | Constructive Algorithms, Geometry
