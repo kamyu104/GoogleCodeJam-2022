@@ -59,24 +59,19 @@ def remove_unused(P, sorted_remain, C, l, result):
     sorted_remain[:] = [x for x in sorted_remain if x not in ignored]
 
 def find_nearest_point(P, sorted_remain, x, y):
-    def find_candidate(result, mn_d, check):
-        z = -1
-        for c in sorted_remain:
-            if not ccw(P[x], P[y], P[c]):
-                continue
-            a = angle(vector(P[y], P[x]), vector(P[y], P[c]))
-            if check(a, result):
-                v = vector(P[y], P[c])
-                d = inner_product(v, v)
-                if d == result:
-                    if d < mn_d:
-                        mn_d, z = d, c
-                else:
-                    result, mn_d, z = a, d, c
-        return z, result
-
-    z, a = find_candidate(float("inf"), float("inf"), lambda x, y: x <= y)
-    return z if a < pi else find_candidate(float("-inf"), float("inf"), lambda x, y: x >= y)[0]
+    a1 = [float("inf"), float("inf"), -1]
+    a2 = [float("-inf"), float("inf"), -1]
+    for c in sorted_remain:
+        a = angle(vector(P[y], P[x]), vector(P[y], P[c]))
+        if a == 0.0 or a == pi:
+            continue
+        v = vector(P[y], P[c])
+        d = inner_product(v, v)
+        if a < pi:
+            a1 = min(a1, [a, d, c])
+        else:
+            a2 = max(a2, [a, -d, c])
+    return a1[-1] if a1[-1] != -1 else a2[-1]
 
 def make_triangle_from_maximal_points(P, sorted_remain, result):
     x, y = sorted_remain[-1], sorted_remain[-2]
