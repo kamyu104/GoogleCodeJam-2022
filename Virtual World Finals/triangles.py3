@@ -3,7 +3,7 @@
 # Google Code Jam 2022 Virtual World Finals - Problem E. Triangles
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555
 #
-# Time:  O(N^2), only pass in small set, both PyPy3 and Python3 TLE in large set (execution time of PyPy3 is about 18 seconds, and the time limit is 15 seconds, which is really tight)
+# Time:  O(N^2), pass in PyPy3 but Python3
 # Space: O(N)
 #
 
@@ -15,6 +15,9 @@ def inner_product(a, b):
 
 def ccw(a, b, c):
     return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
+
+def ccw2(v1, v2):
+    return v1[0]*v2[1] - v1[1]*v2[0]
 
 # Return true if t is strictly inside a, b line segment
 def is_strictly_inside_segment(t, a, b):
@@ -48,26 +51,27 @@ def remove_unused(P, sorted_remain, C, a, b, result):
         sorted_remain.remove(C.pop())
 
 def find_nearest_point(P, sorted_remain, x, y):
-    d1, z1 = float("inf"), -1
-    d2, z2 = float("inf"), -1
+    d1, z1, v1 = float("inf"), -1, []
+    d2, z2, v2 = float("inf"), -1, []
+    p = vector(P[y], P[x])
     for c in sorted_remain:
-        side = ccw(P[y], P[x], P[c])
+        v = vector(P[y], P[c])
+        side = ccw2(p, v)
         if side == 0:
             continue
-        v = vector(P[y], P[c])
         d = inner_product(v, v)
         if side > 0:
-            if z1 != -1 and ccw(P[y], P[z1], P[c]) == 0:
+            if z1 != -1 and ccw2(v1, v) == 0:
                 if d < d1:
-                    d1, z1 = d, c
-            elif z1 == -1 or ccw(P[y], P[z1], P[c]) < 0:
-                d1, z1 = d, c
+                    d1, z1, v1 = d, c, v
+            elif z1 == -1 or ccw2(v1, v) < 0:
+                d1, z1, v1 = d, c, v
         else:
-            if z2 != -1 and ccw(P[y], P[z2], P[c]) == 0:
+            if z2 != -1 and ccw2(v2, v) == 0:
                 if d < d2:
-                    d2, z2 = d, c
-            elif z2 == -1 or ccw(P[y], P[z2], P[c]) > 0:
-                d2, z2 = d, c
+                    d2, z2, v2 = d, c, v
+            elif z2 == -1 or ccw2(v2, v) > 0:
+                d2, z2, v2 = d, c, v
     return z1 if z1 != -1 else z2
 
 def make_triangle_from_maximal_points(P, sorted_remain, result):
