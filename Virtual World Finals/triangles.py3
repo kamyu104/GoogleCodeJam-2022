@@ -46,17 +46,17 @@ def insort(P, sorted_remain, x):
 def remove_unused(P, sorted_remain, C, l, result):
     a, b, c = l
     cnt = sum(a*x+b*y == c for x, y in P)
-    ignore_cnt = max(cnt-2*(len(P)-cnt), 0)
-    while len(C) < ignore_cnt:
+    remove_cnt = max(cnt-2*(len(P)-cnt), 0)
+    while len(C) < remove_cnt:
         for i in result.pop():
             insort(P, sorted_remain, i)
             x, y = P[i]
             if a*x+b*y == c:
                 C.add(i)
-    ignored = set()
-    for _ in range(ignore_cnt):
-        ignored.add(C.pop())
-    sorted_remain[:] = [x for x in sorted_remain if x not in ignored]
+    removed = set()
+    for _ in range(remove_cnt):
+        removed.add(C.pop())
+    sorted_remain[:] = [x for x in sorted_remain if x not in removed]
 
 def find_nearest_point(P, sorted_remain, x, y):
     a1 = [float("inf"), float("inf"), -1]
