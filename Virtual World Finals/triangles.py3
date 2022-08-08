@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555
 #
 # Time:  O(N^2), only pass in small set, both PyPy3 (~25s) and Python3 TLE in large set
-# Space: O(N^2)
+# Space: O(N)
 #
 
 from math import gcd, atan2, pi
