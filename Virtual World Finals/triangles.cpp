@@ -234,13 +234,11 @@ void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int
             if (ccw(P[a], P[b], P[c]) == 0 || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
                 continue;
             }
-            result->push_back({x, y, z});
-            for (const auto& i : result->back()) {
-                sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
-            }
-            result->push_back({a, b, c});
-            for (const auto& i : result->back()) {
-                sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
+            for (const auto& [A, B, C] : {make_tuple(x, y, z), make_tuple(a, b, c)}) {
+                result->push_back({A, B, C});
+                for (const auto& i : result->back()) {
+                    sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), i));
+                }
             }
             return;
         }
