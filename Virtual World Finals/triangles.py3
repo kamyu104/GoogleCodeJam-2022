@@ -110,7 +110,7 @@ def check(x, y, z, a, b, c):
                 return False
     return True
 
-def make_triangles_by_brute_forces(P, sorted_remain, result):
+def make_triangles_by_brute_force(P, sorted_remain, result):
     i = 0
     for j in range(i+1, len(sorted_remain)):
         for k in range(j+1, len(sorted_remain)):
@@ -147,7 +147,7 @@ def triangles():
                 if ccw(P[a], P[b], P[i]) == 0:
                     C.add(i)
         if len(C) == 3 and len(sorted_remain) == 6:
-            make_triangles_by_brute_forces(P, sorted_remain, result)
+            make_triangles_by_brute_force(P, sorted_remain, result)
             continue
         make_triangles_from_max_colinear(P, sorted_remain, C, result)
     return "%s\n%s" % (len(result), "\n".join(map(lambda x: " ".join(map(lambda y: str(y+1), x)), result))) if result else 0
