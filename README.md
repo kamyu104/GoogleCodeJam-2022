@@ -66,7 +66,7 @@ You can relive the magic of the 2022 Code Jam Virtual World Finals by watching t
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| | | | Easy | |
+|A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| | | | Medium | |
 |B| [Goose, Goose, Ducks?](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14)| | | | Hard | |
 |C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| | | | Medium | |
 |D| [Schrödinger and Pavlov](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a)| | | | Hard | |
