@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-22%20%2F%2022-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-23%20%2F%2027-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -59,3 +59,14 @@
 |B| [Duck, Duck, Geese](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b45244)| [PyPy3](./Round%203/duck_duck_geese.py3) [C++](./Round%203/duck_duck_geese.cpp) | _O(NlogN)_ | _O(N)_ | Medium | | Segment Tree |
 |C| [Mascot Maze](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b44a4f)| [Python3](./Round%203/mascot_maze.py3)| _O(N)_ | _O(N)_ | Medium | | Topological Sort, Greedy |
 |D| [Win As Second](https://codingcompetitions.withgoogle.com/codejam/round/00000000008779b4/0000000000b4518a)| [Python3](./Round%203/win_as_second.py3) [Python3](./Round%203/win_as_second2.py3) [Python3](./Round%203/win_as_second3.py3) [PyPy3](./Round%203/win_as_second4.py3) | precompute: O(N^5) on average<br>runtime: _O(N^3 + M * N^2)_ | _O(N^2)_ | Hard | | Bitmasks, Submask Enumeration, Sprague-Grundy Theorem, BFS, Constructive Algorithms, Precompute, Trial and Error |
+
+## Virtual World Finals
+You can relive the magic of the 2022 Code Jam Virtual World Finals by watching the [Live Stream Recording](https://codingcompetitionsonair.withgoogle.com/events/codejam22/watch?talk=cj22-ls) of the competition, problem explanations, and announcement of winners.
+
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| | | | | |
+|B| [Goose, Goose, Ducks?](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14)| | | | | |
+|C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| | | | | |
+|D| [Schrödinger and Pavlov](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a)| | | | | |
+|E| [Triangles](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555)| [*PyPy3](./Virtual%20World%20Finals/triangles.py3) [C++](./Virtual%20World%20Finals/triangles.cpp)  | _O(N^2)_ | _O(N)_ | Very Hard | ❤️ | Constructive Algorithms, Geometry
