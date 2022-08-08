@@ -217,7 +217,6 @@ bool check(const vector<int64_t>& x, const vector<int64_t>& y, const vector<int6
 void make_triangles_by_brute_forces(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
     vector<vector<int>> *result) {
 
-    assert(size(*sorted_remain) == 6);
     int i = 0;
     for (int j = i + 1; j < size(*sorted_remain); ++j) {
         for (int k = j + 1; k < size(*sorted_remain); ++k) {
@@ -282,7 +281,7 @@ void triangles() {
                 }
             }
         }
-        if (size(C) == 3 && size(sorted_remain) / 3 == 2) {
+        if (size(C) == 3 && size(sorted_remain) == 6) {
             make_triangles_by_brute_forces(P, &sorted_remain, &result);
             continue;
         }
