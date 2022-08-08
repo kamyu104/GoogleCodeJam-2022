@@ -207,12 +207,18 @@ bool check(const vector<int64_t>& x, const vector<int64_t>& y, const vector<int6
     const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
 
     vector<vector<int64_t>> t1 = {x, y, z}, t2 = {a, b, c};
-    if (accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
-            return total + is_stricly_inside_triangle(t, a, b, c);
-        }) == 1 &&
-        accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
-            return total + !is_inside_triangle(t, a, b, c);
-        }) == 2) {
+    if ((accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
+             return total + is_stricly_inside_triangle(t, a, b, c);
+         }) == 1 &&
+         accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
+             return total + !is_inside_triangle(t, a, b, c);
+         }) == 2) ||
+        (accumulate(cbegin(t2), cend(t2), 0, [&](const auto& total, const auto& t) {
+             return total + is_stricly_inside_triangle(t, x, y, z);
+         }) == 1 &&
+         accumulate(cbegin(t2), cend(t2), 0, [&](const auto& total, const auto& t) {
+             return total + !is_inside_triangle(t, x, y, z);
+         }) == 2)) {
         return false;
     }
     for (const auto& [A, B] : {
