@@ -69,14 +69,6 @@ double angle(const vector<int64_t>& a, const vector<int64_t>& b) {
     return result;
 }
 
-vector<int64_t> line(const vector<int64_t>& p1, const vector<int64_t>& p2) {
-    const int64_t x1 = p1[0], y1 = p1[1];
-    const int64_t x2 = p2[0], y2 = p2[1];
-    // (x-x1)/(x2-x1) = (y-y1)/(y2-y1)
-    // => (y2-y1)x - (x2-x1)y = x1(y2-y1) - y1(x2-x1)
-    return {(y2 - y1), -(x2 - x1), x1 * (y2 - y1) - y1 * (x2 - x1)};
-}
-
 void insort(const vector<vector<int64_t>>& P, vector<int> *sorted_remain, int x) {
     auto it = begin(*sorted_remain);
     for (; it != end(*sorted_remain); ++it) {
@@ -88,20 +80,17 @@ void insort(const vector<vector<int64_t>>& P, vector<int> *sorted_remain, int x)
 }
 
 void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
-    unordered_set<int> *C, const vector<int64_t>& l,
+    unordered_set<int> *C, int a, int b,
     vector<vector<int>> *result) {
 
-    const int64_t a = l[0], b = l[1], c = l[2];
     const int cnt = count_if(cbegin(P), cend(P), [&](const auto& p) {
-        const int64_t x = p[0], y = p[1];
-        return a * x + b * y == c;
+        return ccw(P[a], P[b], p) == 0;
     });
     int remove_cnt = max(cnt - 2 * (static_cast<int>(size(P)) - cnt), 0);
     for (; size(*C) < remove_cnt; result->pop_back()) {
         for (const auto& i : result->back()) {
             insort(P, sorted_remain, i);
-            const int64_t x = P[i][0], y = P[i][1];
-            if (a * x + b * y == c) {
+            if (ccw(P[a], P[b], P[i]) == 0) {
                 C->emplace(i);
             }
         }
@@ -291,19 +280,16 @@ void triangles() {
         if (make_triangle_from_maximal_points(P, &sorted_remain, &result)) {
             continue;
         }
-        const int i = sorted_remain[0], j = sorted_remain[1];
-        const auto& l = line(P[i], P[j]);
-        const int64_t a = l[0], b = l[1], c = l[2];
+        const int a = sorted_remain[0], b = sorted_remain[1];
         unordered_set<int> C(cbegin(sorted_remain), cend(sorted_remain));
         if (!removed) {
             removed = true;
-            remove_unused(P, &sorted_remain, &C, l, &result);
+            remove_unused(P, &sorted_remain, &C, a, b, &result);
         }
         for (; !(size(C) <= 2 * (size(sorted_remain) - size(C))); result.pop_back()) {
             for (const auto& i : result.back()) {
                 insort(P, &sorted_remain, i);
-                const int64_t x = P[i][0], y = P[i][1];
-                if (a * x + b * y == c) {
+                if (ccw(P[a], P[b], P[i]) == 0) {
                     C.emplace(i);
                 }
             }

@@ -44,22 +44,16 @@ def angle(a, b):
         result += 2*pi
     return result
 
-def line(p1, p2):
-    x1, y1 = p1
-    x2, y2 = p2
-    # (x-x1)/(x2-x1) = (y-y1)/(y2-y1)
-    # => (y2-y1)x - (x2-x1)y = x1(y2-y1) - y1(x2-x1)
-    return (y2-y1), -(x2-x1), x1*(y2-y1)-y1*(x2-x1)
+def insort(P, sorted_remain, x):
+    sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
 
-def remove_unused(P, sorted_remain, C, l, result):
-    a, b, c = l
-    cnt = sum(a*x+b*y == c for x, y in P)
+def remove_unused(P, sorted_remain, C, a, b, result):
+    cnt = sum(ccw(P[a], P[b], p) == 0 for p in P)
     remove_cnt = max(cnt-2*(len(P)-cnt), 0)
     while len(C) < remove_cnt:
         for i in result.pop():
-            sorted_remain.insert(next((idx for idx, j in enumerate(sorted_remain) if P[j] > P[i]), len(sorted_remain)), i)
-            x, y = P[i]
-            if a*x+b*y == c:
+            insort(P, sorted_remain, i)
+            if ccw(P[a], P[b], P[i]) == 0:
                 C.add(i)
     for _ in range(remove_cnt):
         sorted_remain.remove(C.pop())
@@ -156,17 +150,15 @@ def triangles():
     while len(sorted_remain) >= 3:
         if make_triangle_from_maximal_points(P, sorted_remain, result):
             continue
-        i, j = sorted_remain[:2]
-        a, b, c = line(P[i], P[j])
+        a, b = sorted_remain[:2]
         C = set(sorted_remain)
         if not removed:
             removed = True
-            remove_unused(P, sorted_remain, C, (a, b, c), result)
+            remove_unused(P, sorted_remain, C, a, b, result)
         while not len(C) <= 2*(len(sorted_remain)-len(C)):
             for i in result.pop():
-                sorted_remain.insert(next((idx for idx, j in enumerate(sorted_remain) if P[j] > P[i]), len(sorted_remain)), i)
-                x, y = P[i]
-                if a*x+b*y == c:
+                insort(P, sorted_remain, i)
+                if ccw(P[a], P[b], P[i]) == 0:
                     C.add(i)
         if len(C) == 3 and len(sorted_remain)//3 == 2:
             make_triangles_by_brute_forces(P, sorted_remain, result)
