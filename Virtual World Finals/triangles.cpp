@@ -9,14 +9,7 @@
  *
  */
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <numeric>
-#include <cmath>
-#include <unordered_set>
-#include <cassert>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 vector<int64_t> vec(const vector<int64_t>& a, const vector<int64_t>& b) {
