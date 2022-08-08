@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-from math import gcd, atan2, pi
+from math import atan2, pi
 
 def vector(a, b):
     return [a[0]-b[0], a[1]-b[1]]
@@ -49,10 +49,7 @@ def line(p1, p2):
     x2, y2 = p2
     # (x-x1)/(x2-x1) = (y-y1)/(y2-y1)
     # => (y2-y1)x - (x2-x1)y = x1(y2-y1) - y1(x2-x1)
-    a, b, c = (y2-y1), -(x2-x1), x1*(y2-y1)-y1*(x2-x1)
-    g = gcd(gcd(a, b), c)
-    a, b, c = a//g, b//g, c//g
-    return a, b, c
+    return (y2-y1), -(x2-x1), x1*(y2-y1)-y1*(x2-x1)
 
 def remove_unused(P, sorted_remain, C, l, result):
     a, b, c = l

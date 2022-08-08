@@ -74,9 +74,7 @@ vector<int64_t> line(const vector<int64_t>& p1, const vector<int64_t>& p2) {
     const int64_t x2 = p2[0], y2 = p2[1];
     // (x-x1)/(x2-x1) = (y-y1)/(y2-y1)
     // => (y2-y1)x - (x2-x1)y = x1(y2-y1) - y1(x2-x1)
-    const int64_t a = (y2 - y1), b = -(x2 - x1), c = x1 * (y2 - y1) - y1 * (x2 - x1);
-    const int64_t g = gcd(gcd(a, b), c);
-    return {a / g, b / g, c / g};
+    return {(y2 - y1), -(x2 - x1), x1 * (y2 - y1) - y1 * (x2 - x1)};
 }
 
 void insort(const vector<vector<int64_t>>& P, vector<int> *sorted_remain, int x) {
