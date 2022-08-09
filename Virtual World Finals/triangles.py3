@@ -53,10 +53,10 @@ def remove_unused(P, sorted_remain, C, a, b, result):
 def find_nearest_point(P, sorted_remain, x, y):
     d1, z1, v1 = float("inf"), -1, []
     d2, z2, v2 = float("inf"), -1, []
-    p = vector(P[y], P[x])
+    u = vector(P[y], P[x])
     for c in sorted_remain:
         v = vector(P[y], P[c])
-        side = ccw2(p, v)
+        side = ccw2(u, v)
         if side == 0:
             continue
         d = inner_product(v, v)

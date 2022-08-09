@@ -84,10 +84,8 @@ void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
 int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sorted_remain,
     int x, int y) {
 
-    int64_t d1 = numeric_limits<int64_t>::max();
-    int z1 = -1;
-    int64_t d2 = numeric_limits<int64_t>::max();
-    int z2 = -1;
+    int64_t d1 = numeric_limits<int64_t>::max(), d2 = numeric_limits<int64_t>::max();
+    int z1 = -1, z2 = -1;
     for (const auto& c : sorted_remain) {
         const int64_t side = ccw(P[y], P[x], P[c]);
         if (side == 0) {
