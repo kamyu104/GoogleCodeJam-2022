@@ -25,26 +25,6 @@ int ccw(const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t
     return v == 0 ? 0 : (v > 0 ? 1 : -1);
 }
 
-// Return true if t is strictly inside a, b line segment
-bool is_strictly_inside_segment(const vector<int64_t>&t,
-    const vector<int64_t>& a, const vector<int64_t>& b) {
-    return ccw(t, a, b) == 0 && inner_product(vec(a, t), vec(t, b)) > 0;
-}
-
-// Return true if t is strictly inside a, b, c triangle
-bool is_stricly_inside_triangle(const vector<int64_t>&t,
-    const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c), d3 = ccw(t, c, a);
-    return (d1 > 0 && d2 > 0 && d3 > 0) || (d1 < 0 && d2 < 0 && d3 < 0);
-}
-
-// Return true if t is inside a, b, c triangle
-bool is_inside_triangle(const vector<int64_t>&t,
-    const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-    const auto d1 = ccw(t, a, b), d2 = ccw(t, b, c), d3 = ccw(t, c, a);
-    return (d1 >= 0 && d2 >= 0 && d3 >= 0) || (d1 <= 0 && d2 <= 0 && d3 <= 0);
-}
-
 bool cross(const vector<int64_t>& a, const vector<int64_t>& b,
     const vector<int64_t>& c, const vector<int64_t>& d) {
     return ccw(a, c, d) * ccw(b, c, d) < 0 && ccw(a, b, c) * ccw(a, b, d) < 0;
@@ -161,44 +141,26 @@ void make_triangles_from_max_colinear(const vector<vector<int64_t>>& P, vector<i
     }
 }
 
-bool check(const vector<int64_t>& x, const vector<int64_t>& y, const vector<int64_t>& z,
-    const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-
-    vector<vector<int64_t>> t1 = {x, y, z}, t2 = {a, b, c};
-    if ((accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
-             return total + is_stricly_inside_triangle(t, a, b, c);
-         }) == 1 &&
-         accumulate(cbegin(t1), cend(t1), 0, [&](const auto& total, const auto& t) {
-             return total + !is_inside_triangle(t, a, b, c);
-         }) == 2) ||
-        (accumulate(cbegin(t2), cend(t2), 0, [&](const auto& total, const auto& t) {
-             return total + is_stricly_inside_triangle(t, x, y, z);
-         }) == 1 &&
-         accumulate(cbegin(t2), cend(t2), 0, [&](const auto& total, const auto& t) {
-             return total + !is_inside_triangle(t, x, y, z);
-         }) == 2)) {
-        return false;
-    }
-    for (const auto& [A, B] : {
-        make_pair(x, y), make_pair(y, z), make_pair(z, x)
-    }) {
-        for (const auto& [C, D] : {
-            make_pair(a, b), make_pair(b, c), make_pair(c, a)
-        }) {
-            if (cross(A, B, C, D) ||
-                (ccw(A, C, D) == 0 && ccw(B, C, D) == 0 &&
-                 (is_strictly_inside_segment(A, C, D) || is_strictly_inside_segment(B, C, D) ||
-                  is_strictly_inside_segment(C, A, B) || is_strictly_inside_segment(D, A, B)))) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-void make_triangles_by_brute_force(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
+void make_triangles_for_special_case(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
     vector<vector<int>> *result) {
 
+    const auto& invalid =
+        [](const vector<int64_t>& x, const vector<int64_t>& y, const vector<int64_t>& z,
+           const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
+        // the only invalid case in this special case
+        for (const auto& [A, B] : {
+            make_pair(x, y), make_pair(y, z), make_pair(z, x)
+        }) {
+            for (const auto& [C, D] : {
+                make_pair(a, b), make_pair(b, c), make_pair(c, a)
+            }) {
+                if (cross(A, B, C, D)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
     int i = 0;
     for (int j = i + 1; j < size(*sorted_remain); ++j) {
         for (int k = j + 1; k < size(*sorted_remain); ++k) {
@@ -213,7 +175,7 @@ void make_triangles_by_brute_force(const vector<vector<int64_t>>& P, vector<int>
                 }
             }
             const int a = remain[0], b = remain[1], c = remain[2];
-            if (ccw(P[a], P[b], P[c]) == 0 || !check(P[x], P[y], P[z], P[a], P[b], P[c])) {
+            if (ccw(P[a], P[b], P[c]) == 0 || invalid(P[x], P[y], P[z], P[a], P[b], P[c])) {
                 continue;
             }
             for (const auto& [A, B, C] : {make_tuple(x, y, z), make_tuple(a, b, c)}) {
@@ -262,7 +224,7 @@ void triangles() {
             }
         }
         if (size(C) == 3 && size(sorted_remain) == 6) {
-            make_triangles_by_brute_force(P, &sorted_remain, &result);
+            make_triangles_for_special_case(P, &sorted_remain, &result);
             continue;
         }
         make_triangles_from_max_colinear(P, &sorted_remain, C, &result);
