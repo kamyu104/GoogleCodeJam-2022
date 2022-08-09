@@ -39,13 +39,13 @@ def cross(A, B, C, D):
 def insort(P, sorted_remain, x):
     sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
 
-def remove_unused(P, sorted_remain, C, a, b, result):
-    cnt = sum(ccw(P[a], P[b], p) == 0 for p in P)
+def remove_unused(P, sorted_remain, C, a, v, result):
+    cnt = sum(ccw2(v, vector(P[a], p)) == 0 for p in P)
     remove_cnt = max(cnt-2*(len(P)-cnt), 0)
     while len(C) < remove_cnt:
         for i in result.pop():
             insort(P, sorted_remain, i)
-            if ccw(P[a], P[b], P[i]) == 0:
+            if ccw2(v, vector(P[a], P[i])) == 0:
                 C.add(i)
     for _ in range(remove_cnt):
         sorted_remain.remove(C.pop())
@@ -141,14 +141,15 @@ def triangles():
         if make_triangle_from_maximal_points(P, sorted_remain, result):
             continue
         a, b = sorted_remain[:2]
+        v = vector(P[a], P[b])
         C = set(sorted_remain)
         if not removed:
             removed = True
-            remove_unused(P, sorted_remain, C, a, b, result)
+            remove_unused(P, sorted_remain, C, a, v, result)
         while not len(C) <= 2*(len(sorted_remain)-len(C)):
             for i in result.pop():
                 insort(P, sorted_remain, i)
-                if ccw(P[a], P[b], P[i]) == 0:
+                if ccw2(v, vector(P[a], P[i])) == 0:
                     C.add(i)
         if len(C) == 3 and len(sorted_remain) == 6:
             make_triangles_by_brute_force(P, sorted_remain, result)
