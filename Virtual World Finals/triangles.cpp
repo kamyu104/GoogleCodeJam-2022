@@ -147,14 +147,13 @@ void make_triangles_for_special_case(const vector<vector<int64_t>>& P, vector<in
     const auto& invalid =
         [](const vector<int64_t>& x, const vector<int64_t>& y, const vector<int64_t>& z,
            const vector<int64_t>& a, const vector<int64_t>& b, const vector<int64_t>& c) {
-        // the only invalid case in this special case
         for (const auto& [A, B] : {
             make_pair(x, y), make_pair(y, z), make_pair(z, x)
         }) {
             for (const auto& [C, D] : {
                 make_pair(a, b), make_pair(b, c), make_pair(c, a)
             }) {
-                if (cross(A, B, C, D)) {
+                if (cross(A, B, C, D)) {  // the only invalid case in this special case
                     return true;
                 }
             }
