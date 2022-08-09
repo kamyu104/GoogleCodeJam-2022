@@ -19,6 +19,20 @@ def outer_product(a, b):
 def ccw(a, b, c):
     return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
 
+# Return true if t is strictly inside a, b line segment
+def is_strictly_inside_segment(t, a, b):
+    return ccw(t, a, b) == 0 and inner_product(vector(a, t), vector(t, b)) > 0
+
+# Return true if t is strictly inside a, b, c triangle
+def is_stricly_inside_triangle(t, a, b, c):
+    d1, d2, d3 = ccw(t, a, b), ccw(t, b, c), ccw(t, c, a)
+    return (d1 > 0 and d2 > 0 and d3 > 0) or (d1 < 0 and d2 < 0 and d3 < 0)
+
+# Return true if t is inside a, b, c triangle
+def is_inside_triangle(t, a, b, c):
+    d1, d2, d3 = ccw(t, a, b), ccw(t, b, c), ccw(t, c, a)
+    return (d1 >= 0 and d2 >= 0 and d3 >= 0) or (d1 <= 0 and d2 <= 0 and d3 <= 0)
+
 def cross(A, B, C, D):
     return ccw(A,C,D) * ccw(B,C,D) < 0 and ccw(A,B,C) * ccw(A,B,D) < 0
 
@@ -86,7 +100,21 @@ def make_triangles_from_max_colinear(P, sorted_remain, C, result):
         for i in result[-1]:
             sorted_remain.remove(i)
 
-def make_triangles_for_special_case(P, sorted_remain, result):
+def check(x, y, z, a, b, c):
+    if ((sum(is_stricly_inside_triangle(t, a, b, c) for t in (x, y, z)) == 1 and
+         sum(not is_inside_triangle(t, a, b, c) for t in (x, y, z)) == 2) or
+        (sum(is_stricly_inside_triangle(t, x, y, z) for t in (a, b, c)) == 1 and
+         sum(not is_inside_triangle(t, x, y, z) for t in (a, b, c)) == 2)):
+        return False
+    for A, B in ((x, y), (y, z), (z, x)):
+        for C, D in ((a, b), (b, c), (c, a)):
+             if cross(A, B, C, D) or (ccw(A, C, D) == ccw(B, C, D) == 0 and
+                (is_strictly_inside_segment(A, C, D) or is_strictly_inside_segment(B, C, D) or
+                 is_strictly_inside_segment(C, A, B) or is_strictly_inside_segment(D, A, B))):
+                return False
+    return True
+
+def make_triangles_by_brute_force(P, sorted_remain, result):
     i = 0
     for j in range(i+1, len(sorted_remain)):
         for k in range(j+1, len(sorted_remain)):
@@ -94,9 +122,7 @@ def make_triangles_for_special_case(P, sorted_remain, result):
             if ccw(P[x], P[y], P[z]) == 0:
                 continue
             a, b, c = [o for o in sorted_remain if o not in [x, y, z]]
-            if (ccw(P[a], P[b], P[c]) == 0 or
-                any(cross(A, B, C, D) for A, B in ((P[x], P[y]), (P[y], P[z]), (P[z], P[x]))
-                                      for C, D in ((P[a], P[b]), (P[b], P[c]), (P[c], P[a])))):
+            if ccw(P[a], P[b], P[c]) == 0 or not check(P[x], P[y], P[z], P[a], P[b], P[c]):
                 continue
             for A, B, C in ((x, y, z), (a, b, c)):
                 result.append((A, B, C))
@@ -126,7 +152,7 @@ def triangles():
                 if outer_product(v, vector(P[a], P[i])) == 0:
                     C.add(i)
         if len(C) == 3 and len(sorted_remain) == 6:
-            make_triangles_for_special_case(P, sorted_remain, result)
+            make_triangles_by_brute_force(P, sorted_remain, result)
             continue
         make_triangles_from_max_colinear(P, sorted_remain, C, result)
     return "%s\n%s" % (len(result), "\n".join(map(lambda x: " ".join(map(lambda y: str(y+1), x)), result))) if result else 0
