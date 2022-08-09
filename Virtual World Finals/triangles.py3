@@ -13,11 +13,11 @@ def vector(a, b):
 def inner_product(a, b):
     return a[0] * b[0] + a[1] * b[1]
 
+def outer_product(a, b):
+    return a[0] * b[1] - a[1] * b[0]
+
 def ccw(a, b, c):
     return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
-
-def ccw2(v1, v2):
-    return v1[0]*v2[1] - v1[1]*v2[0]
 
 # Return true if t is strictly inside a, b line segment
 def is_strictly_inside_segment(t, a, b):
@@ -40,12 +40,12 @@ def insort(P, sorted_remain, x):
     sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
 
 def remove_unused(P, sorted_remain, C, a, v, result):
-    cnt = sum(ccw2(v, vector(P[a], p)) == 0 for p in P)
+    cnt = sum(outer_product(v, vector(P[a], p)) == 0 for p in P)
     remove_cnt = max(cnt-2*(len(P)-cnt), 0)
     while len(C) < remove_cnt:
         for i in result.pop():
             insort(P, sorted_remain, i)
-            if ccw2(v, vector(P[a], P[i])) == 0:
+            if outer_product(v, vector(P[a], P[i])) == 0:
                 C.add(i)
     for _ in range(remove_cnt):
         sorted_remain.remove(C.pop())
@@ -56,21 +56,21 @@ def find_nearest_point(P, sorted_remain, x, y):
     u = vector(P[y], P[x])
     for c in sorted_remain:
         v = vector(P[y], P[c])
-        side = ccw2(u, v)
+        side = outer_product(u, v)
         if side == 0:
             continue
         d = inner_product(v, v)
         if side > 0:
-            if z1 != -1 and ccw2(v1, v) == 0:
+            if z1 != -1 and outer_product(v1, v) == 0:
                 if d < d1:
                     d1, z1, v1 = d, c, v
-            elif z1 == -1 or ccw2(v1, v) < 0:
+            elif z1 == -1 or outer_product(v1, v) < 0:
                 d1, z1, v1 = d, c, v
         else:
-            if z2 != -1 and ccw2(v2, v) == 0:
+            if z2 != -1 and outer_product(v2, v) == 0:
                 if d < d2:
                     d2, z2, v2 = d, c, v
-            elif z2 == -1 or ccw2(v2, v) > 0:
+            elif z2 == -1 or outer_product(v2, v) > 0:
                 d2, z2, v2 = d, c, v
     return z1 if z1 != -1 else z2
 
@@ -149,7 +149,7 @@ def triangles():
         while not len(C) <= 2*(len(sorted_remain)-len(C)):
             for i in result.pop():
                 insort(P, sorted_remain, i)
-                if ccw2(v, vector(P[a], P[i])) == 0:
+                if outer_product(v, vector(P[a], P[i])) == 0:
                     C.add(i)
         if len(C) == 3 and len(sorted_remain) == 6:
             make_triangles_by_brute_force(P, sorted_remain, result)
