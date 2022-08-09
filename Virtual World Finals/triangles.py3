@@ -39,15 +39,9 @@ def cross(A, B, C, D):
 def insort(P, sorted_remain, x):
     sorted_remain.insert(next((i for i, y in enumerate(sorted_remain) if P[y] > P[x]), len(sorted_remain)), x)
 
-def remove_unused(P, sorted_remain, C, a, v, result):
+def remove_unused(P, sorted_remain, C, a, v):
     cnt = sum(outer_product(v, vector(P[a], p)) == 0 for p in P)
-    remove_cnt = max(cnt-2*(len(P)-cnt), 0)
-    while len(C) < remove_cnt:
-        for i in result.pop():
-            insort(P, sorted_remain, i)
-            if outer_product(v, vector(P[a], P[i])) == 0:
-                C.add(i)
-    for _ in range(remove_cnt):
+    for _ in range(max(cnt-2*(len(P)-cnt), 0)):
         sorted_remain.remove(C.pop())
 
 def find_nearest_point(P, sorted_remain, x, y):
@@ -144,7 +138,9 @@ def triangles():
         C = set(sorted_remain)
         if not removed:
             removed = True
-            remove_unused(P, sorted_remain, C, a, v, result)
+            remove_unused(P, sorted_remain, C, a, v)
+            if not sorted_remain:
+                break
         while len(C)//2 > (len(sorted_remain)-len(C)):
             for i in result.pop():
                 insort(P, sorted_remain, i)

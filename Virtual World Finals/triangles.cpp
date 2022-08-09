@@ -61,21 +61,12 @@ void insort(const vector<vector<int64_t>>& P, vector<int> *sorted_remain, int x)
 }
 
 void remove_unused(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
-    unordered_set<int> *C, int a, int b,
-    vector<vector<int>> *result) {
+    unordered_set<int> *C, int a, int b) {
 
     const int cnt = count_if(cbegin(P), cend(P), [&](const auto& p) {
         return ccw(P[a], P[b], p) == 0;
     });
     int remove_cnt = max(cnt - 2 * (static_cast<int>(size(P)) - cnt), 0);
-    for (; size(*C) < remove_cnt; result->pop_back()) {
-        for (const auto& i : result->back()) {
-            insort(P, sorted_remain, i);
-            if (ccw(P[a], P[b], P[i]) == 0) {
-                C->emplace(i);
-            }
-        }
-    }
     for (auto it = begin(*C); remove_cnt; --remove_cnt, it = C->erase(it)) {
         sorted_remain->erase(find(begin(*sorted_remain), end(*sorted_remain), *it));
     }
@@ -250,7 +241,10 @@ void triangles() {
         unordered_set<int> C(cbegin(sorted_remain), cend(sorted_remain));
         if (!removed) {
             removed = true;
-            remove_unused(P, &sorted_remain, &C, a, b, &result);
+            remove_unused(P, &sorted_remain, &C, a, b);
+            if (empty(sorted_remain)) {
+                break;
+            }
         }
         for (; size(C) / 2 > (size(sorted_remain) - size(C)); result.pop_back()) {
             for (const auto& i : result.back()) {
