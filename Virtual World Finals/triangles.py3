@@ -91,7 +91,6 @@ def make_triangles_from_max_colinear(P, sorted_remain, C, result):
             other.append(x)
         else:
             colinear.append(x)
-    assert(len(colinear) <= 2*len(other))
     for _ in range(len(colinear)//2):
         x, y = colinear.pop(), colinear.pop()
         z = find_nearest_point(P, other, x, y)
@@ -146,7 +145,7 @@ def triangles():
         if not removed:
             removed = True
             remove_unused(P, sorted_remain, C, a, v, result)
-        while not len(C) <= 2*(len(sorted_remain)-len(C)):
+        while len(C)//2 > (len(sorted_remain)-len(C)):
             for i in result.pop():
                 insort(P, sorted_remain, i)
                 if outer_product(v, vector(P[a], P[i])) == 0:

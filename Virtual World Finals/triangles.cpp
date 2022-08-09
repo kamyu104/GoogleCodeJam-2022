@@ -146,7 +146,6 @@ void make_triangles_from_max_colinear(const vector<vector<int64_t>>& P, vector<i
             colinear.emplace_back(x);
         }
     }
-    assert(size(colinear) <= 2 * size(other));
     while (size(colinear) >= 2) {
         const int x = colinear.back();
         colinear.pop_back();
@@ -253,7 +252,7 @@ void triangles() {
             removed = true;
             remove_unused(P, &sorted_remain, &C, a, b, &result);
         }
-        for (; !(size(C) <= 2 * (size(sorted_remain) - size(C))); result.pop_back()) {
+        for (; size(C) / 2 > (size(sorted_remain) - size(C)); result.pop_back()) {
             for (const auto& i : result.back()) {
                 insort(P, &sorted_remain, i);
                 if (ccw(P[a], P[b], P[i]) == 0) {
