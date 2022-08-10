@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-23%20%2F%2027-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-24%20%2F%2027-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -66,7 +66,7 @@ You can relive the magic of the 2022 Code Jam Virtual World Finals by watching t
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| | | | Medium | |
+|A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| [Python3](./Virtual%20World%20Finals/wonderland_chase.py3) | _O(J + C)_ | _O(J + C)_ | Easy | | Graph, BFS
 |B| [Goose, Goose, Ducks?](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14)| | | | Hard | |
 |C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| | | | Medium | |
 |D| [Schrödinger and Pavlov](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a)| | | | Hard | |
