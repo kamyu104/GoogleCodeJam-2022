@@ -114,7 +114,7 @@ def make_triangles_by_brute_force(P, sorted_remain, result):
             x, y, z = sorted_remain[i], sorted_remain[j], sorted_remain[k]
             if ccw(P[x], P[y], P[z]) == 0:
                 continue
-            a, b, c = [o for o in sorted_remain if o not in [x, y, z]]
+            a, b, c = [o for o in sorted_remain if o not in (x, y, z)]
             if ccw(P[a], P[b], P[c]) == 0 or not check(P[x], P[y], P[z], P[a], P[b], P[c]):
                 continue
             for A, B, C in ((x, y, z), (a, b, c)):
