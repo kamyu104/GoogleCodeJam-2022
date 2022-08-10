@@ -54,7 +54,7 @@ def wonderland_chase():
     is_leaf = bfs1(adj, degree)
     dist_A = bfs2(adj, A)
     dist_Q = bfs2(adj, Q)
-    if dist_Q[A] == INF or any(not is_leaf[u] and dist_A[u] < dist_Q[u] for u in range(J)):
+    if dist_Q[A] == INF or any(not is_leaf[u] for u in range(J) if dist_A[u] < dist_Q[u]):
         return "SAFE"
     return 2*max(dist_Q[u] for u in range(J) if dist_A[u] < dist_Q[u])
 
