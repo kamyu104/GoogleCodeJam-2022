@@ -148,7 +148,7 @@ def triangles():
                     C.add(i)
         if len(C) == 3 and len(sorted_remain) == 6:
             make_triangles_by_brute_force(P, sorted_remain, result)
-            continue
+            break
         make_triangles_from_max_colinear(P, sorted_remain, C, result)
     return "%s\n%s" % (len(result), "\n".join(map(lambda x: " ".join(map(lambda y: str(y+1), x)), result))) if result else 0
 

@@ -256,7 +256,7 @@ void triangles() {
         }
         if (size(C) == 3 && size(sorted_remain) == 6) {
             make_triangles_by_brute_force(P, &sorted_remain, &result);
-            continue;
+            break;
         }
         make_triangles_from_max_colinear(P, &sorted_remain, C, &result);
     }
