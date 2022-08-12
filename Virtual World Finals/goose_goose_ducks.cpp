@@ -105,7 +105,7 @@ int bfs(const vector<vector<int>>& adj, vector<bool> *is_duck) {
         }
         q = move(new_q);
     }
-    return accumulate(cbegin(*is_duck), cend(*is_duck), 0);
+    return count(cbegin(*is_duck), cend(*is_duck), true);
 }
 
 int goose_goose_ducks() {
