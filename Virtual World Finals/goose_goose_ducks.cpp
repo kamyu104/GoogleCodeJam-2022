@@ -18,8 +18,7 @@ using Statement = pair<Location, int>;
 int min_size_of_leaf_strongly_connected_components(const vector<vector<int>>& adj) {
     int index_counter = 0;
     vector<int> index(size(adj), -1), lowlinks(size(adj), -1), stack;
-    vector<bool> stack_set(size(adj));
-    vector<bool> is_leaf_found(size(adj));
+    vector<bool> stack_set(size(adj)), is_leaf_found(size(adj));
     int result = size(adj);
     const auto& iter_strongconnect = [&](int v) {
         vector<vector<int>> stk = {{1, v}};
