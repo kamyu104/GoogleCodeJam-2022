@@ -64,7 +64,7 @@ int min_size_of_leaf_strongly_connected_components(const vector<vector<int>>& ad
                     stack_set[w] = false;
                     ++cnt;
                 }
-                if (!is_leaf_found[v]) {
+                if (!is_leaf_found[v]) {  // only keep leaf SCCs
                     is_leaf_found[v] = true;
                     result = min(result, cnt);
                 }
