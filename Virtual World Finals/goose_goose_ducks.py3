@@ -248,7 +248,7 @@ class SortedList(object):
 
 # modified Template:
 # https://github.com/kamyu104/GoogleCodeJam-2018/blob/master/World%20Finals/swordmaster.py
-def min_leaf_strongly_connected_component_size(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
+def min_size_of_leaf_strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
     def iter_strongconnect(v):
         stk = [(1, (v,))]
         while stk:
@@ -348,7 +348,7 @@ def goose_goose_ducks():
         add_statement(s, sls[B], is_duck)
     if any(is_duck):
         return bfs(adj, is_duck)
-    return min_leaf_strongly_connected_component_size(adj)
+    return min_size_of_leaf_strongly_connected_components(adj)
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, goose_goose_ducks()))
