@@ -258,17 +258,17 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
                 index[v] = index_counter[0]
                 lowlinks[v] = index_counter[0]
                 index_counter[0] += 1
-                stack_set[v] = True
+                stack_set.add(v)
                 stack.append(v)
                 stk.append((4, (v,)))
                 for w in reversed(adj[v]):
                     stk.append((2, (v, w)))
             elif step == 2:
                 v, w = args
-                if index[w] == -1:
+                if w not in index:
                     stk.append((3, (v, w)))
                     stk.append((1, (w,)))
-                elif stack_set[w]:
+                elif w in stack_set:
                     lowlinks[v] = min(lowlinks[v], index[w])
             elif step == 3:
                 v, w = args
@@ -280,14 +280,14 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
                 w = None
                 while w != v:
                     w = stack.pop()
-                    stack_set[w] = False
-                    result[w] = v
+                    stack_set.remove(w)
+                    result[w] = v  # added
 
-    index_counter, index, lowlinks = [0], [-1]*len(adj), [-1]*len(adj)
-    stack, stack_set = [], [False]*len(adj)
+    index_counter, index, lowlinks = [0], {}, {}
+    stack, stack_set = [], set()
     result = [0]*len(adj)
     for v in range(len(adj)):
-        if index[v] == -1:
+        if v not in index:
             iter_strongconnect(v)
     return result
 
