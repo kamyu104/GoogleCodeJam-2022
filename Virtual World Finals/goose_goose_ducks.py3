@@ -8,7 +8,6 @@
 #
 
 from bisect import bisect_left
-from collections import Counter
 
 # Template:
 # https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/SortedList.py
