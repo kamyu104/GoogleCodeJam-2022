@@ -294,14 +294,14 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
 def check(a, b):
     return (a[0]-b[0])**2 >= (a[1]-b[1])**2 + (a[2]-b[2])**2
 
-def add_statement(sl, s, a, is_duck):
-    sl.add((s, a))
-    i = sl.bisect_left((s, a))
-    while i-1 >= 0 and not check(sl[i-1][0], s):
+def add_statement(s, sl, is_duck):
+    sl.add(s)
+    i = sl.bisect_left(s)
+    while i-1 >= 0 and not check(sl[i-1][0], s[0]):
         is_duck[sl[i-1][1]] = True
         del sl[i-1]
         i -= 1
-    while i+1 != len(sl) and not check(sl[i+1][0], s):
+    while i+1 != len(sl) and not check(sl[i+1][0], s[0]):
         is_duck[sl[i+1][1]] = True
         del sl[i+1]
 
@@ -335,8 +335,8 @@ def goose_goose_ducks():
         i = bisect_left(meetings, s)
         if (i-1 >= 0 and not check(meetings[i-1], s)) or (i < M and not check(meetings[i], s)):
             adj[B].append(A)
-        add_statement(sls[A], s, A, is_duck)
-        add_statement(sls[B], s, A, is_duck)
+        add_statement((s, A), sls[A], is_duck)
+        add_statement((s, A), sls[B], is_duck)
     if any(is_duck):
         return bfs(adj, is_duck)
     components = strongly_connected_components(adj)
