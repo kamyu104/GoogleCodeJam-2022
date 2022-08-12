@@ -333,7 +333,7 @@ def goose_goose_ducks():
         B -= 1
         s = (D, U, V)
         i = bisect_left(meetings, s)
-        if (i > 0 and not check(meetings[i-1], s)) or (i < M and not check(meetings[i], s)):
+        if (i-1 >= 0 and not check(meetings[i-1], s)) or (i < M and not check(meetings[i], s)):
             adj[B].append(A)
         add_statement(sls[A], s, A, is_duck)
         add_statement(sls[B], s, A, is_duck)
