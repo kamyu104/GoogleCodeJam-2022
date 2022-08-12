@@ -246,7 +246,7 @@ class SortedList(object):
         """Return string representation of sorted list."""
         return 'SortedList({0})'.format(list(self))
 
-# Template:
+# modified Template:
 # https://github.com/kamyu104/GoogleCodeJam-2018/blob/master/World%20Finals/swordmaster.py
 def min_size_of_leaf_strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
     def iter_strongconnect(v):
