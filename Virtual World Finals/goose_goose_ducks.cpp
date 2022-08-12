@@ -15,7 +15,7 @@ using namespace std;
 using Location = array<int, 3>;
 using Statement = pair<Location, int>;
 
-int min_size_of_leaf_strongly_connected_components(const vector<vector<int>>& adj) {
+int min_of_leaf_strongly_connected_component_size(const vector<vector<int>>& adj) {
     int index_counter = 0;
     vector<int> index(size(adj), -1), lowlinks(size(adj), -1), stack;
     vector<bool> stack_set(size(adj)), is_leaf_found(size(adj));
@@ -147,7 +147,7 @@ int goose_goose_ducks() {
     if (count(cbegin(is_duck), cend(is_duck), true)) {
         return bfs(adj, &is_duck);
     }
-    return min_size_of_leaf_strongly_connected_components(adj);
+    return min_of_leaf_strongly_connected_component_size(adj);
 }
 
 int main() {
