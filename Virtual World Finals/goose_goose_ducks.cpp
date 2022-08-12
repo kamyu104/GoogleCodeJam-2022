@@ -23,10 +23,10 @@ vector<int> strongly_connected_components(const vector<vector<int>>& adj) {
     const auto& iter_strongconnect = [&](int v) {
         vector<vector<int>> stk = {{1, v}};
         while (!empty(stk)) {
-            const auto curr = move(stk.back());
+            const auto args = move(stk.back());
             stk.pop_back();
-            if (curr[0] == 1) {
-                const int v = curr[1];
+            if (args[0] == 1) {
+                const int v = args[1];
                 index[v] = lowlinks[v] = index_counter++;
                 stack_set[v] = true;
                 stack.emplace_back(v);
@@ -34,19 +34,19 @@ vector<int> strongly_connected_components(const vector<vector<int>>& adj) {
                 for (const auto& w : adj[v]) {
                     stk.push_back({2, v, w});
                 }
-            } else if (curr[0] == 2) {
-                const int v = curr[1], w = curr[2];
+            } else if (args[0] == 2) {
+                const int v = args[1], w = args[2];
                 if (index[w] == -1) {
                     stk.push_back({3, v, w});
                     stk.push_back({1, w});
                 } else if (stack_set[w]) {
                     lowlinks[v] = min(lowlinks[v], index[w]);
                 }
-            } else if (curr[0] == 3) {
-                const int v = curr[1], w = curr[2];
+            } else if (args[0] == 3) {
+                const int v = args[1], w = args[2];
                 lowlinks[v] = min(lowlinks[v], lowlinks[w]);
-            } else if (curr[0] == 4) {
-                const int v = curr[1];
+            } else if (args[0] == 4) {
+                const int v = args[1];
                 if (lowlinks[v] != index[v]) {
                     continue;
                 }
