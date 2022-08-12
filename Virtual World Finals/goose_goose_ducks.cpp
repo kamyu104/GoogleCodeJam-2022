@@ -15,11 +15,12 @@ using namespace std;
 using Location = array<int, 3>;
 using Statement = pair<Location, int>;
 
-vector<int> strongly_connected_components(const vector<vector<int>>& adj) {
+int min_size_of_leaf_strongly_connected_components(const vector<vector<int>>& adj) {
     int index_counter = 0;
     vector<int> index(size(adj), -1), lowlinks(size(adj), -1), stack;
     vector<bool> stack_set(size(adj));
-    vector<int> result(size(adj));
+    vector<bool> is_leaf_found(size(adj));
+    int result = size(adj);
     const auto& iter_strongconnect = [&](int v) {
         vector<vector<int>> stk = {{1, v}};
         while (!empty(stk)) {
@@ -41,9 +42,14 @@ vector<int> strongly_connected_components(const vector<vector<int>>& adj) {
                     stk.push_back({1, w});
                 } else if (stack_set[w]) {
                     lowlinks[v] = min(lowlinks[v], index[w]);
+                } else {  // visited child but not in curr stack
+                    is_leaf_found[v] = true;
                 }
             } else if (args[0] == 3) {
                 const int v = args[1], w = args[2];
+                if (is_leaf_found[w]) {
+                    is_leaf_found[v] = true;
+                }
                 lowlinks[v] = min(lowlinks[v], lowlinks[w]);
             } else if (args[0] == 4) {
                 const int v = args[1];
@@ -51,11 +57,16 @@ vector<int> strongly_connected_components(const vector<vector<int>>& adj) {
                     continue;
                 }
                 int w = -1;
+                int cnt = 0;
                 while (w != v) {
                     w = stack.back();
                     stack.pop_back();
                     stack_set[w] = false;
-                    result[w] = v;
+                    ++cnt;
+                }
+                if (!is_leaf_found[v]) {
+                    is_leaf_found[v] = true;
+                    result = min(result, cnt);
                 }
             }
         }
@@ -137,25 +148,7 @@ int goose_goose_ducks() {
     if (count(cbegin(is_duck), cend(is_duck), true)) {
         return bfs(adj, &is_duck);
     }
-    const auto& components = strongly_connected_components(adj);
-    vector<bool> is_candidate(N, true);
-    unordered_map<int, int> cnt;
-    for (int u = 0; u < N; ++u) {
-        ++cnt[components[u]];
-        for (const auto& v : adj[u]) {
-            if (components[v] != components[u]) {
-                is_candidate[components[u]] = false;
-                break;
-            }
-        }
-    }
-    int result = N;
-    for (const auto& [k, v] : cnt) {
-        if (is_candidate[k]) {
-            result = min(result, v);
-        }
-    }
-    return result;
+    return min_size_of_leaf_strongly_connected_components(adj);
 }
 
 int main() {

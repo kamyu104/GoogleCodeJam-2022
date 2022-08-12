@@ -247,8 +247,8 @@ class SortedList(object):
         return 'SortedList({0})'.format(list(self))
 
 # Template:
-# https://github.com/kamyu104/GoogleCodeJam-2017/blob/master/Round%202/beaming_with_joy.py
-def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
+# https://github.com/kamyu104/GoogleCodeJam-2018/blob/master/World%20Finals/swordmaster.py
+def min_size_of_leaf_strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N), Space: O(|V|) = O(N)
     def iter_strongconnect(v):
         stk = [(1, (v,))]
         while stk:
@@ -258,38 +258,47 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
                 index[v] = index_counter[0]
                 lowlinks[v] = index_counter[0]
                 index_counter[0] += 1
-                stack_set.add(v)
+                stack_set[v] = True
                 stack.append(v)
                 stk.append((4, (v,)))
                 for w in reversed(adj[v]):
                     stk.append((2, (v, w)))
             elif step == 2:
                 v, w = args
-                if w not in index:
+                if index[w] == -1:
                     stk.append((3, (v, w)))
                     stk.append((1, (w,)))
-                elif w in stack_set:
+                elif stack_set[w]:
                     lowlinks[v] = min(lowlinks[v], index[w])
+                else:  # visited child but not in curr stack
+                    is_leaf_found[v] = True
             elif step == 3:
                 v, w = args
+                if is_leaf_found[w]:
+                    is_leaf_found[v] = True
                 lowlinks[v] = min(lowlinks[v], lowlinks[w])
             elif step == 4:
                 v = args[0]
                 if lowlinks[v] != index[v]:
                     continue
                 w = None
+                cnt = 0
                 while w != v:
                     w = stack.pop()
-                    stack_set.remove(w)
-                    result[w] = v  # added
+                    stack_set[w] = False
+                    cnt += 1
+                if not is_leaf_found[v]:  # only keep leaf SCCs
+                    is_leaf_found[v] = True
+                    result[0] = min(result[0], cnt)
 
-    index_counter, index, lowlinks = [0], {}, {}
-    stack, stack_set = [], set()
-    result = [0]*len(adj)
+    index_counter, index, lowlinks = [0], [-1]*len(adj), [-1]*len(adj)
+    stack, stack_set = [], [False]*len(adj)
+    is_leaf_found = [False]*len(adj)
+    result = [len(adj)]
     for v in range(len(adj)):
-        if v not in index:
+        if index[v] == -1:
             iter_strongconnect(v)
-    return result
+    return result[0]
 
 def check(a, b):
     return (a[0]-b[0])**2 >= (a[1]-b[1])**2 + (a[2]-b[2])**2
@@ -339,12 +348,7 @@ def goose_goose_ducks():
         add_statement(s, sls[B], is_duck)
     if any(is_duck):
         return bfs(adj, is_duck)
-    components = strongly_connected_components(adj)
-    is_candidate = [True]*N
-    for u in range(N):
-        if any(components[v] != components[u] for v in adj[u]):
-            is_candidate[components[u]] = False
-    return min(Counter(x for x in components if is_candidate[x]).values())
+    return min_size_of_leaf_strongly_connected_components(adj)
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, goose_goose_ducks()))
