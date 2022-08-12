@@ -4,7 +4,7 @@
  * Google Code Jam 2022 Virtual World Finals - Problem B. Goose, Goose, Ducks
  * https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14
  *
- * Time:  O(M + N + S * (logM + logS))
+ * Time:  O(N + M + S * (logM + logS))
  * Space: O(N + S)
  *
  */
