@@ -258,17 +258,17 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
                 index[v] = index_counter[0]
                 lowlinks[v] = index_counter[0]
                 index_counter[0] += 1
-                stack_set.add(v)
+                stack_set[v] = True
                 stack.append(v)
                 stk.append((4, (v,)))
                 for w in reversed(adj[v]):
                     stk.append((2, (v, w)))
             elif step == 2:
                 v, w = args
-                if w not in index:
+                if index[w] == -1:
                     stk.append((3, (v, w)))
                     stk.append((1, (w,)))
-                elif w in stack_set:
+                elif stack_set[w]:
                     lowlinks[v] = min(lowlinks[v], index[w])
             elif step == 3:
                 v, w = args
@@ -280,14 +280,14 @@ def strongly_connected_components(adj):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
                 w = None
                 while w != v:
                     w = stack.pop()
-                    stack_set.remove(w)
-                    result[w] = v  # added
+                    stack_set[w] = False
+                    result[w] = v
 
-    index_counter, index, lowlinks = [0], {}, {}
-    stack, stack_set = [], set()
+    index_counter, index, lowlinks = [0], [-1]*len(adj), [-1]*len(adj)
+    stack, stack_set = [], [False]*len(adj)
     result = [0]*len(adj)
     for v in range(len(adj)):
-        if v not in index:
+        if index[v] == -1:
             iter_strongconnect(v)
     return result
 
@@ -306,7 +306,7 @@ def add_statement(s, sl, is_duck):
         del sl[i+1]
 
 def bfs(adj, is_duck):
-    q = list(i for i in range(len(adj)) if is_duck[i])
+    q = list(u for u in range(len(adj)) if is_duck[u])
     while q:
         new_q = []
         for u in q:
@@ -340,11 +340,11 @@ def goose_goose_ducks():
     if any(is_duck):
         return bfs(adj, is_duck)
     components = strongly_connected_components(adj)
-    lookup = set()
+    is_candidate = [True]*N
     for u in range(N):
         if any(components[v] != components[u] for v in adj[u]):
-            lookup.add(components[u])
-    return min(Counter(x for x in components if x not in lookup).values())
+            is_candidate[components[u]] = False
+    return min(Counter(x for x in components if is_candidate[x]).values())
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, goose_goose_ducks()))
