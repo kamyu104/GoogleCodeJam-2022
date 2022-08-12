@@ -131,8 +131,8 @@ int goose_goose_ducks() {
             (cit != cend(meetings) && !check(*cit, s.first))) {
             adj[B].emplace_back(A);
         }
-        add_statement(s, &(bsts[A]), &is_duck);
-        add_statement(s, &(bsts[B]), &is_duck);
+        add_statement(s, &bsts[A], &is_duck);
+        add_statement(s, &bsts[B], &is_duck);
     }
     if (count(cbegin(is_duck), cend(is_duck), true)) {
         return bfs(adj, &is_duck);
