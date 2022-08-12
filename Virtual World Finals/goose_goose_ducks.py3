@@ -331,12 +331,12 @@ def goose_goose_ducks():
         A, B, U, V, D = list(map(int, input().split()))
         A -= 1
         B -= 1
-        s = (D, U, V)
-        i = bisect_left(meetings, s)
-        if (i-1 >= 0 and not check(meetings[i-1], s)) or (i < M and not check(meetings[i], s)):
+        s = ((D, U, V), A)
+        i = bisect_left(meetings, s[0])
+        if (i-1 >= 0 and not check(meetings[i-1], s[0])) or (i < M and not check(meetings[i], s[0])):
             adj[B].append(A)
-        add_statement((s, A), sls[A], is_duck)
-        add_statement((s, A), sls[B], is_duck)
+        add_statement(s, sls[A], is_duck)
+        add_statement(s, sls[B], is_duck)
     if any(is_duck):
         return bfs(adj, is_duck)
     components = strongly_connected_components(adj)
