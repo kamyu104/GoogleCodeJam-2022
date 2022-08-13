@@ -74,7 +74,7 @@ def slide_parade():
     if len(match) != B:
         return "IMPOSSIBLE"
     adj2 = [[] for _ in range(B)]
-    for u in range(len(adj)):
+    for u in range(B):
         for v in adj[u]:
             if not find_alternating_matching(adj, u, v, match, adj2):
                 return "IMPOSSIBLE"
