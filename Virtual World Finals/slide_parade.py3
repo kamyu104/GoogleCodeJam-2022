@@ -72,8 +72,8 @@ def slide_parade():
         for v in adj[u]:
             if not find_alternating_matching(adj, u, v, match):
                 return "IMPOSSIBLE"
-            for x in range(B):
-                adj2[match[x]].append(x)
+            for w in range(B):
+                adj2[match[w]].append(w)
     result = Hierholzer(adj2)  # Time: O(B * S)
     return "%s\n%s" % (len(result), " ".join(map(lambda x: str(x+1), result)))
 
