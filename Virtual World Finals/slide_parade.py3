@@ -39,12 +39,8 @@ def find_alternating_matching(adj, u, v, match, adj2):  # Time: O(S + B)
         if not augment(adj, match[v], v, set(), match):
             return False
         match[v] = u
-    lookup = set()
     for u in range(len(adj)):
-        while u not in lookup:
-            lookup.add(u)
-            adj2[match[u]].append(u)
-            u = match[u]
+        adj2[match[u]].append(u)
     return True
 
 # Hierholzer algorithm
