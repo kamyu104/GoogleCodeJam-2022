@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-25%20%2F%2027-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
+# [GoogleCodeJam 2022](https://codingcompetitions.withgoogle.com/codejam/archive/2022) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-26%20%2F%2027-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.googlecodejam.2022)
 
 * Python3 solutions of Google Code Jam 2022. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8` is not friendly for Python3 to solve in 5 ~ 15 seconds.
@@ -68,6 +68,6 @@ You can relive the magic of the 2022 Code Jam Virtual World Finals by watching t
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Wonderland Chase](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c499)| [Python3](./Virtual%20World%20Finals/wonderland_chase.py3) | _O(J + C)_ | _O(J + C)_ | Easy | | Graph, BFS
 |B| [Goose, Goose, Ducks?](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9ce14)| [*PyPy3](./Virtual%20World%20Finals/goose_goose_ducks.py3) [C++](./Virtual%20World%20Finals/goose_goose_ducks.cpp) | _O(N + M + S * (logM + logS))_ | _O(N + S)_ | Hard | | Logic-Based, Sorted List, Graph, BFS, SCC, Tarjan's Algorithm
-|C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| | | | Medium | |
+|C| [Slide Parade](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13)| [PyPy3](./Virtual%20World%20Finals/slide_parade.py3) | _O(S^2)_ | _O(S)_ | Medium | | Bipartite Matching, Hierholzer's Algorithm, Eulerian Path
 |D| [Schrödinger and Pavlov](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a)| | | | Hard | |
 |E| [Triangles](https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c555)| [PyPy3](./Virtual%20World%20Finals/triangles.py3) [C++](./Virtual%20World%20Finals/triangles.cpp)  | _O(N^2)_ | _O(N)_ | Very Hard | ❤️ | Geometry, Constructive Algorithms, Greedy

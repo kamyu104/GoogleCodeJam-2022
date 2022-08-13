@@ -4,7 +4,7 @@
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13
 #
 # Time:  O(S^2), pass in PyPy3 but Python3
-# Space: O(S^2)
+# Space: O(S)
 #
 
 def augment(adj, u, ignore, lookup, match):
