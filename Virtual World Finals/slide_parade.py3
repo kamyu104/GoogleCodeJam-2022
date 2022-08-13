@@ -7,6 +7,21 @@
 # Space: O(S)
 #
 
+def bfs(adj):
+    lookup = [False]*len(adj)
+    q = [0]
+    lookup[0] = True
+    while q:
+        new_q = []
+        for u in q:
+            for v in adj[u]:
+                if lookup[v]:
+                    continue
+                lookup[v] = True
+                new_q.append(v)
+        q = new_q
+    return sum(lookup)
+
 # Hungarian algorithm
 def augment(adj, u, ignore, lookup, match):
     for v in adj[u]:
@@ -51,6 +66,8 @@ def slide_parade():
         U -= 1
         V -= 1
         adj[U].append(V)
+    if bfs(adj) != B:
+        return "IMPOSSIBLE"
     match = {}
     for u in range(B):
         augment(adj, u, -1, set(), match)
@@ -62,8 +79,6 @@ def slide_parade():
             if not find_alternating_matching(adj, u, v, match, adj2):
                 return "IMPOSSIBLE"
     result = Hierholzer(adj2)
-    if len(set(result)) != B:
-        return "IMPOSSIBLE"
     return "%s\n%s" % (len(result), " ".join(map(lambda x: str(x+1), result)))
 
 for case in range(int(input())):
