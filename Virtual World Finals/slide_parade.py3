@@ -3,8 +3,8 @@
 # Google Code Jam 2022 Virtual World Finals - Problem C. Slide Parade
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9cb13
 #
-# Time:  O(S^2), pass in PyPy3 but Python3
-# Space: O(S)
+# Time:  O(B * S + S^2), pass in PyPy3 but Python3
+# Space: O(B * S)
 #
 
 def bfs(adj):
