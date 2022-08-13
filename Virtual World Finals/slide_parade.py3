@@ -33,14 +33,12 @@ def augment(adj, u, ignore, lookup, match):
             return True
     return False
 
-def find_alternating_matching(adj, u, v, match, adj2):  # Time: O(S + B)
+def find_alternating_matching(adj, u, v, match):  # Time: O(S)
     if match[v] != u:
         del match[next(x for x, y in match.items() if y == u)]
         if not augment(adj, match[v], v, set(), match):
             return False
         match[v] = u
-    for u in range(len(adj)):
-        adj2[match[u]].append(u)
     return True
 
 # Hierholzer algorithm
@@ -72,8 +70,10 @@ def slide_parade():
     adj2 = [[] for _ in range(B)]
     for u in range(B):  # Time: O(S^2 + S * B), Space: O(S * B)
         for v in adj[u]:
-            if not find_alternating_matching(adj, u, v, match, adj2):
+            if not find_alternating_matching(adj, u, v, match):
                 return "IMPOSSIBLE"
+            for u in range(B):
+                adj2[match[u]].append(u)
     result = Hierholzer(adj2)  # Time: O(B * S)
     return "%s\n%s" % (len(result), " ".join(map(lambda x: str(x+1), result)))
 
