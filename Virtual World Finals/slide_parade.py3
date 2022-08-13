@@ -7,6 +7,7 @@
 # Space: O(S)
 #
 
+# Hungarian algorithm
 def augment(adj, u, ignore, lookup, match):
     for v in adj[u]:
         if v == ignore or v in lookup:
@@ -31,6 +32,7 @@ def find_alternating_matching(adj, u, v, match, adj2):  # Time: O(N)
             u = match[u]
     return True
 
+# Hierholzer algorithm
 def Hierholzer(adj):
     result = []
     stk = [0]
