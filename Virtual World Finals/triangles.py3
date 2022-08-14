@@ -68,7 +68,7 @@ def find_nearest_point(P, sorted_remain, x, y):
                 d2, z2, v2 = d, c, v
     return z1 if z1 != -1 else z2
 
-def make_triangle_from_maximal_points(P, sorted_remain, result):
+def make_triangle_from_max_points(P, sorted_remain, result):
     x, y = sorted_remain[-1], sorted_remain[-2]
     z = find_nearest_point(P, sorted_remain, x, y)
     if z == -1:
@@ -131,7 +131,7 @@ def triangles():
     removed = False
     sorted_remain = sorted(range(N), key=lambda x: P[x])
     while len(sorted_remain) >= 3:
-        if make_triangle_from_maximal_points(P, sorted_remain, result):
+        if make_triangle_from_max_points(P, sorted_remain, result):
             continue
         a, b = sorted_remain[:2]
         v = vector(P[a], P[b])

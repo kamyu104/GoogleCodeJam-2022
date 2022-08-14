@@ -109,7 +109,7 @@ int find_nearest_point(const vector<vector<int64_t>>& P, const vector<int>& sort
     return z1 != -1 ? z1 : z2;
 }
 
-bool make_triangle_from_maximal_points(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
+bool make_triangle_from_max_points(const vector<vector<int64_t>>& P, vector<int> *sorted_remain,
     vector<vector<int>> *result) {
 
     const int x = (*sorted_remain)[size(*sorted_remain) - 1];
@@ -234,7 +234,7 @@ void triangles() {
         return P[a] < P[b];
     });
     while (size(sorted_remain) >= 3) {
-        if (make_triangle_from_maximal_points(P, &sorted_remain, &result)) {
+        if (make_triangle_from_max_points(P, &sorted_remain, &result)) {
             continue;
         }
         const int a = sorted_remain[0], b = sorted_remain[1];
