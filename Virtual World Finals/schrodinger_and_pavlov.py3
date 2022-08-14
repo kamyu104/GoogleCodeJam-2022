@@ -34,13 +34,13 @@ def schrodinger_and_pavlov():
     for left in (0, 1):
         for right in (0, 1):
             prob = [PROB[c] for c in S]
-            curr = 0
+            branch_prob = 0
             for i in range(N):
                 if i == cycle:
-                    curr = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
+                    branch_prob = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
                     prob[i], prob[B[i]] = left, right
                 prob[i], prob[B[i]] = mult(prob[i], prob[B[i]]), sub(add(prob[i], prob[B[i]]), mult(prob[i], prob[B[i]]))
-            result = add(result, mult(curr, prob[N-1]))
+            result = add(result, mult(branch_prob, prob[N-1]))
     return mult(result, pow(2, S.count('?'), MOD))
 
 MOD = 10**9+7
