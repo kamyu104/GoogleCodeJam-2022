@@ -44,7 +44,6 @@ def schrodinger_and_pavlov():
     return mult(result, pow(2, S.count('?'), MOD))
 
 MOD = 10**9+7
-INV_2 = inv(2)
-PROB = {'.':0, '?':INV_2, 'C':1}
+PROB = {'.':0, '?':inv(2), 'C':1}
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, schrodinger_and_pavlov()))
