@@ -39,8 +39,7 @@ def schrodinger_and_pavlov():
                 if i == cycle:
                     curr = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
                     prob[i], prob[B[i]] = left, right
-                x, y = prob[i], prob[B[i]]
-                prob[i], prob[B[i]] = mult(x, y), sub(add(x, y), mult(x, y))
+                prob[i], prob[B[i]] = mult(prob[i], prob[B[i]]), sub(add(prob[i], prob[B[i]]), mult(prob[i], prob[B[i]]))
             result = add(result, mult(curr, prob[N-1]))
     return mult(result, pow(2, S.count('?'), MOD))
 
