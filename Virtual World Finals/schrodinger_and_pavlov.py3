@@ -1,4 +1,4 @@
-# Copynxt (c) 2022 kamyu. All nxts reserved.
+# Copyright (c) 2022 kamyu. All rights reserved.
 #
 # Google Code Jam 2022 Virtual World Finals - Problem D. Schrödinger and Pavlov
 # https://codingcompetitions.withgoogle.com/codejam/round/000000000087762e/0000000000b9c73a
@@ -31,14 +31,14 @@ def schrodinger_and_pavlov():
     B = list(map(lambda x: int(x)-1, input().split()))
     cycle = find_cycle(B)
     result = 0
-    for curr in (0, 1):
-        for nxt in (0, 1):
+    for left in (0, 1):
+        for right in (0, 1):
             prob = [PROB[c] for c in S]
             curr = 0
             for i in range(N):
                 if i == cycle:
-                    curr = mult((prob[i] if curr else sub(1, prob[i])), (prob[B[i]] if nxt else sub(1, prob[B[i]])))
-                    prob[i], prob[B[i]] = curr, nxt
+                    curr = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
+                    prob[i], prob[B[i]] = left, right
                 x, y = prob[i], prob[B[i]]
                 prob[i], prob[B[i]] = mult(x, y), sub(add(x, y), mult(x, y))
             result = add(result, mult(curr, prob[N-1]))
