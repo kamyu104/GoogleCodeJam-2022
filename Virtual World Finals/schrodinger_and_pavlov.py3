@@ -20,17 +20,14 @@ def mult(a, b):
     return (a*b)%MOD
 
 def find_cycle_start(B):
-    lookup = [False]*len(B)
+    lookup = [-1]*len(B)
     curr = len(B)-1
-    while not lookup[curr]:
-        lookup[curr] = True
+    cnt = 0
+    while lookup[curr] == -1:
+        lookup[curr] = cnt
+        cnt += 1
         curr = B[curr]
-    result = start = curr
-    curr = B[start]
-    while curr != start:
-        result = min(result, curr)
-        curr = B[curr]
-    return result
+    return min(i for i, x in enumerate(lookup) if x >= lookup[curr])
 
 def schrodinger_and_pavlov():
     N = int(input())
