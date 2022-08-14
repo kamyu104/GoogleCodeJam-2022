@@ -35,13 +35,13 @@ def schrodinger_and_pavlov():
     B = list(map(lambda x: int(x)-1, input().split()))
     cycle_start = find_min_cycle_start_in_the_last_component(B)
     result = 0
-    for left in (0, 1):
-        for right in (0, 1):
+    for prob_u in (0, 1):
+        for prob_v in (0, 1):
             prob = [PROB[c] for c in S]
             for i in range(N):
                 if i == cycle_start:
-                    weight = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
-                    prob[i], prob[B[i]] = left, right
+                    weight = mult((prob[i] if prob_u else sub(1, prob[i])), (prob[B[i]] if prob_v else sub(1, prob[B[i]])))
+                    prob[i], prob[B[i]] = prob_u, prob_v
                 prob[i], prob[B[i]] = mult(prob[i], prob[B[i]]), sub(add(prob[i], prob[B[i]]), mult(prob[i], prob[B[i]]))
             result = add(result, mult(weight, prob[N-1]))
     return mult(result, pow(2, S.count('?'), MOD))
