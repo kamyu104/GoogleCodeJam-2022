@@ -34,7 +34,6 @@ def schrodinger_and_pavlov():
     for left in (0, 1):
         for right in (0, 1):
             prob = [PROB[c] for c in S]
-            branch_prob = 0
             for i in range(N):
                 if i == cycle:
                     branch_prob = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
