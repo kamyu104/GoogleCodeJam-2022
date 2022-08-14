@@ -40,10 +40,10 @@ def schrodinger_and_pavlov():
             prob = [PROB[c] for c in S]
             for i in range(N):
                 if i == cycle_start:
-                    branch_prob = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
+                    weight = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
                     prob[i], prob[B[i]] = left, right
                 prob[i], prob[B[i]] = mult(prob[i], prob[B[i]]), sub(add(prob[i], prob[B[i]]), mult(prob[i], prob[B[i]]))
-            result = add(result, mult(branch_prob, prob[N-1]))
+            result = add(result, mult(weight, prob[N-1]))
     return mult(result, pow(2, S.count('?'), MOD))
 
 MOD = 10**9+7
