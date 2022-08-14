@@ -19,7 +19,7 @@ def sub(a, b):
 def mult(a, b):
     return (a*b)%MOD
 
-def find_cycle_start(B):
+def find_min_cycle_start_in_the_last_component(B):
     lookup = [-1]*len(B)
     curr = len(B)-1
     cnt = 0
@@ -33,7 +33,7 @@ def schrodinger_and_pavlov():
     N = int(input())
     S = input()
     B = list(map(lambda x: int(x)-1, input().split()))
-    cycle_start = find_cycle_start(B)
+    cycle_start = find_min_cycle_start_in_the_last_component(B)
     result = 0
     for left in (0, 1):
         for right in (0, 1):
