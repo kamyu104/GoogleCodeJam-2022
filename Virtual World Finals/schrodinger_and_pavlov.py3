@@ -19,23 +19,30 @@ def sub(a, b):
 def mult(a, b):
     return (a*b)%MOD
 
-def find_cycle(B):
+def find_cycle_start(B):
+    lookup = [False]*len(B)
     curr = len(B)-1
-    while B[curr] < curr:
+    while not lookup[curr]:
+        lookup[curr] = True
         curr = B[curr]
-    return curr
+    result = start = curr
+    curr = B[start]
+    while curr != start:
+        result = min(result, curr)
+        curr = B[curr]
+    return result
 
 def schrodinger_and_pavlov():
     N = int(input())
     S = input()
     B = list(map(lambda x: int(x)-1, input().split()))
-    cycle = find_cycle(B)
+    cycle_start = find_cycle_start(B)
     result = 0
     for left in (0, 1):
         for right in (0, 1):
             prob = [PROB[c] for c in S]
             for i in range(N):
-                if i == cycle:
+                if i == cycle_start:
                     branch_prob = mult((prob[i] if left else sub(1, prob[i])), (prob[B[i]] if right else sub(1, prob[B[i]])))
                     prob[i], prob[B[i]] = left, right
                 prob[i], prob[B[i]] = mult(prob[i], prob[B[i]]), sub(add(prob[i], prob[B[i]]), mult(prob[i], prob[B[i]]))
